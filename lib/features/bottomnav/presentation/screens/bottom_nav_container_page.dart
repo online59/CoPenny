@@ -1,6 +1,10 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:piggy/shared/presentation/screens/account_page.dart';
+import 'package:piggy/shared/presentation/screens/overview_page.dart';
+import 'package:piggy/shared/presentation/screens/summary_page.dart';
+import 'package:piggy/shared/presentation/screens/transaction_page.dart';
 
 class BottomNavContainer extends StatefulWidget {
   const BottomNavContainer({super.key});
@@ -21,6 +25,8 @@ class _BottomNavContainerState extends State<BottomNavContainer> {
 
   int _bottomNavIndex = 0;
 
+  List<Widget> screens = const [OverviewPage(), TransactionPage(), SummaryPage(), AccountPage()];
+
   @override
   Widget build(BuildContext context) {
 
@@ -30,9 +36,7 @@ class _BottomNavContainerState extends State<BottomNavContainer> {
           IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout))
         ],
       ),
-      body: Center(
-        child: Text("Logged IN as :${user?.refreshToken!}"),
-      ),
+      body: screens[_bottomNavIndex],
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         shape: const RoundedRectangleBorder(
