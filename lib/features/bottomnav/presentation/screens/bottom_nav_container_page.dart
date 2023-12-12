@@ -14,7 +14,6 @@ class BottomNavContainer extends StatefulWidget {
 }
 
 class _BottomNavContainerState extends State<BottomNavContainer> {
-
   final user = FirebaseAuth.instance.currentUser;
 
   void signUserOut() {
@@ -25,23 +24,51 @@ class _BottomNavContainerState extends State<BottomNavContainer> {
 
   int _bottomNavIndex = 0;
 
-  List<Widget> screens = const [OverviewPage(), TransactionPage(), SummaryPage(), AccountPage()];
+  final List<Widget> _pages = const [
+    OverviewPage(),
+    TransactionPage(),
+    SummaryPage(),
+    AccountPage()
+  ];
+
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _onPageChanged(int index) {
+    setState(() {
+      _bottomNavIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         actions: [
           IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout))
         ],
       ),
-      body: screens[_bottomNavIndex],
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: _onPageChanged,
+        children: _pages,
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(90.0))
-        ),
+            borderRadius: BorderRadius.all(Radius.circular(90.0))),
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -49,9 +76,8 @@ class _BottomNavContainerState extends State<BottomNavContainer> {
         icons: const [Icons.home, Icons.list, Icons.pie_chart, Icons.person],
         activeIndex: _bottomNavIndex,
         onTap: (index) {
-          setState(() {
-            _bottomNavIndex = index;
-          });
+          _onPageChanged(index);
+          _pageController.jumpToPage(index);
         },
         notchSmoothness: NotchSmoothness.softEdge,
         gapLocation: GapLocation.center,
