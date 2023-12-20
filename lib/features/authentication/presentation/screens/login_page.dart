@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../routes/routes.dart';
 import '../../../../shared/presentation/widgets/my_button.dart';
 import '../../../../shared/presentation/widgets/my_textfield.dart';
-import '../../application/controller/auth_controller.dart';
+import '../../application/provider/auth_controller.dart';
 import '../../application/services/anonym_auth_service.dart';
 import '../../application/services/email_auth_service.dart';
 import '../../application/services/google_auth_service.dart';

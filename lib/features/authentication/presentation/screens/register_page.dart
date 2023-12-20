@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../../../shared/presentation/widgets/my_button.dart';
 import '../../../../shared/presentation/widgets/my_textfield.dart';
-import '../../../../shared/presentation/widgets/square_tile.dart';
-import '../../application/controller/auth_controller.dart';
+import '../../application/provider/auth_controller.dart';
 import '../../application/services/email_auth_service.dart';
 
 class RegisterPage extends StatefulWidget {

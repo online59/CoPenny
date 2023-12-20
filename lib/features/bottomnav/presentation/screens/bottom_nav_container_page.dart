@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:piggy/shared/presentation/screens/account_page.dart';
 import 'package:piggy/shared/presentation/screens/overview_page.dart';
 import 'package:piggy/shared/presentation/screens/summary_page.dart';
-import 'package:piggy/shared/presentation/screens/transaction_page.dart';
+import 'package:piggy/shared/presentation/screens/spending_page.dart';
 
 class BottomNavContainer extends StatefulWidget {
   const BottomNavContainer({super.key});
@@ -26,7 +26,7 @@ class _BottomNavContainerState extends State<BottomNavContainer> {
 
   final List<Widget> _pages = const [
     OverviewPage(),
-    TransactionPage(),
+    SpendingPage(),
     SummaryPage(),
     AccountPage()
   ];
