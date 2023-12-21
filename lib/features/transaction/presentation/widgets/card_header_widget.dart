@@ -7,13 +7,12 @@ class CardHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(header),
-        Divider(
-          color: Colors.grey[300],
-        )
-      ],
+    return Container(
+      height: 36,
+      color: Theme.of(context).colorScheme.inversePrimary,
+      child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text(header)),
     );
   }
 }

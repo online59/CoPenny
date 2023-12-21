@@ -8,9 +8,14 @@ class SpendingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => TransProvider(),
-      child: const ShowTransactionPage(),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: Text('Spending')),
+      ),
+      body: ChangeNotifierProvider(
+        create: (context) => TransProvider(),
+        child: const ShowTransactionPage(),
+      ),
     );
   }
 }

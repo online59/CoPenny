@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:piggy/features/transaction/presentation/widgets/card_header_widget.dart';
 import 'package:piggy/features/transaction/presentation/widgets/card_item_widget.dart';
 import 'package:sliver_tools/sliver_tools.dart';
+import 'package:intl/intl.dart';
 
 import '../../data/models/transaction_item_model.dart';
 
@@ -17,36 +18,39 @@ class TransactionCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverPadding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      sliver: MultiSliver(
-        //pin header to top
-        pushPinnedChildren: true,
+    return MultiSliver(
+      //pin header to top
+      pushPinnedChildren: true,
 
-        children: [
-          SliverStack(
-            //make sure overlapping area handling properly
-            insetOnOverlap: true,
-            children: [
-              //positioned child in this stack
-              SliverPositioned.fill(
-                child: Container(),
+      children: [
+        SliverStack(
+          //make sure overlapping area handling properly
+          insetOnOverlap: true,
+          children: [
+            //positioned child in this stack
+            SliverPositioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                ),
               ),
-              buildGroupItem(),
-            ],
-          )
-        ],
-      ),
+            ),
+            buildGroupItem(),
+          ],
+        )
+      ],
     );
   }
 
   Widget buildGroupItem() {
+
     return MultiSliver(children: [
       //header of this transaction day
       SliverPinnedHeader(
         //container of the header
         child: CardHeaderWidget(
-          header: transHeader.toString(),
+          header: DateUtils.dateOnly(transHeader).toString(),
         ),
       ),
 

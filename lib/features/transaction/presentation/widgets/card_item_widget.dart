@@ -18,7 +18,7 @@ class CardItemWidget extends StatelessWidget {
       children: [
         itemContainer(),
         Divider(
-          color: Colors.grey[300],
+          color: Colors.grey[100],
         )
       ],
     );

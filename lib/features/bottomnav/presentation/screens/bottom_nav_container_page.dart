@@ -55,11 +55,6 @@ class _BottomNavContainerState extends State<BottomNavContainer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout))
-        ],
-      ),
       body: PageView(
         controller: _pageController,
         onPageChanged: _onPageChanged,

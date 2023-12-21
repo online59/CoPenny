@@ -4,6 +4,8 @@ import 'package:piggy/features/transaction/data/models/transaction_header_model.
 
 class TransProvider extends ChangeNotifier{
 
+  TransRepository repository = TransRepository();
+
   TransProvider() {
     fetchTransactionData();
   }
@@ -14,7 +16,7 @@ class TransProvider extends ChangeNotifier{
 
   Future fetchTransactionData() async {
     await Future.delayed(const Duration(seconds: 1));
-    _transactions.addAll(TransRepository.transaction);
+    _transactions.addAll(repository.transaction());
     notifyListeners();
   }
 }
