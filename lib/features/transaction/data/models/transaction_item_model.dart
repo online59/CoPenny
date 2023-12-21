@@ -1,7 +1,7 @@
 class TransItemModel {
   final String content;
   final String? subtitle;
-  final int amount;
+  final double amount;
   final DateTime date;
 
   TransItemModel({
@@ -10,4 +10,8 @@ class TransItemModel {
     required this.date,
     this.subtitle,
   });
+
+  String getFormattedAmount() {
+    return "$amount THB";
+  }
 }

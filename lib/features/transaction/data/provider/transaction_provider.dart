@@ -17,6 +17,7 @@ class TransProvider extends ChangeNotifier{
   Future fetchTransactionData() async {
     await Future.delayed(const Duration(seconds: 1));
     _transactions.addAll(repository.transaction());
+    _transactions.sort((a, b) => b.header.compareTo(a.header));
     notifyListeners();
   }
 }

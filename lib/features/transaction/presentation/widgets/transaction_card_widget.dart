@@ -11,9 +11,11 @@ class TransactionCardWidget extends StatelessWidget {
     super.key,
     required this.transHeader,
     required this.transItems,
+    required this.totalAmount,
   });
 
-  final DateTime transHeader;
+  final String transHeader;
+  final String totalAmount;
   final List<TransItemModel> transItems;
 
   @override
@@ -25,15 +27,12 @@ class TransactionCardWidget extends StatelessWidget {
       children: [
         SliverStack(
           //make sure overlapping area handling properly
-          insetOnOverlap: true,
+          insetOnOverlap: false,
           children: [
             //positioned child in this stack
             SliverPositioned.fill(
               child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                ),
+                padding: EdgeInsets.zero,
               ),
             ),
             buildGroupItem(),
@@ -44,26 +43,28 @@ class TransactionCardWidget extends StatelessWidget {
   }
 
   Widget buildGroupItem() {
-
-    return MultiSliver(children: [
-      //header of this transaction day
-      SliverPinnedHeader(
-        //container of the header
-        child: CardHeaderWidget(
-          header: DateUtils.dateOnly(transHeader).toString(),
+    return MultiSliver(
+      children: [
+        //header of this transaction day
+        SliverPinnedHeader(
+          //container of the header
+          child: CardHeaderWidget(
+            header: transHeader,
+            totalAmount: totalAmount,
+          ),
         ),
-      ),
 
-      //list of transaction on this day
-      SliverClip(
-        child: MultiSliver(
-          //build transaction item of this day
-          children: [
-            buildTransactionItem(),
-          ],
+        //list of transaction on this day
+        SliverClip(
+          child: MultiSliver(
+            //build transaction item of this day
+            children: [
+              buildTransactionItem(),
+            ],
+          ),
         ),
-      ),
-    ]);
+      ],
+    );
   }
 
   Widget buildTransactionItem() {
@@ -76,7 +77,7 @@ class TransactionCardWidget extends StatelessWidget {
                 child: Text('A'),
               ),
               content: transItems[index].content,
-              amount: transItems[index].amount.toString());
+              amount: transItems[index].getFormattedAmount());
         },
         childCount: transItems.length,
       ),

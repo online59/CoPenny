@@ -26,8 +26,13 @@ class _ShowTransactionPageState extends State<ShowTransactionPage>
 
   List<Widget> buildTransactionGroup(List<TransHeaderModel> groupItem) {
     return groupItem
-        .map((item) => TransactionCardWidget(
-            transHeader: item.title, transItems: item.items))
+        .map(
+          (item) => TransactionCardWidget(
+            transHeader: item.getFormattedHeader(),
+            transItems: item.items,
+            totalAmount: item.calculateTotalAmount(),
+          ),
+        )
         .toList();
   }
 

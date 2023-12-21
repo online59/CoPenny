@@ -46,10 +46,10 @@ class TransRepository {
     list.add(TransHeaderModel(DateTime.utc(2023, 12, 10), items.sublist(0, 7)));
 
     items.shuffle();
-    list.add(TransHeaderModel(DateTime.utc(2023, 12, 11), items.sublist(0, 7)));
+    list.add(TransHeaderModel(DateTime.utc(2023, 12, 20), items.sublist(0, 7)));
 
     items.shuffle();
-    list.add(TransHeaderModel(DateTime.utc(2023, 12, 12), items.sublist(0, 7)));
+    list.add(TransHeaderModel(DateTime.utc(2023, 12, 21), items.sublist(0, 7)));
 
     return list;
   }
@@ -88,11 +88,13 @@ class TransRepository {
       'Nectarine'
     ];
 
+    Random random = Random();
+
     for (int i = 0; i < 7; i++) {
       items.add(TransItemModel(
         content: fruits[i],
-        amount: 40,
-        date: DateTime.utc(2023, 12, 01),
+        amount: random.nextInt(500).toDouble(),
+        date: DateTime.utc(2023, 12, 01+i),
       ));
     }
   }

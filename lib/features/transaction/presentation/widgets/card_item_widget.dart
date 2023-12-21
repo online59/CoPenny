@@ -12,21 +12,33 @@ class CardItemWidget extends StatelessWidget {
   final String content;
   final String amount;
 
+  static const Color borderColor = Color(0xFFF5F5F5);
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        itemContainer(),
-        Divider(
-          color: Colors.grey[100],
-        )
-      ],
-    );
+    return itemContainer();
   }
 
-  Widget itemContainer() => ListTile(
-    title: Text(content),
-    leading: circleAvatar,
-    trailing: Text(amount),
+  Widget itemContainer() => Container(
+    decoration: const BoxDecoration(
+      border: Border(
+        bottom: BorderSide(
+          color: borderColor,
+        )
+      )
+    ),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: ListTile(
+            title: Text(content),
+            leading: circleAvatar,
+            trailing: Text(
+              amount,
+              style: const TextStyle(
+                fontSize: 16,
+              ),
+            ),
+          ),
+    ),
   );
 }
