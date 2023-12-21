@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:piggy/features/transaction/data/models/group_transaction_model.dart';
+import 'package:piggy/features/transaction/presentation/widgets/card_header_widget.dart';
+import 'package:piggy/features/transaction/presentation/widgets/card_item_widget.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../data/models/transaction_item_model.dart';
 
-class TransactionGroupWidget extends StatelessWidget{
-  const TransactionGroupWidget(
-      {super.key,
-      required this.transactionHeader,
-      required this.transactionList});
+class TransactionCardWidget extends StatelessWidget {
+  const TransactionCardWidget({
+    super.key,
+    required this.transHeader,
+    required this.transItems,
+  });
 
-  final DateTime transactionHeader;
-  final List<TransactionItemModel> transactionList;
+  final DateTime transHeader;
+  final List<TransItemModel> transItems;
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +44,9 @@ class TransactionGroupWidget extends StatelessWidget{
     return MultiSliver(children: [
       //header of this transaction day
       SliverPinnedHeader(
-        child: Container(
-          color: Colors.grey[400],
-          child: Text(transactionHeader.toString()),
+        //container of the header
+        child: CardHeaderWidget(
+          header: transHeader.toString(),
         ),
       ),
 
@@ -64,12 +66,15 @@ class TransactionGroupWidget extends StatelessWidget{
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (_, index) {
-          return Container(
-            color: Colors.grey[100],
-            child: Text(transactionList[index].content),
-          );
+          //container of the transaction items
+          return CardItemWidget(
+              circleAvatar: const CircleAvatar(
+                child: Text('A'),
+              ),
+              content: transItems[index].content,
+              amount: transItems[index].amount.toString());
         },
-        childCount: transactionList.length,
+        childCount: transItems.length,
       ),
     );
   }

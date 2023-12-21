@@ -1,8 +1,8 @@
-class TransactionItemModel {
+class TransItemModel {
 
   final String content;
-  // final String amount;
+  final int amount;
   final DateTime date;
 
-  TransactionItemModel(this.content, this.date);
+  TransItemModel(this.content, this.amount, this.date);
 }

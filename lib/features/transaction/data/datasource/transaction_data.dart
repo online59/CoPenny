@@ -1,121 +1,121 @@
 
-import 'package:piggy/features/transaction/data/models/group_transaction_model.dart';
+import 'package:piggy/features/transaction/data/models/transaction_header_model.dart';
 import 'package:piggy/features/transaction/data/models/transaction_item_model.dart';
 
-class TransactionRepository {
+class TransRepository {
 
-  static final List<GroupTransactionModel> transaction = [
-    GroupTransactionModel(DateTime.utc(2023, 12, 01), transOnFirst),
-    GroupTransactionModel(DateTime.utc(2023, 12, 02), transOnSecond),
-    GroupTransactionModel(DateTime.utc(2023, 12, 03), transOnThird),
-    GroupTransactionModel(DateTime.utc(2023, 12, 04), transOnFourth),
-    GroupTransactionModel(DateTime.utc(2023, 12, 05), transOnFifth),
-    GroupTransactionModel(DateTime.utc(2023, 12, 06), transOnSixth),
-    GroupTransactionModel(DateTime.utc(2023, 12, 07), transOnSeventh),
-    GroupTransactionModel(DateTime.utc(2023, 12, 08), transOnEigth),
-    GroupTransactionModel(DateTime.utc(2023, 12, 09), transOnNinth),
-    GroupTransactionModel(DateTime.utc(2023, 12, 10), transOnTenth),
-    GroupTransactionModel(DateTime.utc(2023, 12, 11), transOnEleventh),
-    GroupTransactionModel(DateTime.utc(2023, 12, 12), transOnTwelvth),
+  static final List<TransHeaderModel> transaction = [
+    TransHeaderModel(DateTime.utc(2023, 12, 01), transOnFirst),
+    TransHeaderModel(DateTime.utc(2023, 12, 02), transOnSecond),
+    TransHeaderModel(DateTime.utc(2023, 12, 03), transOnThird),
+    TransHeaderModel(DateTime.utc(2023, 12, 04), transOnFourth),
+    TransHeaderModel(DateTime.utc(2023, 12, 05), transOnFifth),
+    TransHeaderModel(DateTime.utc(2023, 12, 06), transOnSixth),
+    TransHeaderModel(DateTime.utc(2023, 12, 07), transOnSeventh),
+    TransHeaderModel(DateTime.utc(2023, 12, 08), transOnEigth),
+    TransHeaderModel(DateTime.utc(2023, 12, 09), transOnNinth),
+    TransHeaderModel(DateTime.utc(2023, 12, 10), transOnTenth),
+    TransHeaderModel(DateTime.utc(2023, 12, 11), transOnEleventh),
+    TransHeaderModel(DateTime.utc(2023, 12, 12), transOnTwelvth),
   ];
 
-  static final List<TransactionItemModel> transOnFirst = [
-    TransactionItemModel('Cookie', DateTime.utc(2023, 12, 01)),
-    TransactionItemModel('Steak', DateTime.utc(2023, 12, 01)),
-    TransactionItemModel('Bacon', DateTime.utc(2023, 12, 01)),
-    TransactionItemModel('Ham', DateTime.utc(2023, 12, 01)),
+  static final List<TransItemModel> transOnFirst = [
+    TransItemModel('Cookie', 40, DateTime.utc(2023, 12, 01)),
+    TransItemModel('Steak', 40, DateTime.utc(2023, 12, 01)),
+    TransItemModel('Bacon', 40, DateTime.utc(2023, 12, 01)),
+    TransItemModel('Ham', 40, DateTime.utc(2023, 12, 01)),
   ];
 
-  static final List<TransactionItemModel> transOnSecond = [
-    TransactionItemModel('Croissant', DateTime.utc(2023, 12, 02)),
-    TransactionItemModel('Bacon', DateTime.utc(2023, 12, 02)),
-    TransactionItemModel('Ham', DateTime.utc(2023, 12, 02)),
-    TransactionItemModel('Lasagna', DateTime.utc(2023, 12, 02)),
-    TransactionItemModel('Spaghetti', DateTime.utc(2023, 12, 02)),
-    TransactionItemModel('Pudding', DateTime.utc(2023, 12, 02)),
-    TransactionItemModel('Egg roll', DateTime.utc(2023, 12, 02)),
+  static final List<TransItemModel> transOnSecond = [
+    TransItemModel('Croissant', 40, DateTime.utc(2023, 12, 02)),
+    TransItemModel('Bacon', 40, DateTime.utc(2023, 12, 02)),
+    TransItemModel('Ham', 40, DateTime.utc(2023, 12, 02)),
+    TransItemModel('Lasagna', 40, DateTime.utc(2023, 12, 02)),
+    TransItemModel('Spaghetti', 40, DateTime.utc(2023, 12, 02)),
+    TransItemModel('Pudding', 40, DateTime.utc(2023, 12, 02)),
+    TransItemModel('Egg roll', 40, DateTime.utc(2023, 12, 02)),
   ];
 
-  static final List<TransactionItemModel> transOnThird = [
-    TransactionItemModel('Cabbage roll', DateTime.utc(2023, 12, 03)),
-    TransactionItemModel('Cheese', DateTime.utc(2023, 12, 03)),
-    TransactionItemModel('Steak', DateTime.utc(2023, 12, 03)),
-    TransactionItemModel('Bacon', DateTime.utc(2023, 12, 03)),
-    TransactionItemModel('Steak', DateTime.utc(2023, 12, 03)),
-    TransactionItemModel('Bacon', DateTime.utc(2023, 12, 03)),
-    TransactionItemModel('Ham', DateTime.utc(2023, 12, 03)),
+  static final List<TransItemModel> transOnThird = [
+    TransItemModel('Cabbage roll', 40, DateTime.utc(2023, 12, 03)),
+    TransItemModel('Cheese', 40, DateTime.utc(2023, 12, 03)),
+    TransItemModel('Steak', 40, DateTime.utc(2023, 12, 03)),
+    TransItemModel('Bacon', 40, DateTime.utc(2023, 12, 03)),
+    TransItemModel('Steak', 40, DateTime.utc(2023, 12, 03)),
+    TransItemModel('Bacon', 40, DateTime.utc(2023, 12, 03)),
+    TransItemModel('Ham', 40, DateTime.utc(2023, 12, 03)),
   ];
 
-  static final List<TransactionItemModel> transOnFourth = [
-    TransactionItemModel('Pancake', DateTime.utc(2023, 12, 04)),
-    TransactionItemModel('Cheese', DateTime.utc(2023, 12, 04)),
-    TransactionItemModel('Bacon', DateTime.utc(2023, 12, 04)),
-    TransactionItemModel('Steak', DateTime.utc(2023, 12, 04)),
+  static final List<TransItemModel> transOnFourth = [
+    TransItemModel('Pancake', 40, DateTime.utc(2023, 12, 04)),
+    TransItemModel('Cheese', 40, DateTime.utc(2023, 12, 04)),
+    TransItemModel('Bacon', 40, DateTime.utc(2023, 12, 04)),
+    TransItemModel('Steak', 40, DateTime.utc(2023, 12, 04)),
   ];
 
-  static final List<TransactionItemModel> transOnFifth = [
-    TransactionItemModel('Cheese', DateTime.utc(2023, 12, 05)),
-    TransactionItemModel('Bacon', DateTime.utc(2023, 12, 05)),
-    TransactionItemModel('Lasagna', DateTime.utc(2023, 12, 05)),
-    TransactionItemModel('Spaghetti', DateTime.utc(2023, 12, 05)),
-    TransactionItemModel('Steak', DateTime.utc(2023, 12, 05)),
+  static final List<TransItemModel> transOnFifth = [
+    TransItemModel('Cheese', 40, DateTime.utc(2023, 12, 05)),
+    TransItemModel('Bacon', 40, DateTime.utc(2023, 12, 05)),
+    TransItemModel('Lasagna', 40, DateTime.utc(2023, 12, 05)),
+    TransItemModel('Spaghetti', 40, DateTime.utc(2023, 12, 05)),
+    TransItemModel('Steak', 40, DateTime.utc(2023, 12, 05)),
   ];
 
-  static final List<TransactionItemModel> transOnSixth = [
-    TransactionItemModel('Steak', DateTime.utc(2023, 12, 06)),
-    TransactionItemModel('Bacon', DateTime.utc(2023, 12, 06)),
-    TransactionItemModel('Ham', DateTime.utc(2023, 12, 06)),
-    TransactionItemModel('Spaghetti', DateTime.utc(2023, 12, 06)),
-    TransactionItemModel('Pancake', DateTime.utc(2023, 12, 06)),
-    TransactionItemModel('Lasagna', DateTime.utc(2023, 12, 06)),
+  static final List<TransItemModel> transOnSixth = [
+    TransItemModel('Steak', 40, DateTime.utc(2023, 12, 06)),
+    TransItemModel('Bacon', 40, DateTime.utc(2023, 12, 06)),
+    TransItemModel('Ham', 40, DateTime.utc(2023, 12, 06)),
+    TransItemModel('Spaghetti', 40, DateTime.utc(2023, 12, 06)),
+    TransItemModel('Pancake', 40, DateTime.utc(2023, 12, 06)),
+    TransItemModel('Lasagna', 40, DateTime.utc(2023, 12, 06)),
   ];
 
-  static final List<TransactionItemModel> transOnSeventh = [
-    TransactionItemModel('Bacon', DateTime.utc(2023, 12, 07)),
-    TransactionItemModel('Steak', DateTime.utc(2023, 12, 07)),
-    TransactionItemModel('Bacon', DateTime.utc(2023, 12, 07)),
-    TransactionItemModel('Ham', DateTime.utc(2023, 12, 07)),
-    TransactionItemModel('Pancake', DateTime.utc(2023, 12, 07)),
-    TransactionItemModel('Lasagna', DateTime.utc(2023, 12, 07)),
-    TransactionItemModel('Cookie', DateTime.utc(2023, 12, 07)),
-    TransactionItemModel('Steak', DateTime.utc(2023, 12, 07)),
-    TransactionItemModel('Spaghetti', DateTime.utc(2023, 12, 07)),
+  static final List<TransItemModel> transOnSeventh = [
+    TransItemModel('Bacon', 40, DateTime.utc(2023, 12, 07)),
+    TransItemModel('Steak', 40, DateTime.utc(2023, 12, 07)),
+    TransItemModel('Bacon', 40, DateTime.utc(2023, 12, 07)),
+    TransItemModel('Ham', 40, DateTime.utc(2023, 12, 07)),
+    TransItemModel('Pancake', 40, DateTime.utc(2023, 12, 07)),
+    TransItemModel('Lasagna', 40, DateTime.utc(2023, 12, 07)),
+    TransItemModel('Cookie', 40, DateTime.utc(2023, 12, 07)),
+    TransItemModel('Steak', 40, DateTime.utc(2023, 12, 07)),
+    TransItemModel('Spaghetti', 40, DateTime.utc(2023, 12, 07)),
   ];
 
-  static final List<TransactionItemModel> transOnEigth = [
-    TransactionItemModel('Ham', DateTime.utc(2023, 12, 08)),
-    TransactionItemModel('Pudding', DateTime.utc(2023, 12, 08)),
-    TransactionItemModel('Egg roll', DateTime.utc(2023, 12, 08)),
+  static final List<TransItemModel> transOnEigth = [
+    TransItemModel('Ham', 40, DateTime.utc(2023, 12, 08)),
+    TransItemModel('Pudding', 40, DateTime.utc(2023, 12, 08)),
+    TransItemModel('Egg roll', 40, DateTime.utc(2023, 12, 08)),
   ];
 
-  static final List<TransactionItemModel> transOnNinth = [
-    TransactionItemModel('Lasagna', DateTime.utc(2023, 12, 09)),
-    TransactionItemModel('Ham', DateTime.utc(2023, 12, 09)),
-    TransactionItemModel('Pudding', DateTime.utc(2023, 12, 09)),
-    TransactionItemModel('Pancake', DateTime.utc(2023, 12, 09)),
-    TransactionItemModel('Cheese', DateTime.utc(2023, 12, 09)),
+  static final List<TransItemModel> transOnNinth = [
+    TransItemModel('Lasagna', 40, DateTime.utc(2023, 12, 09)),
+    TransItemModel('Ham', 40, DateTime.utc(2023, 12, 09)),
+    TransItemModel('Pudding', 40, DateTime.utc(2023, 12, 09)),
+    TransItemModel('Pancake', 40, DateTime.utc(2023, 12, 09)),
+    TransItemModel('Cheese', 40, DateTime.utc(2023, 12, 09)),
   ];
 
-  static final List<TransactionItemModel> transOnTenth = [
-    TransactionItemModel('Spaghetti', DateTime.utc(2023, 12, 10)),
-    TransactionItemModel('Pudding', DateTime.utc(2023, 12, 10)),
-    TransactionItemModel('Pancake', DateTime.utc(2023, 12, 10)),
-    TransactionItemModel('Cheese', DateTime.utc(2023, 12, 10)),
+  static final List<TransItemModel> transOnTenth = [
+    TransItemModel('Spaghetti', 40, DateTime.utc(2023, 12, 10)),
+    TransItemModel('Pudding', 40, DateTime.utc(2023, 12, 10)),
+    TransItemModel('Pancake', 40, DateTime.utc(2023, 12, 10)),
+    TransItemModel('Cheese', 40, DateTime.utc(2023, 12, 10)),
   ];
 
-  static final List<TransactionItemModel> transOnEleventh = [
-    TransactionItemModel('Pudding', DateTime.utc(2023, 12, 11)),
-    TransactionItemModel('Lasagna', DateTime.utc(2023, 12, 11)),
-    TransactionItemModel('Ham', DateTime.utc(2023, 12, 11)),
-    TransactionItemModel('Pancake', DateTime.utc(2023, 12, 11)),
+  static final List<TransItemModel> transOnEleventh = [
+    TransItemModel('Pudding', 40, DateTime.utc(2023, 12, 11)),
+    TransItemModel('Lasagna', 40, DateTime.utc(2023, 12, 11)),
+    TransItemModel('Ham', 40, DateTime.utc(2023, 12, 11)),
+    TransItemModel('Pancake', 40, DateTime.utc(2023, 12, 11)),
   ];
 
-  static final List<TransactionItemModel> transOnTwelvth = [
-    TransactionItemModel('Egg roll', DateTime.utc(2023, 12, 12)),
-    TransactionItemModel('Spaghetti', DateTime.utc(2023, 12, 12)),
-    TransactionItemModel('Ham', DateTime.utc(2023, 12, 12)),
-    TransactionItemModel('Pudding', DateTime.utc(2023, 12, 12)),
-    TransactionItemModel('Lasagna', DateTime.utc(2023, 12, 12)),
+  static final List<TransItemModel> transOnTwelvth = [
+    TransItemModel('Egg roll', 40, DateTime.utc(2023, 12, 12)),
+    TransItemModel('Spaghetti', 40, DateTime.utc(2023, 12, 12)),
+    TransItemModel('Ham', 40, DateTime.utc(2023, 12, 12)),
+    TransItemModel('Pudding', 40, DateTime.utc(2023, 12, 12)),
+    TransItemModel('Lasagna', 40, DateTime.utc(2023, 12, 12)),
   ];
 
 }
