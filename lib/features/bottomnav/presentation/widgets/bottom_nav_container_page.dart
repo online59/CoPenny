@@ -6,14 +6,16 @@ import 'package:piggy/shared/presentation/screens/overview_page.dart';
 import 'package:piggy/shared/presentation/screens/summary_page.dart';
 import 'package:piggy/shared/presentation/screens/spending_page.dart';
 
-class BottomNavContainer extends StatefulWidget {
-  const BottomNavContainer({super.key});
+class BottomNavigationWidget extends StatefulWidget {
+  const BottomNavigationWidget({super.key, required this.walletId});
+
+  final String walletId;
 
   @override
-  State<BottomNavContainer> createState() => _BottomNavContainerState();
+  State<BottomNavigationWidget> createState() => _BottomNavigationWidgetState();
 }
 
-class _BottomNavContainerState extends State<BottomNavContainer> {
+class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   final user = FirebaseAuth.instance.currentUser;
 
   void signUserOut() {
@@ -24,18 +26,10 @@ class _BottomNavContainerState extends State<BottomNavContainer> {
 
   int _bottomNavIndex = 0;
 
-  final List<Widget> _pages = const [
-    OverviewPage(),
-    SpendingPage(),
-    SummaryPage(),
-    AccountPage()
-  ];
-
   late PageController _pageController;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _pageController = PageController();
   }
@@ -58,12 +52,20 @@ class _BottomNavContainerState extends State<BottomNavContainer> {
       body: PageView(
         controller: _pageController,
         onPageChanged: _onPageChanged,
-        children: _pages,
+        children: [
+          const OverviewPage(),
+          SpendingPage(walletId: widget.walletId),
+          const SummaryPage(),
+          const AccountPage()
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(90.0))),
+          borderRadius: BorderRadius.all(
+            Radius.circular(90.0),
+          ),
+        ),
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

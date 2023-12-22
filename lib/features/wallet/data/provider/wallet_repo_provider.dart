@@ -19,7 +19,9 @@ class WalletRepositoryProvider extends ChangeNotifier implements WalletRepositor
 
   @override
   Future<List<WalletModel>> getAll() async {
-    return await dataSource.generateDummyWallet();
+    var listItem = await dataSource.generateDummyWallet();
+    notifyListeners();
+    return listItem;
   }
 
   @override

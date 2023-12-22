@@ -1,37 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:piggy/features/transaction/data/provider/trans_repo_provider.dart';
 import 'package:piggy/features/transaction/domain/models/transaction_header_model.dart';
-import 'package:piggy/features/transaction/presentation/screens/show_transaction_page.dart';
-import 'package:piggy/routes/router_navigator.dart';
-import 'package:piggy/routes/routes.dart';
+import 'package:piggy/features/transaction/presentation/screens/display_transaction_page.dart';
+import 'package:piggy/features/wallet/presentation/screens/display_wallet_page.dart';
 import 'package:provider/provider.dart';
 
-class SpendingPage extends StatelessWidget {
-  const SpendingPage({super.key});
+import '../../../features/wallet/data/provider/wallet_repo_provider.dart';
+import '../../../features/wallet/domain/model/wallet_model.dart';
 
-  final String walletId = "walletId";
+class SpendingPage extends StatelessWidget {
+  const SpendingPage({super.key, required this.walletId});
+
+  final String walletId;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Center(child: Text('Spending')),
-        actions: [
-          IconButton(
-            onPressed: () {
-              RouterNavigator.generateRoute(
-                const RouteSettings(name: myWalletPageRoute),
-              );
-            },
-            icon: const Icon(Icons.wallet),
-          )
-        ],
-      ),
-      body: FutureProvider<List<TransHeaderModel>>(
+    return showWalletOrSpending();
+  }
+
+  Widget showWalletOrSpending() {
+    if (walletId.isEmpty) {
+      return FutureProvider(
+        create: (BuildContext context) => WalletRepositoryProvider().getAll(),
+        initialData: const <WalletModel>[],
+        child: const DisplayWalletPage(),
+      );
+    } else {
+      return FutureProvider<List<TransHeaderModel>>(
         create: (context) => TransRepositoryProvider().getTransaction(walletId),
         initialData: const <TransHeaderModel>[],
-        child: const ShowTransactionPage(),
-      ),
-    );
+        child: const DisplayTransactionPage(),
+      );
+    }
   }
 }

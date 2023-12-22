@@ -34,14 +34,14 @@ class TransactionCardWidget extends StatelessWidget {
                 padding: EdgeInsets.zero,
               ),
             ),
-            buildGroupItem(),
+            buildGroupItem(context),
           ],
         )
       ],
     );
   }
 
-  Widget buildGroupItem() {
+  Widget buildGroupItem(BuildContext context) {
     return MultiSliver(
       children: [
         //header of this transaction day
@@ -58,7 +58,7 @@ class TransactionCardWidget extends StatelessWidget {
           child: MultiSliver(
             //build transaction item of this day
             children: [
-              buildTransactionItem(),
+              buildTransactionItem(context),
             ],
           ),
         ),
@@ -66,17 +66,27 @@ class TransactionCardWidget extends StatelessWidget {
     );
   }
 
-  Widget buildTransactionItem() {
+  Widget buildTransactionItem(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (_, index) {
           //container of the transaction items
-          return CardItemWidget(
-              circleAvatar: const CircleAvatar(
-                child: Text('A'),
-              ),
-              content: transItems[index].content,
-              amount: transItems[index].getFormattedAmount());
+          return GestureDetector(
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(transItems[index].content),
+                  duration: const Duration(seconds: 1),
+                ),
+              );
+            },
+            child: CardItemWidget(
+                circleAvatar: const CircleAvatar(
+                  child: Text('A'),
+                ),
+                content: transItems[index].content,
+                amount: transItems[index].getFormattedAmount()),
+          );
         },
         childCount: transItems.length,
       ),
