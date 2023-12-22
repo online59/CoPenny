@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:piggy/features/transaction/presentation/widgets/card_header_widget.dart';
 import 'package:piggy/features/transaction/presentation/widgets/card_item_widget.dart';
 import 'package:sliver_tools/sliver_tools.dart';
-import 'package:intl/intl.dart';
 
-import '../../data/models/transaction_item_model.dart';
+import '../../domain/models/transaction_item_model.dart';
 
 class TransactionCardWidget extends StatelessWidget {
   const TransactionCardWidget({

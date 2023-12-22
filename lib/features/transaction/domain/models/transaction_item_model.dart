@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class TransItemModel {
   final String content;
   final String? subtitle;
@@ -12,6 +14,6 @@ class TransItemModel {
   });
 
   String getFormattedAmount() {
-    return "$amount THB";
+    return "${NumberFormat('#,###').format(amount)} THB";
   }
 }

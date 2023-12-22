@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:piggy/features/transaction/data/models/transaction_item_model.dart';
+import 'package:piggy/features/transaction/domain/models/transaction_item_model.dart';
 
 class TransHeaderModel {
   final DateTime header;
@@ -24,8 +24,17 @@ class TransHeaderModel {
     return date1.year == date2.year && date1.month == date2.month && date1.day == date2.day;
   }
 
-  String calculateTotalAmount() {
-    return "${items.fold(0.0, (double sum, TransItemModel item) => sum + item.amount).toInt()} THB";
+  int calculateTotalAmount() {
+    return items.fold(0.0, (double sum, TransItemModel item) => sum + item.amount).toInt();
+  }
+
+  String getFormattedTotalAmount() {
+    return "${NumberFormat('#,###').format(calculateTotalAmount())} THB";
+  }
+
+  List<TransItemModel> getSortedListItems() {
+    items.sort((a, b) => a.date.compareTo(b.date));
+    return items;
   }
 
 }
