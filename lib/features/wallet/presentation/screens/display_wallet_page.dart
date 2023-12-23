@@ -1,48 +1,59 @@
 import 'package:flutter/material.dart';
-import 'package:piggy/features/bottomnav/presentation/widgets/bottom_nav_container_page.dart';
-import 'package:piggy/features/wallet/domain/model/wallet_model.dart';
-import 'package:piggy/features/wallet/presentation/widgets/card_wallet_widget.dart';
-import 'package:piggy/features/wallet/presentation/widgets/credit_card_widget.dart';
+import 'package:piggy/features/wallet/data/provider/wallet_provider.dart';
+import 'package:piggy/features/wallet/presentation/widgets/wallet_card_widget.dart';
 import 'package:provider/provider.dart';
 
-class DisplayWalletPage extends StatelessWidget {
+class DisplayWalletPage extends StatefulWidget {
   const DisplayWalletPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // var provider = Provider.of<WalletRepositoryProvider>(context);
+  State<DisplayWalletPage> createState() => _DisplayWalletPageState();
+}
 
+class _DisplayWalletPageState extends State<DisplayWalletPage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text('Your Wallet')),
       ),
-      body: Consumer<List<WalletModel>>(
-        builder: (context, entries, child) => ListView.builder(
+      body: Consumer<WalletProvider>(builder: (context, provider, child) {
+        var walletList = provider.getAll();
+
+        return ListView.builder(
           padding: const EdgeInsets.all(8),
-          itemCount: entries.length,
+          itemCount: walletList.length,
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => BottomNavigationWidget(
-                        walletId: entries[index].walletId),
-                  ),
-                );
+                provider.currentWalletId =
+                    walletList[index].walletId;
+
+                // Navigator.pushReplacement(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => BottomNavigationWidget(
+                //         walletId: wallet[index].walletId),
+                //   ),
+                // );
               },
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                 child: CreditCardWidget(
-                  walletName: entries[index].walletName,
-                  walletId: entries[index].walletId,
+                  walletName: walletList[index].walletName,
+                  walletId: walletList[index].walletId,
                 ),
               ),
             );
           },
-        ),
-      ),
+        );
+      }),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

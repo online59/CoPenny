@@ -1,15 +1,15 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:piggy/features/wallet/data/provider/wallet_provider.dart';
 import 'package:piggy/shared/presentation/screens/account_page.dart';
 import 'package:piggy/shared/presentation/screens/overview_page.dart';
 import 'package:piggy/shared/presentation/screens/summary_page.dart';
 import 'package:piggy/shared/presentation/screens/spending_page.dart';
+import 'package:provider/provider.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
-  const BottomNavigationWidget({super.key, required this.walletId});
-
-  final String walletId;
+  const BottomNavigationWidget({super.key});
 
   @override
   State<BottomNavigationWidget> createState() => _BottomNavigationWidgetState();
@@ -46,18 +46,20 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
     });
   }
 
+  final List<Widget> _pages = [
+    const OverviewPage(),
+    const SpendingPage(),
+    const SummaryPage(),
+    const AccountPage()
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
         controller: _pageController,
         onPageChanged: _onPageChanged,
-        children: [
-          const OverviewPage(),
-          SpendingPage(walletId: widget.walletId),
-          const SummaryPage(),
-          const AccountPage()
-        ],
+        children: _pages,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -69,17 +71,21 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: AnimatedBottomNavigationBar(
-        icons: const [Icons.home, Icons.list, Icons.pie_chart, Icons.person],
-        activeIndex: _bottomNavIndex,
-        onTap: (index) {
-          _onPageChanged(index);
-          _pageController.jumpToPage(index);
-        },
-        notchSmoothness: NotchSmoothness.softEdge,
-        gapLocation: GapLocation.center,
-        activeColor: Theme.of(context).colorScheme.primary,
-      ),
+      bottomNavigationBar: buildBottomNavigationBar(),
+    );
+  }
+
+  Widget buildBottomNavigationBar() {
+    return AnimatedBottomNavigationBar(
+      icons: const [Icons.home, Icons.list, Icons.pie_chart, Icons.person],
+      activeIndex: _bottomNavIndex,
+      onTap: (index) {
+        _onPageChanged(index);
+        _pageController.jumpToPage(index);
+      },
+      notchSmoothness: NotchSmoothness.softEdge,
+      gapLocation: GapLocation.center,
+      activeColor: Theme.of(context).colorScheme.primary,
     );
   }
 }
