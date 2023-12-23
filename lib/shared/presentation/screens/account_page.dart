@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AccountPage extends StatelessWidget {
@@ -5,8 +6,17 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Account Page"),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Center(
+          child: Text("Account Page"),
+        ),
+        const SizedBox(height: 12),
+        ElevatedButton(onPressed: () {
+          FirebaseAuth.instance.signOut();
+        }, child: const Text('Sign Out')),
+      ],
     );
   }
 }

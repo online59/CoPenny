@@ -1,12 +1,15 @@
+import 'dart:math';
+
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:piggy/features/wallet/data/provider/wallet_provider.dart';
+import 'package:piggy/features/add_transaction/data/service/firestore_service.dart';
+import 'package:piggy/features/transaction/data/datasource/transaction_data.dart';
 import 'package:piggy/shared/presentation/screens/account_page.dart';
 import 'package:piggy/shared/presentation/screens/overview_page.dart';
 import 'package:piggy/shared/presentation/screens/summary_page.dart';
 import 'package:piggy/shared/presentation/screens/spending_page.dart';
-import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
   const BottomNavigationWidget({super.key});
@@ -55,6 +58,13 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var dataSource = TransDataSource();
+    var listItem = dataSource.generateDummyTransaction('1');
+
+    Random random = Random();
+
+    FirestoreService firestoreService = FirestoreService();
+
     return Scaffold(
       body: PageView(
         controller: _pageController,
@@ -62,7 +72,10 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
         children: _pages,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          int index = random.nextInt(listItem.length - 1);
+          firestoreService.writeDataToFirestore(firestoreService.getPath(listItem[index]), listItem[index]);
+        },
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(90.0),

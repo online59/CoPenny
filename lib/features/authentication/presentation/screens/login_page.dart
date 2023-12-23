@@ -4,8 +4,7 @@ import '../../../../routes/routes.dart';
 import '../../../../shared/presentation/widgets/my_button.dart';
 import '../../../../shared/presentation/widgets/my_textfield.dart';
 import '../../application/provider/auth_controller.dart';
-import '../../application/services/anonym_auth_service.dart';
-import '../../application/services/email_auth_service.dart';
+import '../../application/services/firebase_auth_service.dart';
 import '../../application/services/google_auth_service.dart';
 
 class LoginPage extends StatefulWidget {
@@ -18,7 +17,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool _signInWithEmail = true;
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -31,8 +29,10 @@ class _LoginPageState extends State<LoginPage> {
 
     try {
       await _authController
-          .signIn(
-              EmailAuthService(_emailController.text, _passwordController.text))
+          .signIn(FirebaseAuthService(
+              email: _emailController.text.trim(),
+              password: _passwordController.text.trim(),
+              isAnonymous: false))
           .whenComplete(() {
         //pop loading circle when complete
         _popLoadingCircle();
@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
     _pushLoadingCircle();
 
     try {
-      await _authController.signIn(AnonymousAuthService()).whenComplete(() {
+      await _authController.signIn(FirebaseAuthService(isAnonymous: true)).whenComplete(() {
         //pop loading circle when complete
         _popLoadingCircle();
         _pushNamed(homePageRoute);
@@ -175,7 +175,6 @@ class _LoginPageState extends State<LoginPage> {
                 // sign in button
                 MyButton(
                   onTap: () {
-                    _signInWithEmail = true;
                     _signUserInWithEmailPassword();
                   },
                   text: 'Sign In',
@@ -250,8 +249,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 MyButton(
                   onTap: () {
-                    _signInWithEmail = false;
-                    _signUserInAnonymous();
+                    _signUserInWithGmail();
                   },
                   text: 'Sign In With Google',
                   color: Colors.pinkAccent[400],

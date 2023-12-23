@@ -9,15 +9,10 @@ class WalletProvider extends ChangeNotifier implements WalletRepository {
   String _currentWalletName = '';
   String _currentWalletBalance = '';
 
-  static final WalletProvider _instance = WalletProvider._internal();
+  late WalletDataSource dataSource;
 
-  WalletProvider._internal();
-
-  static late WalletDataSource dataSource;
-
-  factory WalletProvider() {
+  WalletProvider() {
     dataSource = WalletDataSource();
-    return _instance;
   }
 
   @override

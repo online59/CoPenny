@@ -1,7 +1,7 @@
 
 
-import '../../domain/models/transaction_header_model.dart';
+import '../../domain/models/transaction_group_model.dart';
 
 abstract class TransRepository {
-  List<TransHeaderModel> getTransaction(String walletId);
+  List<TransGroupModel> getTransaction(String walletId);
 }

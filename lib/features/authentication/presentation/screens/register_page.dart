@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../shared/presentation/widgets/my_button.dart';
 import '../../../../shared/presentation/widgets/my_textfield.dart';
 import '../../application/provider/auth_controller.dart';
-import '../../application/services/email_auth_service.dart';
+import '../../application/services/firebase_auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -25,7 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final RegExp _passwordPattern =
       RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
 
-  bool _isPasswordValid = true;
+  bool _isPasswordValid = false;
 
   void _checkPassword() {
     setState(() {
@@ -66,11 +66,13 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text('OK'),
+              Center(
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('OK'),
+                ),
               )
             ],
           );
@@ -93,9 +95,12 @@ class _RegisterPageState extends State<RegisterPage> {
 
     try {
       // check if both password and confirm password is the same
-      if (_passwordController.text == _confirmPasswordController.text) {
-        await _authController.register(
-            EmailAuthService(_emailController.text, _passwordController.text));
+      if (_passwordController.text.trim() ==
+          _confirmPasswordController.text.trim()) {
+        await _authController.register(FirebaseAuthService(
+            email: _emailController.text.trim(),
+            password: _passwordController.text.trim(),
+            isAnonymous: false));
       } else {
         // show error password don't match
         _genericErrorMessage('Password don\'t match!');

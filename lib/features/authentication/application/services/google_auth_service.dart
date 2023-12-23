@@ -2,19 +2,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'auth_provider.dart';
+import 'auth_service.dart';
 
 class GoogleAuthService implements AuthorizingService {
-
-  static GoogleAuthService? _instance;
-
-  GoogleAuthService._internal();
-
-  //implement singleton
-  factory GoogleAuthService() {
-    _instance ??= GoogleAuthService._internal();
-    return _instance!;
-  }
 
   @override
   Future register() {

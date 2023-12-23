@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../../../wallet/data/provider/wallet_provider.dart';
 import '../../../wallet/domain/model/wallet_model.dart';
 import '../../../wallet/presentation/screens/display_wallet_page.dart';
-import '../../domain/models/transaction_header_model.dart';
+import '../../domain/models/transaction_group_model.dart';
 
 class DisplayTransactionPage extends StatefulWidget {
   const DisplayTransactionPage({super.key, required this.walletId});
@@ -48,7 +48,7 @@ class _DisplayTransactionPageState extends State<DisplayTransactionPage>
     );
   }
 
-  List<Widget> buildTransactionGroup(List<TransHeaderModel> groupItem) {
+  List<Widget> buildTransactionGroup(List<TransGroupModel> groupItem) {
     return groupItem
         .map(
           (item) => TransactionCardWidget(
