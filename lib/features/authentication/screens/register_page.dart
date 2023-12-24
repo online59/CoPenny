@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../../shared/presentation/widgets/my_button.dart';
-import '../../../../shared/presentation/widgets/my_textfield.dart';
-import '../../application/provider/auth_controller.dart';
-import '../../application/services/firebase_auth_service.dart';
+import '../../../shared/presentation/widgets/my_button.dart';
+import '../../../shared/presentation/widgets/my_textfield.dart';
+import '../application/provider/auth_controller.dart';
+import '../application/services/firebase_auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;

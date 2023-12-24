@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'register_page.dart';
-import 'login_page.dart';
+import 'login_screen.dart';
 
 class LoginOrRegisterPage extends StatefulWidget {
   const LoginOrRegisterPage({super.key});
@@ -23,7 +23,7 @@ class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
   @override
   Widget build(BuildContext context) {
     if (showLoginPage) {
-      return LoginPage(
+      return LoginScreen(
         onTap: togglePages,
       );
     } else {

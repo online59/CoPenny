@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:piggy/features/authentication/presentation/screens/auth_page.dart';
+import 'package:piggy/features/authentication/screens/auth_page.dart';
+import 'package:piggy/utils/theme/theme.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -18,12 +19,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.pinkAccent,
-          brightness: Brightness.light,
-        ),
-      ),
+      theme: MyAppTheme.lightTheme,
+      darkTheme: MyAppTheme.darkTheme,
+      themeMode: ThemeMode.system,
       home: const AuthPage(),
     );
   }
