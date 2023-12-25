@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
-import 'package:piggy/src/features/authentication/screens/login/auth_page.dart';
 import 'package:piggy/src/utils/theme/theme.dart';
 import 'firebase_options.dart';
+import 'src/features/authentication/screens/screen_directing/screen_directing.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       defaultTransition: Transition.leftToRightWithFade,
       transitionDuration: const Duration(milliseconds: 500),
-      home: const AuthPage(),
+      home: const ScreenDirecting(),
     );
   }
 }

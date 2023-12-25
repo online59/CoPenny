@@ -9,7 +9,7 @@ import 'package:piggy/src/features/authentication/controller/services/firebase_a
 import 'package:piggy/src/features/authentication/controller/services/google_auth_service.dart';
 import 'package:piggy/src/features/authentication/screens/login/widgets/login_footer_widget.dart';
 import 'package:piggy/src/features/authentication/screens/login/widgets/login_form_widget.dart';
-import 'package:piggy/src/features/core/screen/bottom_nav/bottom_navigation_container.dart';
+import 'package:piggy/src/features/core/screen/bottom_nav/core_container_screen.dart';
 
 import 'widgets/login_header_widget.dart';
 
@@ -41,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
           .whenComplete(() {
         //pop loading circle when complete
         _popLoadingCircle();
-        _pushNamed(HomePage());
+        _pushNamed(const CoreContainerScreen());
       });
     } on FirebaseAuthException catch (e) {
       _genericErrorMessage(e.message ?? e.code);
@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
       await _authController.signIn(GoogleAuthService()).whenComplete(() {
         //pop loading circle when complete
         _popLoadingCircle();
-        _pushNamed(HomePage());
+        _pushNamed(const CoreContainerScreen());
       });
     } on FirebaseAuthException catch (e) {
       _genericErrorMessage(e.message ?? e.code);
@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
           .whenComplete(() {
         //pop loading circle when complete
         _popLoadingCircle();
-        _pushNamed(HomePage());
+        _pushNamed(const CoreContainerScreen());
       });
     } on FirebaseAuthException catch (e) {
       _genericErrorMessage(e.message ?? e.code);
