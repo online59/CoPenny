@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/constants/text_strings.dart';
+import 'package:piggy/src/features/authentication/screens/forget_password/forget_password_options/forget_password_button_widget.dart';
+import 'package:piggy/src/features/authentication/screens/forget_password/forget_password_options/forget_password_model_bottom_sheet.dart';
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({
+class LoginFormWidget extends StatelessWidget {
+  const LoginFormWidget({
     super.key,
   });
 
@@ -44,7 +46,9 @@ class LoginForm extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  ForgetPasswordScreen.buildShowModalBottomSheet(context);
+                },
                 child: const Text(mForgetPassword),
               ),
             ),
@@ -64,3 +68,4 @@ class LoginForm extends StatelessWidget {
     );
   }
 }
+

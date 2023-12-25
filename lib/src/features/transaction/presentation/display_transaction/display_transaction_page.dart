@@ -6,16 +6,16 @@ import 'package:provider/provider.dart';
 
 import 'widgets/transaction_card_widget.dart';
 
-class DisplayTransactionPage extends StatefulWidget {
-  const DisplayTransactionPage({super.key, required this.walletId});
+class SpendingScreen extends StatefulWidget {
+  const SpendingScreen({super.key, required this.walletId});
 
   final String walletId;
 
   @override
-  State<DisplayTransactionPage> createState() => _DisplayTransactionPageState();
+  State<SpendingScreen> createState() => _SpendingScreenState();
 }
 
-class _DisplayTransactionPageState extends State<DisplayTransactionPage>
+class _SpendingScreenState extends State<SpendingScreen>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {

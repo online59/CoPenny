@@ -13,6 +13,9 @@ const mHSpacingLarge = 30.0;
 const mButtonRadius = 4.0;
 const mButtonHeight = 24.0;
 const mButtonLogoSize = 20.0;
+const mButtonRadiusSmall = 10.0;
+const mButtonRadiusMedium = 20.0;
+const mButtonRadiusLarge = 30.0;
 
 //Form
 const mFormHeight = 20.0;

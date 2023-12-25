@@ -49,6 +49,8 @@ dependencies:
   cloud_firestore: ^4.13.6
   uuid: ^4.2.2
   google_fonts: ^6.1.0
+  get: ^4.6.6
+  flutter_otp_text_field: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +78,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/forget_password_images/forget-password.png
     - assets/images/welcome_images/welcome-screen-image.png
     - assets/images/welcome_images/google-logo.png
 

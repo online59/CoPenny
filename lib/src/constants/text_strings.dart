@@ -12,8 +12,9 @@ const String mSingOut = "Sign Out";
 const String mSignUp = "Sign Up";
 const String mRegister = "Register";
 const String mForgetPassword = "Forget Password";
+const String mNext = "Next";
 
-//Form text
+//Sign In - Up text
 const String mEmail = "Email";
 const String mPassword = "Password";
 const String mPhoneNumber = "Phone Number";
@@ -22,3 +23,16 @@ const String mAlreadyHaveAccount = "Already have an Account?";
 const String mFullName = "Full Name";
 const String mName = "Name";
 const String mLastName = "Last Name";
+
+//Forget password
+const String mForgetPasswordTitle = "Forget Your Password?";
+const String mForgetPasswordSubTitle = "Select the way you would like to reset your password";
+const String mResetViaEmail = "Email Verification";
+const String mResetViaPhone = "Phone Verification";
+const String mForgetViaEmailSubTitle = "Enter your registered Email";
+const String mForgetViaPhoneSubTitle = "Enter your registered Phone";
+
+//OTP screen
+const String mOtpTitle = "Enter OPT";
+const String mOtpSubTitle = "Verification";
+const String mOtpMessage = "Enter the verification code sent at ";

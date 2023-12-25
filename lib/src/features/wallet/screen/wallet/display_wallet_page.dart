@@ -4,14 +4,14 @@ import 'package:provider/provider.dart';
 
 import 'widgets/wallet_card_widget.dart';
 
-class DisplayWalletPage extends StatefulWidget {
-  const DisplayWalletPage({super.key});
+class WalletScreen extends StatefulWidget {
+  const WalletScreen({super.key});
 
   @override
-  State<DisplayWalletPage> createState() => _DisplayWalletPageState();
+  State<WalletScreen> createState() => _WalletScreenState();
 }
 
-class _DisplayWalletPageState extends State<DisplayWalletPage>
+class _WalletScreenState extends State<WalletScreen>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {

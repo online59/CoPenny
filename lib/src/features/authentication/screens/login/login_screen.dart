@@ -1,12 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:piggy/src/common_widget/forms/form_header_widget.dart';
+import 'package:piggy/src/constants/image_strings.dart';
 import 'package:piggy/src/constants/sizes.dart';
+import 'package:piggy/src/constants/text_strings.dart';
 import 'package:piggy/src/features/authentication/controller/provider/auth_controller.dart';
 import 'package:piggy/src/features/authentication/controller/services/firebase_auth_service.dart';
 import 'package:piggy/src/features/authentication/controller/services/google_auth_service.dart';
 import 'package:piggy/src/features/authentication/screens/login/widgets/login_footer_widget.dart';
 import 'package:piggy/src/features/authentication/screens/login/widgets/login_form_widget.dart';
-import 'package:piggy/src/features/home/screen/bottomnav/home_page.dart';
+import 'package:piggy/src/features/core/screen/bottom_nav/bottom_navigation_container.dart';
 
 import 'widgets/login_header_widget.dart';
 
@@ -132,15 +135,19 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       resizeToAvoidBottomInset: true,
-      body: SafeArea(
+      body: const SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(mDefaultSize),
+          padding: EdgeInsets.all(mDefaultSize),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              LoginHeaderWidget(size: size),
-              const LoginForm(),
-              const LoginFooterWidget()
+              FormHeaderWidget(
+                  imagePath: mWelcomeScreenImage,
+                  title: mWelcomeTitle,
+                  subTitle: mWelcomeSubtitle,
+                  heightBetween: mVSpacingSmall),
+              LoginFormWidget(),
+              LoginFooterWidget()
             ],
           ),
         ),

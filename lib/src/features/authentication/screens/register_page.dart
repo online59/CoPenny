@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:piggy/src/features/authentication/controller/provider/auth_controller.dart';
 import 'package:piggy/src/features/authentication/controller/services/firebase_auth_service.dart';
-import 'package:piggy/src/features/home/screen/bottomnav/widgets/my_button.dart';
-import 'package:piggy/src/features/home/screen/bottomnav/widgets/my_textfield.dart';
+import 'package:piggy/src/features/core/screen/bottom_nav/widgets/my_button.dart';
+import 'package:piggy/src/features/core/screen/bottom_nav/widgets/my_textfield.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;

@@ -19,9 +19,9 @@ class SpendingPage extends StatelessWidget {
 
   Widget showWalletOrSpending(String walletId) {
     if (walletId.isEmpty) {
-      return const DisplayWalletPage();
+      return const WalletScreen();
     } else {
-      return DisplayTransactionPage(walletId: walletId);
+      return SpendingScreen(walletId: walletId);
     }
   }
 }

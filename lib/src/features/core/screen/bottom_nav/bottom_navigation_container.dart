@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:piggy/src/features/home/screen/bottomnav/widgets/bottom_nav_widget.dart';
+import 'package:piggy/src/features/core/screen/bottom_nav/widgets/bottom_navigation_widget.dart';
 import 'package:piggy/src/features/wallet/controller/provider/wallet_provider.dart';
 import 'package:provider/provider.dart';
 

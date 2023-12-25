@@ -4,10 +4,10 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:piggy/src/features/add_transaction/data/service/firestore_service.dart';
-import 'package:piggy/src/features/home/screen/bottomnav/account_page.dart';
-import 'package:piggy/src/features/home/screen/bottomnav/overview_page.dart';
-import 'package:piggy/src/features/home/screen/bottomnav/spending_page.dart';
-import 'package:piggy/src/features/home/screen/bottomnav/summary_page.dart';
+import 'package:piggy/src/features/core/screen/user_account/account_screen.dart';
+import 'package:piggy/src/features/core/screen/dashboard/dashboard_screen.dart';
+import 'package:piggy/src/features/core/screen/transaction/transaction_screen.dart';
+import 'package:piggy/src/features/core/screen/summary/summary_screen.dart';
 import 'package:piggy/src/features/transaction/controller/datasource/transaction_data.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
@@ -49,7 +49,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   }
 
   final List<Widget> _pages = [
-    const OverviewPage(),
+    const Dashboard(),
     const SpendingPage(),
     const SummaryPage(),
     const AccountPage()
