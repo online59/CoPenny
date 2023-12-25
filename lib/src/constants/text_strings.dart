@@ -2,6 +2,8 @@
 //Welcome screen text
 const String mWelcomeTitle = "Welcome Back";
 const String mWelcomeSubtitle = "Let's manage our financial destiny";
+const String mSignUpTitle = "Sign Up";
+const String mSignUpSupTitle = "Become one of the most financial disciplined ever";
 
 //Button text
 const String mSignIn = "Sign In";
@@ -16,3 +18,6 @@ const String mEmail = "Email";
 const String mPassword = "Password";
 const String mPhoneNumber = "Phone Number";
 const String mDontHaveAccount = "Don't have an Account?";
+const String mFullName = "Full Name";
+const String mName = "Name";
+const String mLastName = "Last Name";

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:piggy/src/features/authentication/screens/login_or_register_page.dart';
+import 'package:piggy/src/features/authentication/screens/login/login_screen.dart';
 import 'package:piggy/src/features/home/screen/bottomnav/home_page.dart';
 
 class AuthPage extends StatelessWidget {
@@ -15,7 +15,7 @@ class AuthPage extends StatelessWidget {
         if (snapshot.hasData) {
           return HomePage();
         } else {
-          return const LoginOrRegisterPage();
+          return const LoginScreen();
         }
       },
     );

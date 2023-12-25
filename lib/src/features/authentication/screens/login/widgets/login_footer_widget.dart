@@ -31,7 +31,7 @@ class LoginFooterWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: mFormHeight - 10,
+          height: mVSpacingSmall,
         ),
         TextButton(
           onPressed: () {},

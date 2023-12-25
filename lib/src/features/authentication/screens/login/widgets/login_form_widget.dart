@@ -24,7 +24,7 @@ class LoginForm extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: mFormHeight - 10,
+              height: mVSpacingMedium,
             ),
             TextFormField(
               decoration: const InputDecoration(
@@ -49,7 +49,7 @@ class LoginForm extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: mFormHeight - 10,
+              height: mVSpacingMedium,
             ),
             SizedBox(
               width: double.infinity,
