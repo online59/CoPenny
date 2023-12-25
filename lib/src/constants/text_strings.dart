@@ -18,6 +18,7 @@ const String mEmail = "Email";
 const String mPassword = "Password";
 const String mPhoneNumber = "Phone Number";
 const String mDontHaveAccount = "Don't have an Account?";
+const String mAlreadyHaveAccount = "Already have an Account?";
 const String mFullName = "Full Name";
 const String mName = "Name";
 const String mLastName = "Last Name";

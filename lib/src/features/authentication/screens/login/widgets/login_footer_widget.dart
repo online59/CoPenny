@@ -24,8 +24,8 @@ class LoginFooterWidget extends StatelessWidget {
             onPressed: () {},
             icon: const Image(
               image: AssetImage(mGoogleLogoImage),
-              width: mButtonLogoHeight,
-              height: mButtonLogoHeight,
+              width: mButtonLogoSize,
+              height: mButtonLogoSize,
             ),
             label: Text(mSignInWithGoogle.toUpperCase()),
           ),
@@ -39,10 +39,10 @@ class LoginFooterWidget extends StatelessWidget {
             TextSpan(
               text: "$mDontHaveAccount ",
               style: Theme.of(context).textTheme.bodySmall,
-              children: const [
+              children: [
                 TextSpan(
-                  text: mSignUp,
-                  style: TextStyle(
+                  text: mSignUp.toUpperCase(),
+                  style: const TextStyle(
                     color: Colors.blue,
                   ),
                 ),

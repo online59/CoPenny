@@ -28,7 +28,7 @@ class LoginForm extends StatelessWidget {
             ),
             TextFormField(
               decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.password_outlined),
+                prefixIcon: Icon(Icons.lock_outline),
                 labelText: mPassword,
                 hintText: mPassword,
                 border: OutlineInputBorder(),
@@ -49,7 +49,7 @@ class LoginForm extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: mVSpacingMedium,
+              height: mVSpacingSmall,
             ),
             SizedBox(
               width: double.infinity,
