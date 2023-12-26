@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/constants/text_strings.dart';
 import 'package:piggy/src/features/add_transaction/data/service/firestore_service.dart';
+import 'package:piggy/src/features/core/screen/%E0%B8%B4budget/budget_screen.dart';
 import 'package:piggy/src/features/core/screen/user_account/account_screen.dart';
 import 'package:piggy/src/features/core/screen/dashboard/dashboard_screen.dart';
 import 'package:piggy/src/features/core/screen/transaction/transaction_directing_screen.dart';
-import 'package:piggy/src/features/core/screen/summary/summary_screen.dart';
 import 'package:piggy/src/features/transaction/controller/datasource/transaction_data.dart';
 
 class CoreContainerScreen extends StatefulWidget {
@@ -31,68 +31,65 @@ class _CoreContainerScreenState extends State<CoreContainerScreen> {
     FirestoreService firestoreService = FirestoreService();
 
     return SafeArea(
-      child: Container(
-        padding: const EdgeInsets.all(mDefaultSize),
-        child: Scaffold(
-          appBar: AppBar(
-            leading: const Icon(
-              Icons.menu,
-              color: Colors.black,
-            ),
-            title: const Text(mAppName),
-            actions: [
-              Container(
-                margin: const EdgeInsets.symmetric(
-                    vertical: mAppBarVMargin, horizontal: mAppBarHMargin),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(mButtonRadius),
-                ),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.wallet_rounded),
-                ),
-              )
+      child: Scaffold(
+        appBar: AppBar(
+          leading: const Icon(
+            Icons.menu,
+            color: Colors.black,
+          ),
+          title: Text(_currentTitle),
+          actions: [
+            Container(
+              margin: const EdgeInsets.symmetric(
+                  vertical: mAppBarVMargin, horizontal: mAppBarHMargin),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(mButtonRadius),
+              ),
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.wallet_rounded),
+              ),
+            )
+          ],
+        ),
+        body: Container(
+          padding: const EdgeInsets.all(mDefaultSize),
+          child: PageView(
+            controller: _screenController,
+            onPageChanged: _onTapSelected,
+            children: const [
+              DashboardScreen(),
+              TransactionDirectingScreen(),
+              BudgetScreen(),
+              SettingScreen(),
             ],
           ),
-          body: Container(
-            padding: const EdgeInsets.all(mDefaultSize),
-            child: PageView(
-              controller: _screenController,
-              onPageChanged: _onTapSelected,
-              children: const [
-                Dashboard(),
-                TransactionDirectingScreen(),
-                SummaryPage(),
-                AccountPage(),
-              ],
-            ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              int index = random.nextInt(transactionList.length - 1);
-              firestoreService.writeDataToFirestore(
-                  firestoreService.getPath(transactionList[index]),
-                  transactionList[index]);
-            },
-            child: const Icon(Icons.add_rounded),
-          ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          bottomNavigationBar: AnimatedBottomNavigationBar(
-            onTap: (index) {
-              _onTapSelected(index);
-            },
-            icons: const [
-              Icons.list_alt_rounded,
-              Icons.pie_chart_rounded,
-              Icons.notifications_rounded,
-              Icons.account_circle,
-            ],
-            activeIndex: _currentTab,
-            gapLocation: GapLocation.center,
-            notchSmoothness: NotchSmoothness.softEdge,
-            activeColor: Theme.of(context).colorScheme.primary,
-          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            int index = random.nextInt(transactionList.length - 1);
+            firestoreService.writeDataToFirestore(
+                firestoreService.getPath(transactionList[index]),
+                transactionList[index]);
+          },
+          child: const Icon(Icons.add_rounded),
+        ),
+        floatingActionButtonLocation:
+            FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: AnimatedBottomNavigationBar(
+          onTap: (index) {
+            _onTapSelected(index);
+          },
+          icons: const [
+            Icons.home_rounded,
+            Icons.list_alt_rounded,
+            Icons.pie_chart_rounded,
+            Icons.settings_rounded,
+          ],
+          activeIndex: _currentTab,
+          gapLocation: GapLocation.center,
+          notchSmoothness: NotchSmoothness.softEdge,
+          activeColor: Theme.of(context).colorScheme.primary,
         ),
       ),
     );
@@ -116,12 +113,12 @@ class _CoreContainerScreenState extends State<CoreContainerScreen> {
           break;
         case 2:
           {
-            _currentTitle = mSummaryScreenTitle;
+            _currentTitle = mBudgetScreenTitle;
           }
           break;
         case 3:
           {
-            _currentTitle = mAccountScreenTitle;
+            _currentTitle = mSettingScreenTitle;
           }
           break;
       }

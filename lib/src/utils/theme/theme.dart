@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:piggy/src/utils/theme/widget_theme/appbar_theme.dart';
 import 'package:piggy/src/utils/theme/widget_theme/elevated_button_theme.dart';
 import 'package:piggy/src/utils/theme/widget_theme/floating_action_button_theme.dart';
@@ -28,7 +27,7 @@ class MyAppTheme {
     brightness: Brightness.dark,
     colorScheme: ColorScheme.fromSeed(
       seedColor: Colors.pinkAccent,
-      brightness: Brightness.light,
+      brightness: Brightness.dark,
     ),
     textTheme: MyTextTheme.darkTextTheme,
     outlinedButtonTheme: MyOutlinedButtonTheme.darkOutlinedButtonTheme,

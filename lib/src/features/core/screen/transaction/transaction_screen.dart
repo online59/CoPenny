@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:piggy/src/features/core/screen/transaction/widgets/transaction_card_widget.dart';
+import 'package:piggy/src/features/core/screen/transaction/widgets/transaction_group.dart';
 import 'package:piggy/src/features/transaction/controller/provider/transaction_provider.dart';
 import 'package:piggy/src/features/transaction/model/transaction_group_model.dart';
 import 'package:piggy/src/features/wallet/controller/provider/wallet_provider.dart';
@@ -48,7 +48,7 @@ class _TransactionScreenState extends State<TransactionScreen>
   List<Widget> buildTransactionGroup(List<TransGroupModel> groupItem) {
     return groupItem
         .map(
-          (item) => TransactionCardWidget(
+          (item) => TransactionGroup(
             transHeader: item.getFormattedHeader(),
             transItems: item.items,
             totalAmount: item.getFormattedTotalAmount(),

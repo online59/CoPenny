@@ -10,7 +10,7 @@ class TransDataSource {
   late Stream itemCollection;
 
   TransDataSource(){
-    itemCollection = FirebaseFirestore.instance.collection(getPath()).snapshots();
+    // itemCollection = FirebaseFirestore.instance.collection(getPath()).snapshots();
   }
 
   String getPath() {

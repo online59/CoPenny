@@ -11,8 +11,8 @@ const String mSignUpSupTitle = "Become one of the most financial disciplined eve
 const String mDashboardScreenTitle = "Dashboard";
 const String mTransactionScreenTitle = "Transactions";
 const String mWalletScreenTitle = "Wallet";
-const String mSummaryScreenTitle = "Summary";
-const String mAccountScreenTitle = "Account";
+const String mBudgetScreenTitle = "Budget";
+const String mSettingScreenTitle = "Setting";
 
 //Button text
 const String mSignIn = "Sign In";

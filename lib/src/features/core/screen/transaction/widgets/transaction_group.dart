@@ -5,8 +5,8 @@ import 'package:piggy/src/features/transaction/model/transaction_item_model.dart
 import 'package:sliver_tools/sliver_tools.dart';
 
 
-class TransactionCardWidget extends StatelessWidget {
-  const TransactionCardWidget({
+class TransactionGroup extends StatelessWidget {
+  const TransactionGroup({
     super.key,
     required this.transHeader,
     required this.transItems,
