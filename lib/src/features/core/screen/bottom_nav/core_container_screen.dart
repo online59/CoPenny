@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:piggy/src/constants/sizes.dart';
+import 'package:piggy/src/constants/text_strings.dart';
 import 'package:piggy/src/features/add_transaction/data/service/firestore_service.dart';
 import 'package:piggy/src/features/core/screen/user_account/account_screen.dart';
 import 'package:piggy/src/features/core/screen/dashboard/dashboard_screen.dart';
@@ -18,73 +20,123 @@ class CoreContainerScreen extends StatefulWidget {
 }
 
 class _CoreContainerScreenState extends State<CoreContainerScreen> {
-  final user = FirebaseAuth.instance.currentUser;
-
-  int _bottomNavIndex = 0;
-  late PageController _pageController;
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController();
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  void _onPageChanged(int index) {
-    setState(() {
-      _bottomNavIndex = index;
-    });
-  }
+  int _currentTab = 0;
+  String _currentTitle = mDashboardScreenTitle;
+  late PageController _screenController;
 
   @override
   Widget build(BuildContext context) {
-    var listItem = TransDataSource().generateDummyTransaction('1');
+    var transactionList = TransDataSource().generateDummyTransaction('1');
     Random random = Random();
     FirestoreService firestoreService = FirestoreService();
 
     return SafeArea(
-      child: Scaffold(
-        body: PageView(
-          controller: _pageController,
-          onPageChanged: _onPageChanged,
-          children: const [
-            TransactionDirectingScreen(),
-            Dashboard(),
-            SummaryPage(),
-            AccountPage()
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            int index = random.nextInt(listItem.length - 1);
-            firestoreService.writeDataToFirestore(
-                firestoreService.getPath(listItem[index]), listItem[index]);
-          },
-          child: const Icon(Icons.add),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: AnimatedBottomNavigationBar(
-          icons: const [
-            Icons.list_alt_rounded,
-            Icons.pie_chart_rounded,
-            Icons.notifications_rounded,
-            Icons.account_circle,
-          ],
-          activeIndex: _bottomNavIndex,
-          onTap: (index) {
-            _onPageChanged(index);
-            _pageController.jumpToPage(index);
-          },
-          notchSmoothness: NotchSmoothness.softEdge,
-          gapLocation: GapLocation.center,
-          activeColor: Theme.of(context).colorScheme.primary,
+      child: Container(
+        padding: const EdgeInsets.all(mDefaultSize),
+        child: Scaffold(
+          appBar: AppBar(
+            leading: const Icon(
+              Icons.menu,
+              color: Colors.black,
+            ),
+            title: const Text(mAppName),
+            actions: [
+              Container(
+                margin: const EdgeInsets.symmetric(
+                    vertical: mAppBarVMargin, horizontal: mAppBarHMargin),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(mButtonRadius),
+                ),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.wallet_rounded),
+                ),
+              )
+            ],
+          ),
+          body: Container(
+            padding: const EdgeInsets.all(mDefaultSize),
+            child: PageView(
+              controller: _screenController,
+              onPageChanged: _onTapSelected,
+              children: const [
+                Dashboard(),
+                TransactionDirectingScreen(),
+                SummaryPage(),
+                AccountPage(),
+              ],
+            ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              int index = random.nextInt(transactionList.length - 1);
+              firestoreService.writeDataToFirestore(
+                  firestoreService.getPath(transactionList[index]),
+                  transactionList[index]);
+            },
+            child: const Icon(Icons.add_rounded),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          bottomNavigationBar: AnimatedBottomNavigationBar(
+            onTap: (index) {
+              _onTapSelected(index);
+            },
+            icons: const [
+              Icons.list_alt_rounded,
+              Icons.pie_chart_rounded,
+              Icons.notifications_rounded,
+              Icons.account_circle,
+            ],
+            activeIndex: _currentTab,
+            gapLocation: GapLocation.center,
+            notchSmoothness: NotchSmoothness.softEdge,
+            activeColor: Theme.of(context).colorScheme.primary,
+          ),
         ),
       ),
     );
+  }
+
+  void _onTapSelected(int index) {
+    setState(() {
+      _currentTab = index;
+      _screenController.jumpToPage(index);
+
+      switch (index) {
+        case 0:
+          {
+            _currentTitle = mDashboardScreenTitle;
+          }
+          break;
+        case 1:
+          {
+            _currentTitle = mTransactionScreenTitle;
+          }
+          break;
+        case 2:
+          {
+            _currentTitle = mSummaryScreenTitle;
+          }
+          break;
+        case 3:
+          {
+            _currentTitle = mAccountScreenTitle;
+          }
+          break;
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _screenController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _screenController.dispose();
+    super.dispose();
   }
 }

@@ -1,9 +1,18 @@
+//App name
+const String mAppName = "CoPenny";
 
 //Welcome screen text
 const String mWelcomeTitle = "Welcome Back";
 const String mWelcomeSubtitle = "Let's manage our financial destiny";
 const String mSignUpTitle = "Sign Up";
 const String mSignUpSupTitle = "Become one of the most financial disciplined ever";
+
+//Bottom navigation
+const String mDashboardScreenTitle = "Dashboard";
+const String mTransactionScreenTitle = "Transactions";
+const String mWalletScreenTitle = "Wallet";
+const String mSummaryScreenTitle = "Summary";
+const String mAccountScreenTitle = "Account";
 
 //Button text
 const String mSignIn = "Sign In";

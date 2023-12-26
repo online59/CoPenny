@@ -19,3 +19,7 @@ const mButtonRadiusLarge = 30.0;
 
 //Form
 const mFormHeight = 20.0;
+
+//App bar sizing
+const mAppBarVMargin = 6.0;
+const mAppBarHMargin = 20.0;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:piggy/src/utils/theme/widget_theme/appbar_theme.dart';
 import 'package:piggy/src/utils/theme/widget_theme/elevated_button_theme.dart';
 import 'package:piggy/src/utils/theme/widget_theme/floating_action_button_theme.dart';
 import 'package:piggy/src/utils/theme/widget_theme/outlined_button_theme.dart';
@@ -20,6 +21,7 @@ class MyAppTheme {
     elevatedButtonTheme: MyElevatedButtonTheme.lightElevatedButtonTheme,
     inputDecorationTheme: MyTextFormFieldTheme.lightInputDecorationTheme,
     floatingActionButtonTheme: MyFloatingActionButtonTheme.lightFloatingActionButtonTheme,
+    appBarTheme: MyAppBarTheme.lightAppBarTheme,
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -33,5 +35,6 @@ class MyAppTheme {
     elevatedButtonTheme: MyElevatedButtonTheme.darkElevatedButtonTheme,
     inputDecorationTheme: MyTextFormFieldTheme.darkInputDecorationTheme,
     floatingActionButtonTheme: MyFloatingActionButtonTheme.darkFloatingActionButtonTheme,
+    appBarTheme: MyAppBarTheme.darkAppBarTheme,
   );
 }
