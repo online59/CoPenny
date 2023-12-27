@@ -16,43 +16,34 @@ class _WalletScreenState extends State<WalletScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Scaffold(
-      appBar: AppBar(
-        title: const Center(child: Text('Your Wallet')),
-      ),
-      body: Consumer<WalletProvider>(builder: (context, provider, child) {
-        var walletList = provider.getAll();
+    return Consumer<WalletProvider>(builder: (context, provider, child) {
+      var walletList = provider.getAll();
+      return ListView.builder(
+        itemCount: walletList.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              provider.currentWalletId = walletList[index].walletId;
 
-        return ListView.builder(
-          padding: const EdgeInsets.all(8),
-          itemCount: walletList.length,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                provider.currentWalletId =
-                    walletList[index].walletId;
-
-                // Navigator.pushReplacement(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => BottomNavigationWidget(
-                //         walletId: wallet[index].walletId),
-                //   ),
-                // );
-              },
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                child: CreditCardWidget(
-                  walletName: walletList[index].walletName,
-                  walletId: walletList[index].walletId,
-                ),
+              // Navigator.pushReplacement(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => BottomNavigationWidget(
+              //         walletId: wallet[index].walletId),
+              //   ),
+              // );
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+              child: CreditCardWidget(
+                walletName: walletList[index].walletName,
+                walletId: walletList[index].walletId,
               ),
-            );
-          },
-        );
-      }),
-    );
+            ),
+          );
+        },
+      );
+    });
   }
 
   @override

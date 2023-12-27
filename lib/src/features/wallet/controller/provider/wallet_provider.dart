@@ -9,6 +9,9 @@ class WalletProvider extends ChangeNotifier implements WalletRepository {
   String _currentWalletName = '';
   String _currentWalletBalance = '';
 
+  bool hasError = false;
+  bool hasData = false;
+
   late WalletDataSource dataSource;
 
   WalletProvider() {
@@ -17,10 +20,21 @@ class WalletProvider extends ChangeNotifier implements WalletRepository {
 
   @override
   List<WalletModel> getAll() {
-    var listItem = dataSource.generateDummyWallet();
+
+    List<WalletModel> listItem = [];
+
+    try {
+      listItem = dataSource.generateDummyWallet();
+      hasData = true;
+    } catch (e) {
+      hasError = true;
+    }
+
     notifyListeners();
     return listItem;
   }
+
+
 
 
   String get currentWalletId => _currentWalletId;

@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/constants/text_strings.dart';
@@ -11,6 +10,8 @@ import 'package:piggy/src/features/core/screen/user_account/account_screen.dart'
 import 'package:piggy/src/features/core/screen/dashboard/dashboard_screen.dart';
 import 'package:piggy/src/features/core/screen/transaction/transaction_directing_screen.dart';
 import 'package:piggy/src/features/transaction/controller/datasource/transaction_data.dart';
+import 'package:piggy/src/features/wallet/controller/provider/wallet_provider.dart';
+import 'package:provider/provider.dart';
 
 class CoreContainerScreen extends StatefulWidget {
   const CoreContainerScreen({super.key});
@@ -30,68 +31,74 @@ class _CoreContainerScreenState extends State<CoreContainerScreen> {
     Random random = Random();
     FirestoreService firestoreService = FirestoreService();
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          leading: const Icon(
-            Icons.menu,
-            color: Colors.black,
-          ),
-          title: Text(_currentTitle),
-          actions: [
-            Container(
-              margin: const EdgeInsets.symmetric(
-                  vertical: mAppBarVMargin, horizontal: mAppBarHMargin),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(mButtonRadiusSmall),
+    return ChangeNotifierProvider<WalletProvider>(
+      create: (BuildContext context) => WalletProvider(),
+      child: Consumer<WalletProvider>(builder: (context, provider, child) {
+        return SafeArea(
+          child: Scaffold(
+            appBar: AppBar(
+              leading: const Icon(
+                Icons.menu,
+                color: Colors.black,
               ),
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.wallet_rounded),
+              title: Text(_currentTitle),
+              actions: [
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                      vertical: mAppBarVMargin, horizontal: mAppBarHMargin),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(mButtonRadiusSmall),
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                    },
+                    icon: const Icon(Icons.wallet_rounded),
+                  ),
+                )
+              ],
+            ),
+            body: Container(
+              padding: const EdgeInsets.all(mDefaultSize),
+              child: PageView(
+                controller: _screenController,
+                onPageChanged: _onTapSelected,
+                children: [
+                  const DashboardScreen(),
+                  TransactionDirectingScreen(walletProvider: provider,),
+                  const BudgetScreen(),
+                  const SettingScreen(),
+                ],
               ),
-            )
-          ],
-        ),
-        body: Container(
-          padding: const EdgeInsets.all(mDefaultSize),
-          child: PageView(
-            controller: _screenController,
-            onPageChanged: _onTapSelected,
-            children: const [
-              DashboardScreen(),
-              TransactionDirectingScreen(),
-              BudgetScreen(),
-              SettingScreen(),
-            ],
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                int index = random.nextInt(transactionList.length - 1);
+                firestoreService.writeDataToFirestore(
+                    firestoreService.getPath(transactionList[index]),
+                    transactionList[index]);
+              },
+              child: const Icon(Icons.add_rounded),
+            ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            bottomNavigationBar: AnimatedBottomNavigationBar(
+              onTap: (index) {
+                _onTapSelected(index);
+              },
+              icons: const [
+                Icons.home_rounded,
+                Icons.list_alt_rounded,
+                Icons.pie_chart_rounded,
+                Icons.settings_rounded,
+              ],
+              activeIndex: _currentTab,
+              gapLocation: GapLocation.center,
+              notchSmoothness: NotchSmoothness.softEdge,
+              activeColor: Theme.of(context).colorScheme.primary,
+            ),
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            int index = random.nextInt(transactionList.length - 1);
-            firestoreService.writeDataToFirestore(
-                firestoreService.getPath(transactionList[index]),
-                transactionList[index]);
-          },
-          child: const Icon(Icons.add_rounded),
-        ),
-        floatingActionButtonLocation:
-            FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: AnimatedBottomNavigationBar(
-          onTap: (index) {
-            _onTapSelected(index);
-          },
-          icons: const [
-            Icons.home_rounded,
-            Icons.list_alt_rounded,
-            Icons.pie_chart_rounded,
-            Icons.settings_rounded,
-          ],
-          activeIndex: _currentTab,
-          gapLocation: GapLocation.center,
-          notchSmoothness: NotchSmoothness.softEdge,
-          activeColor: Theme.of(context).colorScheme.primary,
-        ),
-      ),
+        );
+      }),
     );
   }
 

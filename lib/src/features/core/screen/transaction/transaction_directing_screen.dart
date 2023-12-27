@@ -6,21 +6,29 @@ import 'package:piggy/src/features/wallet/screen/wallet/display_wallet_page.dart
 import 'package:provider/provider.dart';
 
 class TransactionDirectingScreen extends StatelessWidget {
-  const TransactionDirectingScreen({super.key});
+  const TransactionDirectingScreen({super.key, required this.walletProvider});
+
+  final WalletProvider walletProvider;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<TransactionProvider>(
       create: (BuildContext context) => TransactionProvider(),
-      child: Consumer<WalletProvider>(
-        builder: (_, provider, __) {
-          if (provider.currentWalletId.isEmpty) {
-            return const WalletScreen();
-          } else {
-            return TransactionScreen(walletId: provider.currentWalletId);
-          }
-        },
-      ),
+      child: reroutingScreen(walletProvider),
     );
+  }
+
+  Widget reroutingScreen(WalletProvider provider) {
+    if (provider.hasError) {
+      return const Center(child: Text("Cannot load data!"));
+    } else if (provider.currentWalletId.isEmpty) {
+      return const WalletScreen();
+    } else if (provider.hasData) {
+      return TransactionScreen(walletId: provider.currentWalletId);
+    } else {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
   }
 }

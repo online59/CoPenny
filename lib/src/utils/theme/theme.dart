@@ -12,7 +12,7 @@ class MyAppTheme {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     colorScheme: ColorScheme.fromSeed(
-      seedColor: Colors.pinkAccent,
+      seedColor: Colors.deepPurple,
       brightness: Brightness.light,
     ),
     textTheme: MyTextTheme.lightTextTheme,
@@ -26,7 +26,7 @@ class MyAppTheme {
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     colorScheme: ColorScheme.fromSeed(
-      seedColor: Colors.pinkAccent,
+      seedColor: Colors.deepPurple,
       brightness: Brightness.dark,
     ),
     textTheme: MyTextTheme.darkTextTheme,

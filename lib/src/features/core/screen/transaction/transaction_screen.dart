@@ -19,29 +19,11 @@ class _TransactionScreenState extends State<TransactionScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Scaffold(
-        appBar: AppBar(
-          title: const Center(child: Text('Spending')),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 16),
-              child: Consumer<WalletProvider>(
-                builder: (context, provider, child) => IconButton(
-                  onPressed: () {
-                    provider.currentWalletId = '';
-                  },
-                  icon: const Icon(Icons.wallet),
-                ),
-              ),
-            )
-          ],
-        ),
-        body: Consumer<TransactionProvider>(
-          builder: (context, provider, child) => CustomScrollView(
-            slivers:
-                buildTransactionGroup(provider.getTransaction(widget.walletId)),
-          ),
-        ),
+    return Consumer<TransactionProvider>(
+      builder: (context, provider, child) => CustomScrollView(
+        slivers:
+            buildTransactionGroup(provider.getTransaction(widget.walletId)),
+      ),
     );
   }
 

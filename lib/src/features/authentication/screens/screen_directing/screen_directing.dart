@@ -15,7 +15,7 @@ class ScreenDirecting extends StatelessWidget {
       builder: (context, snapshot) {
         // user logged in
         if (snapshot.hasData) {
-          return ChangeNotifierProvider(
+          return ChangeNotifierProvider<WalletProvider>(
             create: (BuildContext context) => WalletProvider(),
             child: const CoreContainerScreen(),
           );
