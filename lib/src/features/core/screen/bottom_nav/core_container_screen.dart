@@ -57,18 +57,15 @@ class _CoreContainerScreenState extends State<CoreContainerScreen> {
                 )
               ],
             ),
-            body: Container(
-              padding: const EdgeInsets.all(mDefaultSize),
-              child: PageView(
-                controller: _screenController,
-                onPageChanged: _onTapSelected,
-                children: [
-                  const DashboardScreen(),
-                  TransactionDirectingScreen(walletProvider: provider,),
-                  const BudgetScreen(),
-                  const SettingScreen(),
-                ],
-              ),
+            body: PageView(
+              controller: _screenController,
+              onPageChanged: _onTapSelected,
+              children: [
+                const DashboardScreen(),
+                TransactionDirectingScreen(walletProvider: provider,),
+                const BudgetScreen(),
+                const SettingScreen(),
+              ],
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
