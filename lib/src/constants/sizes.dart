@@ -10,7 +10,7 @@ const mHSpacingMedium = 20.0;
 const mHSpacingLarge = 30.0;
 
 //Button sizing
-const mButtonRadius = 4.0;
+// const mButtonRadius = 4.0;
 const mButtonHeight = 24.0;
 const mButtonLogoSize = 20.0;
 const mButtonRadiusSmall = 10.0;

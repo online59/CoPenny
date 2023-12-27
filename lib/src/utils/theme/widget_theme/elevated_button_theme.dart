@@ -8,7 +8,7 @@ class MyElevatedButtonTheme {
   //light theme
   static final lightElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(mButtonRadius))),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(mButtonRadiusSmall))),
         padding: const EdgeInsets.symmetric(vertical: mButtonHeight)
     ),
   );
@@ -16,7 +16,7 @@ class MyElevatedButtonTheme {
   //dart theme
   static final darkElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(mButtonRadius))),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(mButtonRadiusSmall))),
         padding: const EdgeInsets.symmetric(vertical: mButtonHeight)
     ),
   );

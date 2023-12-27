@@ -7,7 +7,7 @@ class MyOutlinedButtonTheme {
   //light theme
   static final lightOutlinedButtonTheme = OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(mButtonRadius))),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(mButtonRadiusSmall))),
         padding: const EdgeInsets.symmetric(vertical: mButtonHeight)
     ),
   );
@@ -15,7 +15,7 @@ class MyOutlinedButtonTheme {
   //dart theme
   static final darkOutlinedButtonTheme = OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(mButtonRadius))),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(mButtonRadiusSmall))),
         padding: const EdgeInsets.symmetric(vertical: mButtonHeight)
     ),
   );

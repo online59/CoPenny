@@ -43,7 +43,7 @@ class _CoreContainerScreenState extends State<CoreContainerScreen> {
               margin: const EdgeInsets.symmetric(
                   vertical: mAppBarVMargin, horizontal: mAppBarHMargin),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(mButtonRadius),
+                borderRadius: BorderRadius.circular(mButtonRadiusSmall),
               ),
               child: IconButton(
                 onPressed: () {},
