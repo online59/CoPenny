@@ -1,36 +1,29 @@
-import 'dart:math';
-
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/constants/text_strings.dart';
-import 'package:piggy/src/features/add_transaction/data/service/firestore_service.dart';
 import 'package:piggy/src/features/core/screen/%E0%B8%B4budget/budget_screen.dart';
 import 'package:piggy/src/features/core/screen/user_account/account_screen.dart';
 import 'package:piggy/src/features/core/screen/dashboard/dashboard_screen.dart';
-import 'package:piggy/src/features/core/screen/transaction/transaction_directing_screen.dart';
-import 'package:piggy/src/features/transaction/controller/datasource/transaction_data.dart';
+import 'package:piggy/src/features/core/screen/transaction/widgets/transaction_or_wallet.dart';
 import 'package:piggy/src/features/wallet/controller/provider/wallet_provider.dart';
 import 'package:provider/provider.dart';
 
-class CoreContainerScreen extends StatefulWidget {
-  const CoreContainerScreen({super.key});
+class MainNavigationBarWidget extends StatefulWidget {
+  const MainNavigationBarWidget({super.key});
 
   @override
-  State<CoreContainerScreen> createState() => _CoreContainerScreenState();
+  State<MainNavigationBarWidget> createState() =>
+      _MainNavigationBarWidgetState();
 }
 
-class _CoreContainerScreenState extends State<CoreContainerScreen> {
+class _MainNavigationBarWidgetState extends State<MainNavigationBarWidget> {
   int _currentTab = 0;
   String _currentTitle = mDashboardScreenTitle;
   late PageController _screenController;
 
   @override
   Widget build(BuildContext context) {
-    var transactionList = TransDataSource().generateDummyTransaction('1');
-    Random random = Random();
-    FirestoreService firestoreService = FirestoreService();
-
     return ChangeNotifierProvider<WalletProvider>(
       create: (BuildContext context) => WalletProvider(),
       child: Consumer<WalletProvider>(builder: (context, provider, child) {
@@ -50,8 +43,7 @@ class _CoreContainerScreenState extends State<CoreContainerScreen> {
                     borderRadius: BorderRadius.circular(mButtonRadiusSmall),
                   ),
                   child: IconButton(
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     icon: const Icon(Icons.wallet_rounded),
                   ),
                 )
@@ -62,25 +54,22 @@ class _CoreContainerScreenState extends State<CoreContainerScreen> {
               onPageChanged: _onTapSelected,
               children: [
                 const DashboardScreen(),
-                TransactionDirectingScreen(walletProvider: provider,),
+                TransactionOrWalletScreen(
+                  walletProvider: provider,
+                ),
                 const BudgetScreen(),
                 const SettingScreen(),
               ],
             ),
             floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                int index = random.nextInt(transactionList.length - 1);
-                firestoreService.writeDataToFirestore(
-                    firestoreService.getPath(transactionList[index]),
-                    transactionList[index]);
-              },
+              onPressed: () {},
               child: const Icon(Icons.add_rounded),
             ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             bottomNavigationBar: AnimatedBottomNavigationBar(
               onTap: (index) {
-                _onTapSelected(index);
+                // _onTapSelected(index);
               },
               icons: const [
                 Icons.home_rounded,

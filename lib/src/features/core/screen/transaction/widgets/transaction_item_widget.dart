@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CardItemWidget extends StatelessWidget {
-  const CardItemWidget({
+class TransactionItemWidget extends StatelessWidget {
+  const TransactionItemWidget({
     super.key,
     required this.circleAvatar,
     required this.content,

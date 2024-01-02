@@ -7,10 +7,8 @@ class BudgetScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<WalletProvider>(
-      builder: (_, provider, __) => const Center(
-        child: Text("Budget"),
-      ),
+    return const Center(
+      child: Text("Budget"),
     );
   }
 }

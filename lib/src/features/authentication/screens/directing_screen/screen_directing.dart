@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:piggy/src/features/authentication/screens/login/login_screen.dart';
-import 'package:piggy/src/features/core/screen/bottom_nav/core_container_screen.dart';
-import 'package:piggy/src/features/wallet/controller/provider/wallet_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:piggy/src/features/core/screen/home/home_screen.dart';
 
 class ScreenDirecting extends StatelessWidget {
   const ScreenDirecting({super.key});
@@ -15,10 +13,7 @@ class ScreenDirecting extends StatelessWidget {
       builder: (context, snapshot) {
         // user logged in
         if (snapshot.hasData) {
-          return ChangeNotifierProvider<WalletProvider>(
-            create: (BuildContext context) => WalletProvider(),
-            child: const CoreContainerScreen(),
-          );
+          return const HomeScreen();
         } else {
           return const LoginScreen();
         }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:piggy/src/common_widget/appbars/sliver_pinned_app_bar.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/constants/text_strings.dart';
 
@@ -7,67 +8,43 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    //dummy data
-    var items = List<String>.generate(30, (i) => 'Item $i');
-
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(mDefaultSize),
-              color: Theme.of(context).colorScheme.primary,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(mCurrentBalance.toUpperCase(),
-                      style: Theme.of(context).textTheme.bodySmall),
-                  const SizedBox(
-                    height: mVSpacingSmall,
-                  ),
-                  Text.rich(
-                    TextSpan(
-                      text: "$mThb ",
-                      style: Theme.of(context).textTheme.bodyMedium,
-                      children: [
-                        TextSpan(
-                            text: mBalanceDummy,
-                            style: Theme.of(context).textTheme.headlineLarge)
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: mVSpacingSmall,
-                  ),
-                  Text.rich(
-                    TextSpan(
-                      text: "$mMonthDummy ",
-                      style: Theme.of(context).textTheme.bodySmall,
-                      children: [
-                        TextSpan(
-                          text: mYearDummy,
-                          style: Theme.of(context).textTheme.bodySmall,
-                        )
-                      ],
-                    ),
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text.rich(TextSpan(text: mIncome, children: [
-                        TextSpan(text: "\n $mThb $mIncomeDummy")
-                      ])),
-                      Text.rich(TextSpan(text: mExpense, children: [
-                        TextSpan(text: "\n $mThb $mExpenseDummy")
-                      ])),
-                    ],
-                  ),
-                ],
+        body: CustomScrollView(
+          slivers: [
+            const SliverPinnedAppBarWidget(
+              expandedHeight: 250.0,
+            ),
+            SliverGrid(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return Container(
+                    alignment: Alignment.center,
+                    color: Colors.teal[100 * index],
+                    child: Text("Grid item $index"),
+                  );
+                },
+                childCount: 20,
+              ),
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200.0,
+                mainAxisSpacing: 10.0,
+                crossAxisSpacing: 10.0,
+                childAspectRatio: 4.0,
               ),
             ),
-            Container(
+            SliverFixedExtentList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return Container(
+                    alignment: Alignment.center,
+                    color: Colors.lightBlue[100 * index],
+                    child: Text("List item $index"),
+                  );
+                },
+                childCount: 20,
+              ),
+              itemExtent: 50.0,
             )
           ],
         ),

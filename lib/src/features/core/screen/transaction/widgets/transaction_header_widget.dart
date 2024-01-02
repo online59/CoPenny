@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CardHeaderWidget extends StatelessWidget {
-  const CardHeaderWidget({super.key, required this.header, required this.totalAmount});
+class TransactionHeaderWidget extends StatelessWidget {
+  const TransactionHeaderWidget({super.key, required this.header, required this.totalAmount});
 
   final String header;
   final String totalAmount;

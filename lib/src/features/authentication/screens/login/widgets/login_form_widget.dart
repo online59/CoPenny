@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/constants/text_strings.dart';
-import 'package:piggy/src/features/authentication/screens/forget_password/forget_password_options/forget_password_button_widget.dart';
 import 'package:piggy/src/features/authentication/screens/forget_password/forget_password_options/forget_password_model_bottom_sheet.dart';
-import 'package:piggy/src/features/core/screen/bottom_nav/core_container_screen.dart';
-import 'package:piggy/src/features/wallet/controller/provider/wallet_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:piggy/src/features/core/screen/bottom_nav/widgets/main_navigation_bar_widget.dart';
+import 'package:piggy/src/features/core/screen/home/home_screen.dart';
 
 class LoginFormWidget extends StatelessWidget {
   const LoginFormWidget({
@@ -63,9 +60,10 @@ class LoginFormWidget extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(
+                  Navigator.pushReplacement(
+                    context,
                     MaterialPageRoute(
-                      builder: (context) => const CoreContainerScreen(),
+                      builder: (context) => const HomeScreen(),
                     ),
                   );
                 },

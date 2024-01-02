@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:piggy/src/features/transaction/model/transaction_group_model.dart';
-import 'package:piggy/src/features/transaction/model/transaction_item_model.dart';
+import 'package:piggy/src/features/core/screen/transaction/model/transaction_group_model.dart';
+import 'package:piggy/src/features/core/screen/transaction/model/transaction_item_model.dart';
 
 class FirestoreService {
 

@@ -2,8 +2,9 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:piggy/src/features/transaction/model/transaction_group_model.dart';
-import 'package:piggy/src/features/transaction/model/transaction_item_model.dart';
+
+import 'model/transaction_group_model.dart';
+import 'model/transaction_item_model.dart';
 
 class TransDataSource {
 

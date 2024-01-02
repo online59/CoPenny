@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:piggy/src/features/core/screen/transaction/widgets/card_header_widget.dart';
-import 'package:piggy/src/features/core/screen/transaction/widgets/card_item_widget.dart';
-import 'package:piggy/src/features/transaction/model/transaction_item_model.dart';
+import 'package:piggy/src/features/core/screen/transaction/widgets/transaction_header_widget.dart';
+import 'package:piggy/src/features/core/screen/transaction/widgets/transaction_item_widget.dart';
 import 'package:sliver_tools/sliver_tools.dart';
+
+import '../model/transaction_item_model.dart';
 
 
 class TransactionGroup extends StatelessWidget {
@@ -47,7 +48,7 @@ class TransactionGroup extends StatelessWidget {
         //header of this transaction day
         SliverPinnedHeader(
           //container of the header
-          child: CardHeaderWidget(
+          child: TransactionHeaderWidget(
             header: transHeader,
             totalAmount: totalAmount,
           ),
@@ -80,7 +81,7 @@ class TransactionGroup extends StatelessWidget {
                 ),
               );
             },
-            child: CardItemWidget(
+            child: TransactionItemWidget(
                 circleAvatar: const CircleAvatar(
                   child: Text('A'),
                 ),
