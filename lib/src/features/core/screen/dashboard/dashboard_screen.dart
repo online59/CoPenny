@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:piggy/src/common_widget/appbars/sliver_pinned_app_bar.dart';
-import 'package:piggy/src/constants/sizes.dart';
-import 'package:piggy/src/constants/text_strings.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
