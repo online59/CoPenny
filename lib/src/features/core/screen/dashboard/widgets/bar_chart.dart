@@ -4,28 +4,19 @@ import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class BarChartSample extends StatefulWidget {
-  BarChartSample({super.key});
-
-  List<Color> get availableColors => const <Color>[
-    Colors.deepPurple,
-    Colors.deepPurple,
-    Colors.deepPurple,
-    Colors.deepPurple,
-    Colors.deepPurple,
-    Colors.deepPurple,
-  ];
+class MyBarChart extends StatefulWidget {
+  MyBarChart({super.key});
 
   final Color barBackgroundColor =
   Colors.deepPurple.withOpacity(0.3);
   final Color barColor = Colors.white;
-  final Color touchedBarColor = Colors.green;
+  final Color touchedBarColor = Colors.purple;
 
   @override
-  State<StatefulWidget> createState() => BarChartSample1State();
+  State<StatefulWidget> createState() => MyBarChartState();
 }
 
-class BarChartSample1State extends State<BarChart> {
+class MyBarChartState extends State<MyBarChart> {
   final Duration animDuration = const Duration(milliseconds: 250);
 
   int touchedIndex = -1;
@@ -39,14 +30,14 @@ class BarChartSample1State extends State<BarChart> {
       child: Stack(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                const Text(
-                  'Mingguan',
+                Text(
+                  'Family Wallet',
                   style: TextStyle(
-                    color: Colors.green,
+                    color: Theme.of(context).colorScheme.primary,
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
@@ -55,9 +46,9 @@ class BarChartSample1State extends State<BarChart> {
                   height: 4,
                 ),
                 Text(
-                  'Grafik konsumsi kalori',
+                  'Created by Ittipon',
                   style: TextStyle(
-                    color: Colors.green[900],
+                    color: Theme.of(context).colorScheme.secondary,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
@@ -69,7 +60,7 @@ class BarChartSample1State extends State<BarChart> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: BarChart(
-                      isPlaying ? randomData() : mainBarData(),
+                      mainBarData(),
                       swapAnimationDuration: animDuration,
                     ),
                   ),
@@ -80,26 +71,6 @@ class BarChartSample1State extends State<BarChart> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: IconButton(
-                icon: Icon(
-                  isPlaying ? Icons.pause : Icons.play_arrow,
-                  color: Colors.green,
-                ),
-                onPressed: () {
-                  setState(() {
-                    isPlaying = !isPlaying;
-                    if (isPlaying) {
-                      refreshState();
-                    }
-                  });
-                },
-              ),
-            ),
-          )
         ],
       ),
     );
@@ -110,24 +81,24 @@ class BarChartSample1State extends State<BarChart> {
       double y, {
         bool isTouched = false,
         Color? barColor,
-        double width = 22,
+        double width = 50,
         List<int> showTooltips = const [],
       }) {
-    barColor ??= Colors.green;
+    barColor ??= Theme.of(context).colorScheme.primary;
     return BarChartGroupData(
       x: x,
       barRods: [
         BarChartRodData(
           toY: isTouched ? y + 1 : y,
-          color: isTouched ? Colors.green[600] : barColor,
+          color: isTouched ? Theme.of(context).colorScheme.secondary : barColor,
           width: width,
           borderSide: isTouched
-              ? const BorderSide(color: Colors.green)
+              ? BorderSide(color: Theme.of(context).colorScheme.secondary)
               : const BorderSide(color: Colors.white, width: 0),
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
             toY: 20,
-            color: Colors.green,
+            color: Colors.grey[300],
           ),
         ),
       ],
@@ -160,9 +131,9 @@ class BarChartSample1State extends State<BarChart> {
     return BarChartData(
       barTouchData: BarTouchData(
         touchTooltipData: BarTouchTooltipData(
-          tooltipBgColor: Colors.blueGrey,
-          tooltipHorizontalAlignment: FLHorizontalAlignment.right,
-          tooltipMargin: -10,
+          tooltipBgColor: Theme.of(context).colorScheme.secondary,
+          tooltipHorizontalAlignment: FLHorizontalAlignment.center,
+          tooltipMargin: 0,
           getTooltipItem: (group, groupIndex, rod, rodIndex) {
             String weekDay;
             switch (group.x) {
@@ -194,14 +165,14 @@ class BarChartSample1State extends State<BarChart> {
               '$weekDay\n',
               const TextStyle(
                 color: Colors.white,
-                fontWeight: FontWeight.bold,
+                // fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),
               children: <TextSpan>[
                 TextSpan(
                   text: (rod.toY - 1).toString(),
-                  style: TextStyle(
-                    color: Colors.green[600],
+                  style: const TextStyle(
+                    color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
