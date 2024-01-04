@@ -5,12 +5,18 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class MyBarChart extends StatefulWidget {
-  MyBarChart({super.key});
+  MyBarChart({
+    super.key,
+    this.barTitle = "",
+    this.barSubTitle = "",
+  });
 
-  final Color barBackgroundColor =
-  Colors.deepPurple.withOpacity(0.3);
+  final Color barBackgroundColor = Colors.deepPurple.withOpacity(0.3);
   final Color barColor = Colors.white;
   final Color touchedBarColor = Colors.purple;
+
+  final String barTitle;
+  final String barSubTitle;
 
   @override
   State<StatefulWidget> createState() => MyBarChartState();
@@ -26,7 +32,7 @@ class MyBarChartState extends State<MyBarChart> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 1,
+      aspectRatio: 1.5,
       child: Stack(
         children: <Widget>[
           Padding(
@@ -34,27 +40,20 @@ class MyBarChartState extends State<MyBarChart> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Text(
-                  'Family Wallet',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                widget.barTitle.isNotEmpty
+                    ? Text(
+                        widget.barTitle,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    : const SizedBox(
+                        height: 0,
+                      ),
                 const SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  'Created by Ittipon',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  height: 38,
+                  height: 12,
                 ),
                 Expanded(
                   child: Padding(
@@ -77,13 +76,13 @@ class MyBarChartState extends State<MyBarChart> {
   }
 
   BarChartGroupData makeGroupData(
-      int x,
-      double y, {
-        bool isTouched = false,
-        Color? barColor,
-        double width = 50,
-        List<int> showTooltips = const [],
-      }) {
+    int x,
+    double y, {
+    bool isTouched = false,
+    Color? barColor,
+    double width = 60,
+    List<int> showTooltips = const [],
+  }) {
     barColor ??= Theme.of(context).colorScheme.primary;
     return BarChartGroupData(
       x: x,
@@ -92,6 +91,7 @@ class MyBarChartState extends State<MyBarChart> {
           toY: isTouched ? y + 1 : y,
           color: isTouched ? Theme.of(context).colorScheme.secondary : barColor,
           width: width,
+          borderRadius: const BorderRadius.all(Radius.circular(16.0)),
           borderSide: isTouched
               ? BorderSide(color: Theme.of(context).colorScheme.secondary)
               : const BorderSide(color: Colors.white, width: 0),
@@ -107,25 +107,25 @@ class MyBarChartState extends State<MyBarChart> {
   }
 
   List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
-    switch (i) {
-      case 0:
-        return makeGroupData(0, 5, isTouched: i == touchedIndex);
-      case 1:
-        return makeGroupData(1, 6.5, isTouched: i == touchedIndex);
-      case 2:
-        return makeGroupData(2, 5, isTouched: i == touchedIndex);
-      case 3:
-        return makeGroupData(3, 7.5, isTouched: i == touchedIndex);
-      case 4:
-        return makeGroupData(4, 9, isTouched: i == touchedIndex);
-      case 5:
-        return makeGroupData(5, 11.5, isTouched: i == touchedIndex);
-      case 6:
-        return makeGroupData(6, 6.5, isTouched: i == touchedIndex);
-      default:
-        return throw Error();
-    }
-  });
+        switch (i) {
+          case 0:
+            return makeGroupData(0, 5, isTouched: i == touchedIndex);
+          case 1:
+            return makeGroupData(1, 6.5, isTouched: i == touchedIndex);
+          case 2:
+            return makeGroupData(2, 5, isTouched: i == touchedIndex);
+          case 3:
+            return makeGroupData(3, 7.5, isTouched: i == touchedIndex);
+          case 4:
+            return makeGroupData(4, 9, isTouched: i == touchedIndex);
+          case 5:
+            return makeGroupData(5, 11.5, isTouched: i == touchedIndex);
+          case 6:
+            return makeGroupData(6, 6.5, isTouched: i == touchedIndex);
+          default:
+            return throw Error();
+        }
+      });
 
   BarChartData mainBarData() {
     return BarChartData(
@@ -199,7 +199,7 @@ class MyBarChartState extends State<MyBarChart> {
           sideTitles: SideTitles(showTitles: false),
         ),
         topTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
+          sideTitles: SideTitles(showTitles: true),
         ),
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
@@ -210,7 +210,7 @@ class MyBarChartState extends State<MyBarChart> {
         ),
         leftTitles: const AxisTitles(
           sideTitles: SideTitles(
-            showTitles: false,
+            showTitles: true,
           ),
         ),
       ),
@@ -257,7 +257,7 @@ class MyBarChartState extends State<MyBarChart> {
     }
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      space: 16,
+      space: 8,
       child: text,
     );
   }
