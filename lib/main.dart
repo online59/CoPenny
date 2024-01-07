@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:piggy/src/features/authentication/screens/directing_screen/screen_directing.dart';
-import 'package:piggy/src/features/core/screen/dashboard/dashboard_screen.dart';
-import 'package:piggy/src/features/core/screen/home/home_screen.dart';
 import 'package:piggy/src/utils/theme/theme.dart';
 import 'firebase_options.dart';
 

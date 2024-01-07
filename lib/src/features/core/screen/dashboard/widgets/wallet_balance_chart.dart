@@ -4,11 +4,12 @@ import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class MyBarChart extends StatefulWidget {
-  MyBarChart({
+class WalletBalanceChart extends StatefulWidget {
+  WalletBalanceChart({
     super.key,
     this.barTitle = "",
     this.barSubTitle = "",
+    this.maxValue = 20,
   });
 
   final Color barBackgroundColor = Colors.deepPurple.withOpacity(0.3);
@@ -17,12 +18,13 @@ class MyBarChart extends StatefulWidget {
 
   final String barTitle;
   final String barSubTitle;
+  final double maxValue;
 
   @override
-  State<StatefulWidget> createState() => MyBarChartState();
+  State<StatefulWidget> createState() => WalletBalanceChartState();
 }
 
-class MyBarChartState extends State<MyBarChart> {
+class WalletBalanceChartState extends State<WalletBalanceChart> {
   final Duration animDuration = const Duration(milliseconds: 250);
 
   int touchedIndex = -1;
@@ -32,7 +34,7 @@ class MyBarChartState extends State<MyBarChart> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 1.5,
+      aspectRatio: 1.3,
       child: Stack(
         children: <Widget>[
           Padding(
@@ -53,7 +55,7 @@ class MyBarChartState extends State<MyBarChart> {
                         height: 0,
                       ),
                 const SizedBox(
-                  height: 12,
+                  height: 20,
                 ),
                 Expanded(
                   child: Padding(
@@ -80,7 +82,7 @@ class MyBarChartState extends State<MyBarChart> {
     double y, {
     bool isTouched = false,
     Color? barColor,
-    double width = 60,
+    double width = 44,
     List<int> showTooltips = const [],
   }) {
     barColor ??= Theme.of(context).colorScheme.primary;
@@ -91,14 +93,14 @@ class MyBarChartState extends State<MyBarChart> {
           toY: isTouched ? y + 1 : y,
           color: isTouched ? Theme.of(context).colorScheme.secondary : barColor,
           width: width,
-          borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(8.0)),
           borderSide: isTouched
               ? BorderSide(color: Theme.of(context).colorScheme.secondary)
               : const BorderSide(color: Colors.white, width: 0),
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
-            toY: 20,
-            color: Colors.grey[300],
+            toY: widget.maxValue,
+            color: Theme.of(context).colorScheme.background,
           ),
         ),
       ],
@@ -131,7 +133,7 @@ class MyBarChartState extends State<MyBarChart> {
     return BarChartData(
       barTouchData: BarTouchData(
         touchTooltipData: BarTouchTooltipData(
-          tooltipBgColor: Theme.of(context).colorScheme.secondary,
+          tooltipBgColor: Colors.transparent,
           tooltipHorizontalAlignment: FLHorizontalAlignment.center,
           tooltipMargin: 0,
           getTooltipItem: (group, groupIndex, rod, rodIndex) {
@@ -164,16 +166,16 @@ class MyBarChartState extends State<MyBarChart> {
             return BarTooltipItem(
               '$weekDay\n',
               const TextStyle(
-                color: Colors.white,
+                color: Colors.black,
                 // fontWeight: FontWeight.bold,
-                fontSize: 18,
+                // fontSize: 18,
               ),
               children: <TextSpan>[
                 TextSpan(
                   text: (rod.toY - 1).toString(),
                   style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
+                    color: Colors.black,
+                    // fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -199,18 +201,18 @@ class MyBarChartState extends State<MyBarChart> {
           sideTitles: SideTitles(showTitles: false),
         ),
         topTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: true),
+          sideTitles: SideTitles(showTitles: false),
         ),
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
             getTitlesWidget: getTitles,
-            reservedSize: 38,
+            reservedSize: 24,
           ),
         ),
         leftTitles: const AxisTitles(
           sideTitles: SideTitles(
-            showTitles: true,
+            showTitles: false,
           ),
         ),
       ),
@@ -224,7 +226,7 @@ class MyBarChartState extends State<MyBarChart> {
 
   Widget getTitles(double value, TitleMeta meta) {
     const style = TextStyle(
-      color: Colors.white,
+      color: Colors.black,
       fontWeight: FontWeight.bold,
       fontSize: 14,
     );

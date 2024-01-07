@@ -15,7 +15,7 @@ class SliverPinnedAppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      pinned: true,
+      pinned: false,
       floating: true,
       snap: false,
       expandedHeight: expandedHeight,
