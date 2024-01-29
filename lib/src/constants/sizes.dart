@@ -9,6 +9,9 @@ const mHSpacingSmall = 10.0;
 const mHSpacingMedium = 20.0;
 const mHSpacingLarge = 30.0;
 
+//App default padding
+const mDefaultPadding = 20.0;
+
 //Button sizing
 // const mButtonRadius = 4.0;
 const mButtonHeight = 24.0;

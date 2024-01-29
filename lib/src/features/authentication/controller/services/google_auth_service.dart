@@ -17,7 +17,7 @@ class GoogleAuthService implements AuthorizingService {
     // begin interactive sign in process
     final GoogleSignInAccount? user = await GoogleSignIn().signIn();
 
-    // obtain auth details from request
+    // obtain auth details from api
     final GoogleSignInAuthentication gAuth = await user!.authentication;
 
     // create new credential for user
