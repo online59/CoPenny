@@ -1,4 +1,8 @@
-
+//App font size
+const mFontSizeSmall = 12.0;
+const mFontSizeMedium = 14.0;
+const mFontSizeLarge = 16.0;
+const mFontSizeXLarge = 18.0;
 
 //App default sizing
 const mDefaultSize = 30.0;
