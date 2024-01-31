@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:piggy/src/constants/image_strings.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/features/core/screen/dashboard/model/news.dart';
 import 'package:piggy/src/features/core/screen/dashboard/services/news_service.dart';
-import 'package:piggy/src/features/core/screen/dashboard/widgets/networm_image_fallback_widget.dart';
+import 'package:piggy/src/features/core/screen/dashboard/widgets/network_image_fallback_widget.dart';
 
 class LatestNewsWidget extends StatelessWidget {
   const LatestNewsWidget({
@@ -31,14 +32,10 @@ class LatestNewsWidget extends StatelessWidget {
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: displayNewsList[index].urlToImage == null
-                        ? Image.asset(
-                            'assets/images/dashboard_images/load-image-error.jpg',
-                            width: 60,
-                            height: 60,
-                          )
+                        ? Image.asset(mLoadingScreenImage,
+                            width: 60, height: 60, fit: BoxFit.cover)
                         : networkImageWithFallback(
-                            fallbackAssetPath:
-                                'assets/images/dashboard_images/load-image-error.jpg',
+                            fallbackAssetPath: mLoadingScreenImage,
                             displayNewsList[index].urlToImage!,
                             width: 60,
                             height: 60,

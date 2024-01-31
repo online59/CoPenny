@@ -10,7 +10,7 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAliveClientMixin{
-  final PageController _pageController = PageController(viewportFraction: 0.9);
+  final PageController _pageController = PageController(viewportFraction: 1);
 
   @override
   Widget build(BuildContext context) {
