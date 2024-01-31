@@ -25,7 +25,7 @@ class _TransactionScreenState extends State<TransactionScreen>
   List<Widget> buildSliverBody() {
     List<Widget> widgets = [];
     widgets.add(const SliverPinnedAppBarWidget(
-      expandedHeight: 250.0,
+      expandedHeight: 160.0,
       child: WalletBalanceHeaderWidget(),
     ));
     widgets.addAll(buildTransactionCards());
