@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/features/core/screen/dashboard/model/news.dart';
 import 'package:piggy/src/features/core/screen/dashboard/services/news_service.dart';
 import 'package:piggy/src/features/core/screen/dashboard/widgets/networm_image_fallback_widget.dart';
@@ -44,8 +45,12 @@ class LatestNewsWidget extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                   ),
-                  title: Text(displayNewsList[index].title ?? ''),
-                  subtitle: Text(displayNewsList[index].source?['name'] ?? ''),
+                  title: Text(
+                    displayNewsList[index].title ?? '',
+                    style: const TextStyle(fontSize: mFontSizeMedium),
+                  ),
+                  subtitle: Text(displayNewsList[index].source?['name'] ?? '',
+                      style: const TextStyle(fontSize: mFontSizeSmall)),
                 );
               },
             );
