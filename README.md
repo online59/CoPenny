@@ -12,7 +12,11 @@ As of now, CoPenny is still a work in progress. While the basic functionality of
 
 ## Demo
 
-![Demo GIF]([https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif](https://github.com/online59/copenny/blob/daaeedb002b8e8ebe1b32651d75bee8e75fbfdbc/assets/images/welcome_images/page1.gif))
+![Demo GIF](https://github.com/online59/copenny/blob/daaeedb002b8e8ebe1b32651d75bee8e75fbfdbc/assets/images/welcome_images/page1.gif)
+
+![Demo GIF](https://github.com/online59/copenny/blob/3f99835d084d103f97d0474b47b41de9b476c821/assets/images/welcome_images/page2.gif)
+
+![Demo GIF](https://github.com/online59/copenny/blob/daaeedb002b8e8ebe1b32651d75bee8e75fbfdbc/assets/images/welcome_images/page3.gif)
 
 ## Planned Features
 
