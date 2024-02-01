@@ -33,46 +33,49 @@ class WalletBalanceChartState extends State<WalletBalanceChart> {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.3,
-      child: Stack(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                widget.barTitle.isNotEmpty
-                    ? Text(
-                        widget.barTitle,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+    return Container(
+      color: Theme.of(context).colorScheme.background,
+      child: AspectRatio(
+        aspectRatio: 1.8,
+        child: Stack(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  widget.barTitle.isNotEmpty
+                      ? Text(
+                          widget.barTitle,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      : const SizedBox(
+                          height: 0,
                         ),
-                      )
-                    : const SizedBox(
-                        height: 0,
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: BarChart(
+                        mainBarData(),
+                        swapAnimationDuration: animDuration,
                       ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: BarChart(
-                      mainBarData(),
-                      swapAnimationDuration: animDuration,
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-              ],
+                  const SizedBox(
+                    height: 12,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

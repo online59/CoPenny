@@ -1,17 +1,11 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/constants/text_strings.dart';
-import 'package:piggy/src/features/authentication/screens/login/login_screen.dart';
-import 'package:piggy/src/features/core/screen/%E0%B8%B4budget/budget_screen.dart';
-import 'package:piggy/src/features/core/screen/bottom_nav/widgets/main_navigation_bar_widget.dart';
+import 'package:piggy/src/features/core/screen/balance/wallet_balance_screen.dart';
 import 'package:piggy/src/features/core/screen/dashboard/dashboard_screen.dart';
-import 'package:piggy/src/features/core/screen/transaction/widgets/transaction_or_wallet.dart';
 import 'package:piggy/src/features/core/screen/transaction/transaction_screen.dart';
 import 'package:piggy/src/features/core/screen/user_account/account_screen.dart';
-import 'package:piggy/src/features/wallet/controller/provider/wallet_provider.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -59,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: const [
             DashboardScreen(),
             TransactionScreen(),
-            BudgetScreen(),
+            WalletBalanceScreen(),
             SettingScreen(),
           ],
         ),
