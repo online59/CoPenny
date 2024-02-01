@@ -10,6 +10,10 @@ This project serves as a test project for exploring concepts related to NoSQL da
 
 As of now, CoPenny is still a work in progress. While the basic functionality of tracking expenses and managing incomes is available, there are plans to introduce additional features to enhance its usability and usefulness.
 
+## Demo
+
+![Demo GIF]([https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif](https://github.com/online59/copenny/blob/daaeedb002b8e8ebe1b32651d75bee8e75fbfdbc/assets/images/welcome_images/page1.gif))
+
 ## Planned Features
 
 In the future, the following features are planned to be implemented:
