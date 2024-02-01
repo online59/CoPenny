@@ -26,10 +26,6 @@ In the future, the following features are planned to be implemented:
 - **Family Sharing**: Users can add family members to the same wallet, enabling shared expense tracking and collaborative financial management among family members.
 - **Expense Tracking Across Credit Cards**: CoPenny may include functionality to track expenses across different credit cards, providing a comprehensive overview of spending patterns.
 
-## How to Contribute
-
-Contributions to CoPenny are welcome! If you're interested in participating in the development of this project or have ideas for new features, feel free to submit pull requests or open issues in this repository.
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
