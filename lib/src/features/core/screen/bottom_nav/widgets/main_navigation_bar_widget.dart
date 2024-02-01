@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/constants/text_strings.dart';
 import 'package:piggy/src/features/core/screen/balance/wallet_balance_screen.dart';
-import 'package:piggy/src/features/core/screen/user_account/account_screen.dart';
+import 'package:piggy/src/features/core/screen/account/account_screen.dart';
 import 'package:piggy/src/features/core/screen/dashboard/dashboard_screen.dart';
 import 'package:piggy/src/features/core/screen/transaction/widgets/transaction_or_wallet.dart';
 import 'package:piggy/src/features/wallet/controller/provider/wallet_provider.dart';
@@ -58,7 +58,7 @@ class _MainNavigationBarWidgetState extends State<MainNavigationBarWidget> {
                   walletProvider: provider,
                 ),
                 const WalletBalanceScreen(),
-                const SettingScreen(),
+                const AccountScreen(),
               ],
             ),
             floatingActionButton: FloatingActionButton(

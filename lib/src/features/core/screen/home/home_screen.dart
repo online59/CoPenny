@@ -5,7 +5,7 @@ import 'package:piggy/src/constants/text_strings.dart';
 import 'package:piggy/src/features/core/screen/balance/wallet_balance_screen.dart';
 import 'package:piggy/src/features/core/screen/dashboard/dashboard_screen.dart';
 import 'package:piggy/src/features/core/screen/transaction/transaction_screen.dart';
-import 'package:piggy/src/features/core/screen/user_account/account_screen.dart';
+import 'package:piggy/src/features/core/screen/account/account_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
             DashboardScreen(),
             TransactionScreen(),
             WalletBalanceScreen(),
-            SettingScreen(),
+            AccountScreen(),
           ],
         ),
         floatingActionButton: FloatingActionButton(
