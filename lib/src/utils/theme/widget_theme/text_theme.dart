@@ -4,15 +4,15 @@ import 'package:piggy/src/constants/sizes.dart';
 
 class MyTextTheme {
   static TextTheme lightTextTheme = TextTheme(
-    headlineSmall: GoogleFonts.montserrat(color: Colors.black87, fontSize: mFontSizeXLarge),
-    bodyLarge: GoogleFonts.montserrat(color: Colors.black54, fontSize: mFontSizeLarge),
-    bodyMedium: GoogleFonts.montserrat(color: Colors.black87, fontSize: mFontSizeMedium),
-    bodySmall: GoogleFonts.montserrat(color: Colors.black87, fontSize: mFontSizeSmall),
+    headlineSmall: GoogleFonts.montserrat(color: Colors.black87),
+    bodyLarge: GoogleFonts.montserrat(color: Colors.black54),
+    bodyMedium: GoogleFonts.montserrat(color: Colors.black87),
+    bodySmall: GoogleFonts.montserrat(color: Colors.black87),
   );
   static TextTheme darkTextTheme = TextTheme(
-    headlineSmall: GoogleFonts.montserrat(color: Colors.black87, fontSize: mFontSizeXLarge),
-    bodyLarge: GoogleFonts.montserrat(color: Colors.black54, fontSize: mFontSizeLarge),
-    bodyMedium: GoogleFonts.montserrat(color: Colors.black87, fontSize: mFontSizeMedium),
-    bodySmall: GoogleFonts.montserrat(color: Colors.black87, fontSize: mFontSizeSmall),
+    headlineSmall: GoogleFonts.montserrat(color: Colors.black87),
+    bodyLarge: GoogleFonts.montserrat(color: Colors.black54),
+    bodyMedium: GoogleFonts.montserrat(color: Colors.black87),
+    bodySmall: GoogleFonts.montserrat(color: Colors.black87),
   );
 }

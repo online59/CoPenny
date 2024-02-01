@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/features/core/screen/dashboard/widgets/latest_news_widget.dart';
 import 'package:piggy/src/features/core/screen/dashboard/widgets/top_news_widget.dart';
 
@@ -19,22 +20,23 @@ class _DashboardScreenState extends State<DashboardScreen> with AutomaticKeepAli
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Text(
               'Top News',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
           SizedBox(
-            height: 200,
+            height: 250,
             child: TopNewsWidget(pageController: _pageController),
           ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
+          const SizedBox(height: mVSpacingSmall,),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Text(
               'Latest News',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
           const LatestNewsWidget(),

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:piggy/src/common_widget/texts/text_gradient_opacity_background_widget.dart';
 import 'package:piggy/src/features/core/screen/dashboard/model/news.dart';
 import 'package:piggy/src/features/core/screen/dashboard/services/news_service.dart';
 
@@ -29,7 +30,7 @@ class TopNewsWidget extends StatelessWidget {
                   news.urlToImage != null && news.urlToImage!.isNotEmpty)
               .toList();
 
-          final displayNewsList = topNewsList.sublist(0, 6);
+          final displayNewsList = topNewsList.sublist(6, 9);
 
           return PageView.builder(
             controller: _pageController,
@@ -51,13 +52,8 @@ class TopNewsWidget extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                child: Text(
-                  displayNewsList[index].title ?? '',
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
+                child: TextGradientOpacWidget(
+                  text: displayNewsList[index].title ?? 'Cannot read title',
                 ),
               );
             },
