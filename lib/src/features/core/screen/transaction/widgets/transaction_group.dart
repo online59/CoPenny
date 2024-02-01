@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:piggy/src/features/core/screen/transaction/widgets/transaction_header_widget.dart';
+import 'package:piggy/src/features/core/screen/transaction/widgets/pinned_header_widget.dart';
 import 'package:piggy/src/features/core/screen/transaction/widgets/transaction_item_widget.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
@@ -48,7 +48,7 @@ class TransactionGroup extends StatelessWidget {
         //header of this transaction day
         SliverPinnedHeader(
           //container of the header
-          child: TransactionHeaderWidget(
+          child: PinnedHeaderWidget(
             header: transHeader,
             totalAmount: totalAmount,
           ),
@@ -82,8 +82,8 @@ class TransactionGroup extends StatelessWidget {
               );
             },
             child: TransactionItemWidget(
-                circleAvatar: const CircleAvatar(
-                  child: Text('A'),
+                circleAvatar: CircleAvatar(
+                  child: Text(transItems[index].content[0]),
                 ),
                 content: transItems[index].content,
                 amount: transItems[index].getFormattedAmount()),

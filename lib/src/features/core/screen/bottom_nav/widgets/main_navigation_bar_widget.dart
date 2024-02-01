@@ -53,7 +53,7 @@ class _MainNavigationBarWidgetState extends State<MainNavigationBarWidget> {
               controller: _screenController,
               onPageChanged: _onTapSelected,
               children: [
-                DashboardScreen(),
+                const DashboardScreen(),
                 TransactionOrWalletScreen(
                   walletProvider: provider,
                 ),
