@@ -22,7 +22,7 @@ class LatestNewsWidget extends StatelessWidget {
             return const Center(child: Text('Error loading news'));
           } else {
             final allNewsList = snapshot.data ?? [];
-            final displayNewsList = allNewsList.sublist(11, 17);
+            final displayNewsList = allNewsList.sublist(0, 11);
 
             return ListView.builder(
               shrinkWrap: true,

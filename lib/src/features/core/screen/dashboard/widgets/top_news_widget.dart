@@ -30,7 +30,7 @@ class TopNewsWidget extends StatelessWidget {
                   news.urlToImage != null && news.urlToImage!.isNotEmpty)
               .toList();
 
-          final displayNewsList = topNewsList.sublist(6, 9);
+          final displayNewsList = topNewsList;
 
           return PageView.builder(
             controller: _pageController,

@@ -1,19 +1,27 @@
+import 'package:piggy/src/constants/api_strings.dart';
+import 'package:piggy/src/constants/endpoint.dart';
 import 'package:piggy/src/features/core/screen/dashboard/api/news_api_client.dart';
 import 'package:piggy/src/features/core/screen/dashboard/model/news.dart';
 
 import 'package:http/http.dart';
 import 'dart:convert' as convert;
 
+import 'package:piggy/src/features/core/screen/dashboard/services/read_text_file_service.dart';
+
 class NewsService {
 
   static Future<List<News>> fetchTopNews() async {
-    final response = await NewsApiClient().fetch();
+    final response = await NewsApiClient(apiKey: await _getApi()).fetch(mTopNewsEndpoint);
     return _parseNews(response);
   }
 
   static Future<List<News>> fetchNews() async {
-    final response = await NewsApiClient().fetch();
+    final response = await NewsApiClient(apiKey: await _getApi()).fetch(mEveryNewsEndpoint);
     return _parseNews(response);
+  }
+
+  static Future<String> _getApi() async {
+    return await ReadTextFileService.readApiKey();
   }
 
   static List<News> _parseNews(Response response) {
