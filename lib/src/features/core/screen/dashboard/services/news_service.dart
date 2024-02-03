@@ -1,4 +1,4 @@
-import 'package:piggy/src/constants/api_strings.dart';
+import 'package:piggy/src/constants/api_addresses.dart';
 import 'package:piggy/src/constants/endpoint.dart';
 import 'package:piggy/src/features/core/screen/dashboard/api/news_api_client.dart';
 import 'package:piggy/src/features/core/screen/dashboard/model/news.dart';
@@ -15,8 +15,13 @@ class NewsService {
     return _parseNews(response);
   }
 
-  static Future<List<News>> fetchNews() async {
-    final response = await NewsApiClient(apiKey: await _getApi()).fetch(mEveryNewsEndpoint);
+  static Future<List<News>> fetchHotNews() async {
+    final response = await NewsApiClient(apiKey: await _getApi()).fetch(mHotNewsEndpoint);
+    return _parseNews(response);
+  }
+
+  static Future<List<News>> fetchLatestNews() async {
+    final response = await NewsApiClient(apiKey: await _getApi()).fetch(mLatestNewsEndpoint);
     return _parseNews(response);
   }
 

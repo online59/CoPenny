@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:piggy/src/common_widget/texts/text_gradient_opacity_background_widget.dart';
+import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/features/core/screen/dashboard/model/news.dart';
 import 'package:piggy/src/features/core/screen/dashboard/services/news_service.dart';
 
@@ -39,9 +40,10 @@ class TopNewsWidget extends StatelessWidget {
               final imageUrl = displayNewsList[index].urlToImage;
               return Container(
                 width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.symmetric(horizontal: 8),
+                margin: const EdgeInsets.symmetric(horizontal: mMarginSmall),
                 alignment: Alignment.bottomLeft,
                 decoration: BoxDecoration(
+                  color: Colors.grey[300],
                   image: DecorationImage(
                     image: CachedNetworkImageProvider(
                       imageUrl!,
@@ -51,6 +53,8 @@ class TopNewsWidget extends StatelessWidget {
                     ),
                     fit: BoxFit.cover,
                   ),
+                  borderRadius:
+                      BorderRadius.circular(mContainerMediumRadius),
                 ),
                 child: TextGradientOpacWidget(
                   text: displayNewsList[index].title ?? 'Cannot read title',

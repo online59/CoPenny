@@ -14,7 +14,7 @@ class LatestNewsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<News>>(
-        future: NewsService.fetchNews(),
+        future: NewsService.fetchLatestNews(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -22,7 +22,7 @@ class LatestNewsWidget extends StatelessWidget {
             return const Center(child: Text('Error loading news'));
           } else {
             final allNewsList = snapshot.data ?? [];
-            final displayNewsList = allNewsList.sublist(0, 11);
+            final displayNewsList = allNewsList;
 
             return ListView.builder(
               shrinkWrap: true,

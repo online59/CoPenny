@@ -15,6 +15,15 @@ const mHSpacingLarge = 30.0;
 
 //App default padding
 const mDefaultPadding = 20.0;
+const mPaddingSmall = 10.0;
+const mPaddingMedium = 20.0;
+const mPaddingLarge = 30.0;
+
+//App default margin
+const mDefaultMargin = 20.0;
+const mMarginSmall = 10.0;
+const mMarginMedium = 20.0;
+const mMarginLarge = 30.0;
 
 //Button sizing
 // const mButtonRadius = 4.0;
@@ -23,6 +32,11 @@ const mButtonLogoSize = 20.0;
 const mButtonRadiusSmall = 10.0;
 const mButtonRadiusMedium = 20.0;
 const mButtonRadiusLarge = 30.0;
+
+//Container radius
+const mContainerSmallRadius = 10.0;
+const mContainerMediumRadius = 20.0;
+const mContainerLargeRadius = 30.0;
 
 //Form
 const mFormHeight = 20.0;

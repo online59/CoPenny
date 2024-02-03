@@ -20,11 +20,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //get device's height
-    var mediaQuery = MediaQuery.of(context);
-    var size = mediaQuery.size;
-    var brightness = mediaQuery.platformBrightness;
-    var isDarkMode = brightness == Brightness.dark;
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,

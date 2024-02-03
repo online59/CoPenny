@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:piggy/src/constants/sizes.dart';
 
 class TextGradientOpacWidget extends StatelessWidget {
   const TextGradientOpacWidget({
@@ -20,13 +22,15 @@ class TextGradientOpacWidget extends StatelessWidget {
             Colors.transparent
           ],
         ),
+        borderRadius:
+        BorderRadius.circular(mContainerMediumRadius),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(mPaddingSmall),
         child: Text(
           text,
           style: const TextStyle(
-            fontSize: 20,
+            fontSize: 22,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),

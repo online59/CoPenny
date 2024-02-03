@@ -89,3 +89,8 @@ const String mStockExchange = "Stock Exchange";
 const String mDividends = "Dividends";
 const String mInterest = "Interest";
 const String mBorrowing = "Borrowing";
+
+//Dashboard screen
+const String mTopNews = "Top News";
+const String mHotNews = "Hot News";
+const String mLatestNews = "Latest News";
