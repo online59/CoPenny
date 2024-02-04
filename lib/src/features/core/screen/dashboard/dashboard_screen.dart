@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/constants/text_strings.dart';
+import 'package:piggy/src/features/core/screen/dashboard/model/news.dart';
+import 'package:piggy/src/features/core/screen/dashboard/services/news_service.dart';
+import 'package:piggy/src/features/core/screen/dashboard/widgets/hot_news_card_widget.dart';
 import 'package:piggy/src/features/core/screen/dashboard/widgets/hot_news_widget.dart';
 import 'package:piggy/src/features/core/screen/dashboard/widgets/latest_news_widget.dart';
 import 'package:piggy/src/features/core/screen/dashboard/widgets/top_news_widget.dart';
@@ -23,36 +26,76 @@ class _DashboardScreenState extends State<DashboardScreen>
 
     var size = MediaQuery.of(context).size;
 
-    return ListView(
-      children: [
-        SizedBox(
-          height: size.height * 0.4,
-          child: TopNewsWidget(pageController: _pageController),
-        ),
-        const SizedBox(
-          height: mVSpacingSmall,
-        ),
-        Padding(
-          padding: const EdgeInsets.all(mPaddingSmall),
-          child: Text(
-            mHotNews,
-            style: Theme.of(context).textTheme.headlineSmall,
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: size.height * 0.4,
+            child: TopNewsWidget(pageController: _pageController),
           ),
         ),
-        const HotNewsWidget(),
-        const SizedBox(
-          height: mVSpacingSmall,
-        ),
-        Padding(
+        SliverPadding(
           padding: const EdgeInsets.all(mPaddingSmall),
-          child: Text(
+          sliver: SliverToBoxAdapter(
+            child: Text(
+              mHotNews,
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+          ),
+        ),
+        SliverFillRemaining(
+          child: FutureBuilder<List<News>>(
+            future: NewsService.fetchHotNews(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return const Center(child: Text('Error loading news'));
+              } else {
+                List<News> allNewsList = snapshot.data ?? [];
+
+                // Filter out items with empty or null urlToImage property
+                allNewsList = allNewsList
+                    .where((news) =>
+                        news.urlToImage != null && news.urlToImage!.isNotEmpty)
+                    .toList();
+
+                final List<News> displayNewsList = allNewsList.sublist(0, 6);
+
+                return SliverPadding(
+                  padding: const EdgeInsets.all(mPaddingSmall),
+                  sliver: SliverGrid(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: mPaddingSmall,
+                      mainAxisSpacing: mPaddingSmall,
+                    ),
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        return HotNewsCard(
+                          imageUrl: displayNewsList[index].urlToImage ?? '',
+                          title: displayNewsList[index].title ?? '',
+                          author: displayNewsList[index].author ?? '',
+                          publishedDate: displayNewsList[index].publishedAt ??
+                              DateTime.now(),
+                        );
+                      },
+                    ),
+                  ),
+                );
+              }
+            },
+          ),
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.all(mPaddingSmall),
+          sliver: Text(
             mLatestNews,
             style: Theme.of(context).textTheme.headlineSmall,
           ),
         ),
-        const LatestNewsWidget(),
-        const SizedBox(
-          height: 20,
+        const SliverToBoxAdapter(
+          child: LatestNewsWidget(),
         ),
       ],
     );
