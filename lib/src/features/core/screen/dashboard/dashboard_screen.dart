@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/constants/text_strings.dart';
@@ -27,12 +28,7 @@ class _DashboardScreenState extends State<DashboardScreen>
 
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(
-          child: SizedBox(
-            height: size.height * 0.4,
-            child: TopNewsWidget(pageController: _pageController),
-          ),
-        ),
+        TopNewsWidget(pageController: _pageController),
         SliverPadding(
           padding: const EdgeInsets.all(mPaddingSmall),
           sliver: SliverToBoxAdapter(
@@ -42,52 +38,53 @@ class _DashboardScreenState extends State<DashboardScreen>
             ),
           ),
         ),
-        SliverFillRemaining(
-          child: FutureBuilder<List<News>>(
-            future: NewsService.fetchHotNews(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasError) {
-                return const Center(child: Text('Error loading news'));
-              } else {
-                List<News>? allNewsList = snapshot.data;
+        FutureBuilder<List<News>>(
+          future: NewsService.fetchHotNews(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const SliverToBoxAdapter(
+                  child: Center(child: CircularProgressIndicator()));
+            } else if (snapshot.hasError) {
+              return const SliverToBoxAdapter(
+                  child: Center(child: Text('Error loading news')));
+            } else {
+              List<News>? allNewsList = snapshot.data;
 
-                if (allNewsList == null || allNewsList.isEmpty) {
-                  return const Center(child: Text('No news available'));
-                }
-
-                // Filter out items with empty or null urlToImage property
-                allNewsList = allNewsList
-                    .where((news) =>
-                        news.urlToImage != null && news.urlToImage!.isNotEmpty)
-                    .toList();
-
-                final List<News> displayNewsList =
-                    allNewsList.sublist(0, allNewsList.length.clamp(0, 6));
-
-                return SliverGrid(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: mPaddingSmall,
-                    mainAxisSpacing: mPaddingSmall,
-                  ),
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      return HotNewsCard(
-                        imageUrl: displayNewsList[index].urlToImage ?? '',
-                        title: displayNewsList[index].title ?? '',
-                        author: displayNewsList[index].author ?? '',
-                        publishedDate: displayNewsList[index].publishedAt ??
-                            DateTime.now(),
-                      );
-                    },
-                    childCount: displayNewsList.length,
-                  ),
-                );
+              if (allNewsList == null || allNewsList.isEmpty) {
+                return const SliverToBoxAdapter(
+                    child: Center(child: Text('No news available')));
               }
-            },
-          ),
+
+              // Filter out items with empty or null urlToImage property
+              allNewsList = allNewsList
+                  .where((news) =>
+                      news.urlToImage != null && news.urlToImage!.isNotEmpty)
+                  .toList();
+
+              final List<News> displayNewsList =
+                  allNewsList.sublist(0, allNewsList.length.clamp(0, 6));
+
+              return SliverGrid(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: mPaddingSmall,
+                  mainAxisSpacing: mPaddingSmall,
+                ),
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    return HotNewsCard(
+                      imageUrl: displayNewsList[index].urlToImage ?? '',
+                      title: displayNewsList[index].title ?? '',
+                      author: displayNewsList[index].author ?? '',
+                      publishedDate:
+                          displayNewsList[index].publishedAt ?? DateTime.now(),
+                    );
+                  },
+                  childCount: displayNewsList.length,
+                ),
+              );
+            }
+          },
         ),
         SliverPadding(
           padding: const EdgeInsets.all(mPaddingSmall),

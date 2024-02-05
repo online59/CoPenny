@@ -1,9 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:piggy/src/common_widget/texts/text_gradient_opacity_background_widget.dart';
-import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/features/core/screen/dashboard/model/news.dart';
 import 'package:piggy/src/features/core/screen/dashboard/services/news_service.dart';
+import 'package:piggy/src/features/core/screen/dashboard/widgets/top_news_card_widget.dart';
 
 class TopNewsWidget extends StatelessWidget {
   const TopNewsWidget({
@@ -19,9 +17,11 @@ class TopNewsWidget extends StatelessWidget {
       future: NewsService.fetchTopNews(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return const SliverToBoxAdapter(
+              child: Center(child: CircularProgressIndicator()));
         } else if (snapshot.hasError) {
-          return const Center(child: Text('Error loading top news'));
+          return const SliverToBoxAdapter(
+              child: Center(child: Text('Error loading top news')));
         } else {
           List<News> topNewsList = snapshot.data ?? [];
 
@@ -33,34 +33,25 @@ class TopNewsWidget extends StatelessWidget {
 
           final displayNewsList = topNewsList;
 
-          return PageView.builder(
-            controller: _pageController,
-            itemCount: displayNewsList.length,
-            itemBuilder: (context, index) {
-              final imageUrl = displayNewsList[index].urlToImage;
-              return Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.symmetric(horizontal: mMarginSmall),
-                alignment: Alignment.bottomLeft,
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  image: DecorationImage(
-                    image: CachedNetworkImageProvider(
-                      imageUrl!,
-                      errorListener: (object) {
-                        debugPrint('Error loading image: $object');
-                      },
-                    ),
-                    fit: BoxFit.cover,
-                  ),
-                  borderRadius:
-                      BorderRadius.circular(mContainerSmallRadius),
-                ),
-                child: TextGradientOpacWidget(
-                  text: displayNewsList[index].title ?? 'Cannot read title',
-                ),
-              );
-            },
+          var pageScrollBehavior = const PageScrollPhysics();
+          pageScrollBehavior.dragStartDistanceMotionThreshold;
+
+          return SliverToBoxAdapter(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: PageView.builder(
+                controller: _pageController,
+                itemCount: displayNewsList.length,
+                itemBuilder: (context, index) {
+                  final imageUrl = displayNewsList[index].urlToImage;
+                  return TopNewsCardWidget(
+                    imageUrl: imageUrl,
+                    displayNewsList: displayNewsList,
+                    index: index,
+                  );
+                },
+              ),
+            ),
           );
         }
       },
