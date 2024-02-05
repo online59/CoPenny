@@ -23,7 +23,7 @@ class TextGradientOpacWidget extends StatelessWidget {
           ],
         ),
         borderRadius:
-        BorderRadius.circular(mContainerMediumRadius),
+        const BorderRadius.only(bottomLeft: Radius.circular(mContainerSmallRadius), bottomRight: Radius.circular(mContainerSmallRadius)),
       ),
       child: Padding(
         padding: const EdgeInsets.all(mPaddingSmall),

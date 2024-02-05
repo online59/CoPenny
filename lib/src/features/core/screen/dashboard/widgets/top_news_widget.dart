@@ -54,7 +54,7 @@ class TopNewsWidget extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                   borderRadius:
-                      BorderRadius.circular(mContainerMediumRadius),
+                      BorderRadius.circular(mContainerSmallRadius),
                 ),
                 child: TextGradientOpacWidget(
                   text: displayNewsList[index].title ?? 'Cannot read title',

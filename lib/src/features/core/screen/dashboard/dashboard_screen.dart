@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/constants/text_strings.dart';
 import 'package:piggy/src/features/core/screen/dashboard/model/news.dart';
@@ -52,7 +51,11 @@ class _DashboardScreenState extends State<DashboardScreen>
               } else if (snapshot.hasError) {
                 return const Center(child: Text('Error loading news'));
               } else {
-                List<News> allNewsList = snapshot.data ?? [];
+                List<News>? allNewsList = snapshot.data;
+
+                if (allNewsList == null || allNewsList.isEmpty) {
+                  return const Center(child: Text('No news available'));
+                }
 
                 // Filter out items with empty or null urlToImage property
                 allNewsList = allNewsList
@@ -60,27 +63,26 @@ class _DashboardScreenState extends State<DashboardScreen>
                         news.urlToImage != null && news.urlToImage!.isNotEmpty)
                     .toList();
 
-                final List<News> displayNewsList = allNewsList.sublist(0, 6);
+                final List<News> displayNewsList =
+                    allNewsList.sublist(0, allNewsList.length.clamp(0, 6));
 
-                return SliverPadding(
-                  padding: const EdgeInsets.all(mPaddingSmall),
-                  sliver: SliverGrid(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: mPaddingSmall,
-                      mainAxisSpacing: mPaddingSmall,
-                    ),
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        return HotNewsCard(
-                          imageUrl: displayNewsList[index].urlToImage ?? '',
-                          title: displayNewsList[index].title ?? '',
-                          author: displayNewsList[index].author ?? '',
-                          publishedDate: displayNewsList[index].publishedAt ??
-                              DateTime.now(),
-                        );
-                      },
-                    ),
+                return SliverGrid(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: mPaddingSmall,
+                    mainAxisSpacing: mPaddingSmall,
+                  ),
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      return HotNewsCard(
+                        imageUrl: displayNewsList[index].urlToImage ?? '',
+                        title: displayNewsList[index].title ?? '',
+                        author: displayNewsList[index].author ?? '',
+                        publishedDate: displayNewsList[index].publishedAt ??
+                            DateTime.now(),
+                      );
+                    },
+                    childCount: displayNewsList.length,
                   ),
                 );
               }
@@ -89,9 +91,11 @@ class _DashboardScreenState extends State<DashboardScreen>
         ),
         SliverPadding(
           padding: const EdgeInsets.all(mPaddingSmall),
-          sliver: Text(
-            mLatestNews,
-            style: Theme.of(context).textTheme.headlineSmall,
+          sliver: SliverToBoxAdapter(
+            child: Text(
+              mLatestNews,
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
           ),
         ),
         const SliverToBoxAdapter(
