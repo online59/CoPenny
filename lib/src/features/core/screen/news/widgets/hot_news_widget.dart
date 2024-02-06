@@ -44,7 +44,7 @@ class HotNewsWidget extends StatelessWidget {
               crossAxisCount: 2,
               crossAxisSpacing: mPaddingSmall,
               mainAxisSpacing: mPaddingSmall,
-              childAspectRatio: 0.75, // Adjust the aspect ratio as needed
+              childAspectRatio: 0.70, // Adjust the aspect ratio as needed
             ),
             delegate: SliverChildBuilderDelegate(
                   (context, index) {

@@ -24,10 +24,10 @@ class _DashboardScreenState extends State<DashboardScreen>
       slivers: [
         TopNewsWidget(pageController: _pageController),
         SliverPadding(
-          padding: const EdgeInsets.all(mPaddingSmall),
+          padding: const EdgeInsets.only(left: mPaddingSmall, right: mPaddingSmall, top: mPaddingLarge),
           sliver: SliverToBoxAdapter(
             child: Text(
-              mHotNews,
+              mHotNews.toUpperCase(),
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
@@ -37,7 +37,7 @@ class _DashboardScreenState extends State<DashboardScreen>
           padding: const EdgeInsets.all(mPaddingSmall),
           sliver: SliverToBoxAdapter(
             child: Text(
-              mLatestNews,
+              mLatestNews.toUpperCase(),
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
