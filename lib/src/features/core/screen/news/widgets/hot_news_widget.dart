@@ -3,6 +3,7 @@ import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/features/core/screen/news/model/news.dart';
 import 'package:piggy/src/features/core/screen/news/services/news_service.dart';
 import 'package:piggy/src/features/core/screen/news/widgets/hot_news_item_widget.dart';
+import 'package:piggy/src/features/core/screen/news_details/news_details_screen.dart';
 
 class HotNewsWidget extends StatelessWidget {
   const HotNewsWidget({
@@ -47,8 +48,17 @@ class HotNewsWidget extends StatelessWidget {
             ),
             delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                return HotNewsCard(
-                  news: displayNewsList[index],
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => NewsDetailsScreen(news: displayNewsList[index]),
+                      ),
+                    );
+                  },
+                  child: HotNewsCard(
+                    news: displayNewsList[index],
+                  ),
                 );
               },
               childCount: displayNewsList.length,
