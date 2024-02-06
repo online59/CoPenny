@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/constants/text_strings.dart';
 import 'package:piggy/src/features/core/screen/balance/wallet_balance_screen.dart';
-import 'package:piggy/src/features/core/screen/dashboard/dashboard_screen.dart';
+import 'package:piggy/src/features/core/screen/news/dashboard_screen.dart';
 import 'package:piggy/src/features/core/screen/transaction/transaction_screen.dart';
 import 'package:piggy/src/features/core/screen/account/account_screen.dart';
 

@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:piggy/src/constants/sizes.dart'; // Import the intl package for date formatting
+import 'package:piggy/src/constants/sizes.dart';
+import 'package:piggy/src/features/core/screen/news/model/news.dart'; // Import the intl package for date formatting
 
 class HotNewsCard extends StatefulWidget {
-  final String imageUrl;
-  final String title;
-  final String author;
-  final DateTime publishedDate;
-
   const HotNewsCard({
-    Key? key,
-    required this.imageUrl,
-    required this.title,
-    required this.author,
-    required this.publishedDate,
-  }) : super(key: key);
+    super.key,
+    required this.news,
+  });
+
+  final News news;
+
 
   @override
   State<HotNewsCard> createState() => _HotNewsCardState();
@@ -24,7 +20,7 @@ class _HotNewsCardState extends State<HotNewsCard> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var sizedBoxSize = size.width * 0.6;
+    var sizedBoxSize = size.width * 0.7;
 
     return SizedBox(
       width: sizedBoxSize,
@@ -35,10 +31,10 @@ class _HotNewsCardState extends State<HotNewsCard> {
           Card(
             margin: const EdgeInsets.all(mMarginSmall),
             child: ClipRRect(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(mContainerSmallRadius)),
+              borderRadius: BorderRadius.circular(mContainerSmallRadius),
               child: Image.network(
-                widget.imageUrl,
-                height: sizedBoxSize,
+                widget.news.urlToImage!,
+                height: sizedBoxSize * 0.6,
                 fit: BoxFit.cover,
               ),
             ),
@@ -49,12 +45,12 @@ class _HotNewsCardState extends State<HotNewsCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.title,
+                  widget.news.title!,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  DateFormat('MMM dd, yyyy').format(widget.publishedDate),
+                  DateFormat('MMM dd, yyyy').format(widget.news.publishedAt!),
                   style: const TextStyle(
                     color: Colors.grey,
                   ),

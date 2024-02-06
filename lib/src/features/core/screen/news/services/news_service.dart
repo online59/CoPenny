@@ -1,12 +1,11 @@
-import 'package:piggy/src/constants/api_addresses.dart';
 import 'package:piggy/src/constants/endpoint.dart';
-import 'package:piggy/src/features/core/screen/dashboard/api/news_api_client.dart';
-import 'package:piggy/src/features/core/screen/dashboard/model/news.dart';
+import 'package:piggy/src/features/core/screen/news/api/news_api_client.dart';
+import 'package:piggy/src/features/core/screen/news/model/news.dart';
 
 import 'package:http/http.dart';
 import 'dart:convert' as convert;
 
-import 'package:piggy/src/features/core/screen/dashboard/services/read_text_file_service.dart';
+import 'package:piggy/src/features/core/screen/news/services/read_text_file_service.dart';
 
 class NewsService {
 

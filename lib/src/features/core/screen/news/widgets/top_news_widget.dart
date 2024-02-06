@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:piggy/src/features/core/screen/dashboard/model/news.dart';
-import 'package:piggy/src/features/core/screen/dashboard/services/news_service.dart';
-import 'package:piggy/src/features/core/screen/dashboard/widgets/top_news_card_widget.dart';
+import 'package:piggy/src/features/core/screen/news/model/news.dart';
+import 'package:piggy/src/features/core/screen/news/services/news_service.dart';
+import 'package:piggy/src/features/core/screen/news/widgets/top_news_item_widget.dart';
+import 'package:piggy/src/features/core/screen/news_details/news_details_screen.dart';
 
 class TopNewsWidget extends StatelessWidget {
   const TopNewsWidget({
@@ -43,11 +44,18 @@ class TopNewsWidget extends StatelessWidget {
                 controller: _pageController,
                 itemCount: displayNewsList.length,
                 itemBuilder: (context, index) {
-                  final imageUrl = displayNewsList[index].urlToImage;
-                  return TopNewsCardWidget(
-                    imageUrl: imageUrl,
-                    displayNewsList: displayNewsList,
-                    index: index,
+                  return GestureDetector(
+                    onTap: () {
+                      // Handle news item tap
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => NewsDetailsScreen(news: displayNewsList[index]),
+                        ),
+                      );
+                    },
+                    child: TopNewsCardWidget(
+                      news: displayNewsList[index],
+                    ),
                   );
                 },
               ),
