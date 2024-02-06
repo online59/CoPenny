@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:piggy/src/constants/sizes.dart';
 
 class WalletBalanceChart extends StatefulWidget {
-  WalletBalanceChart({
+  const WalletBalanceChart({
     super.key,
     this.barTitle = "",
     this.barSubTitle = "",

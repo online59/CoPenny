@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/features/core/screen/balance/widgets/transaction_builder_widget.dart';
 import 'package:piggy/src/features/core/screen/balance/widgets/wallet_balance_chart.dart';
 
-enum ButtonState {
-  expense,
-  income
-}
+enum ButtonState { expense, income }
 
 class WalletBalanceScreen extends StatefulWidget {
   const WalletBalanceScreen({super.key});
@@ -41,7 +39,8 @@ class _WalletBalanceScreenState extends State<WalletBalanceScreen> {
     {'name': 'Tips', 'value': '400฿'},
   ];
 
-  ButtonState _selectedSegmentButton = ButtonState.expense; // 0 for expenses, 1 for incomes
+  ButtonState _selectedSegmentButton =
+      ButtonState.expense; // 0 for expenses, 1 for incomes
 
   @override
   Widget build(BuildContext context) {
@@ -49,77 +48,108 @@ class _WalletBalanceScreenState extends State<WalletBalanceScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          WalletBalanceChart(),
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        _selectedSegmentButton = ButtonState.expense;
-                      });
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: _selectedSegmentButton == ButtonState.expense
-                            ? Theme.of(context).primaryColor
-                            : Theme.of(context).disabledColor,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        child: Text(
-                          'Expenses',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 20),
-                Expanded(
-                  child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        _selectedSegmentButton = ButtonState.income;
-                      });
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: _selectedSegmentButton == ButtonState.income
-                            ? Theme.of(context).primaryColor
-                            : Theme.of(context).disabledColor,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        child: Text(
-                          'Incomes',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.3,
+            child: const WalletBalanceChart(),
           ),
           const SizedBox(height: 20),
-          _selectedSegmentButton == ButtonState.expense
-              ? TransactionListBuilder(transactionItems: expenses)
-              : TransactionListBuilder(transactionItems: incomes),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 16),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //       Expanded(
+          //         child: InkWell(
+          //           onTap: () {
+          //             setState(() {
+          //               _selectedSegmentButton = ButtonState.expense;
+          //             });
+          //           },
+          //           child: Container(
+          //             alignment: Alignment.center,
+          //             decoration: BoxDecoration(
+          //               color: _selectedSegmentButton == ButtonState.expense
+          //                   ? Theme.of(context).primaryColor
+          //                   : Theme.of(context).disabledColor,
+          //               borderRadius: BorderRadius.circular(20),
+          //             ),
+          //             child: const Padding(
+          //               padding: EdgeInsets.symmetric(vertical: 10),
+          //               child: Text(
+          //                 'Expenses',
+          //                 style: TextStyle(
+          //                   color: Colors.white,
+          //                   fontWeight: FontWeight.bold,
+          //                 ),
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //       const SizedBox(width: 20),
+          //       Expanded(
+          //         child: InkWell(
+          //           onTap: () {
+          //             setState(() {
+          //               _selectedSegmentButton = ButtonState.income;
+          //             });
+          //           },
+          //           child: Container(
+          //             alignment: Alignment.center,
+          //             decoration: BoxDecoration(
+          //               color: _selectedSegmentButton == ButtonState.income
+          //                   ? Theme.of(context).primaryColor
+          //                   : Theme.of(context).disabledColor,
+          //               borderRadius: BorderRadius.circular(20),
+          //             ),
+          //             child: const Padding(
+          //               padding: EdgeInsets.symmetric(vertical: 10),
+          //               child: Text(
+          //                 'Incomes',
+          //                 style: TextStyle(
+          //                   color: Colors.white,
+          //                   fontWeight: FontWeight.bold,
+          //                 ),
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.7,
+            child: DefaultTabController(
+              length: 2,
+              child: Scaffold(
+                appBar: AppBar(
+                  elevation: 0,
+                  title: const TabBar(
+                    // labelColor: Theme.of(context).colorScheme.onPrimary,
+                    // indicator: BoxDecoration(
+                    //   color: Theme.of(context).colorScheme.primary,
+                    //   borderRadius: BorderRadius.circular(mContainerMediumRadius),
+                    // ),
+                    tabs: [
+                      Tab(text: 'Expenses'),
+                      Tab(text: 'Incomes'),
+                    ],
+                  ),
+                ),
+                body: TabBarView(
+                  children: [
+                    TransactionListBuilder(transactionItems: expenses),
+                    TransactionListBuilder(transactionItems: incomes)
+                  ],
+                ),
+              ),
+            ),
+          ),
+          // const SizedBox(height: 20),
+          // _selectedSegmentButton == ButtonState.expense
+          //     ? TransactionListBuilder(transactionItems: expenses)
+          //     : TransactionListBuilder(transactionItems: incomes),
         ],
       ),
     );
