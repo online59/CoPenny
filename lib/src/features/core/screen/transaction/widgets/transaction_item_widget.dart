@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:piggy/src/constants/sizes.dart';
 
 class TransactionItemWidget extends StatelessWidget {
   const TransactionItemWidget({
@@ -16,29 +17,27 @@ class TransactionItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return itemContainer();
-  }
-
-  Widget itemContainer() => Container(
-    decoration: const BoxDecoration(
-      border: Border(
-        bottom: BorderSide(
-          color: borderColor,
-        )
-      )
-    ),
-    child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: ListTile(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.all(
+            Radius.circular(mContainerMediumRadius),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4.0),
+          child: ListTile(
             title: Text(content),
             leading: circleAvatar,
             trailing: Text(
               amount,
-              style: const TextStyle(
-                fontSize: 16,
-              ),
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
-    ),
-  );
+        ),
+      ),
+    );
+  }
 }

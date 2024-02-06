@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:piggy/src/constants/sizes.dart';
 
 class WalletBalanceChart extends StatefulWidget {
   WalletBalanceChart({
@@ -11,10 +12,6 @@ class WalletBalanceChart extends StatefulWidget {
     this.barSubTitle = "",
     this.maxValue = 20,
   });
-
-  final Color barBackgroundColor = Colors.deepPurple.withOpacity(0.3);
-  final Color barColor = Colors.white;
-  final Color touchedBarColor = Colors.purple;
 
   final String barTitle;
   final String barSubTitle;
@@ -35,47 +32,44 @@ class WalletBalanceChartState extends State<WalletBalanceChart> {
   Widget build(BuildContext context) {
     return Container(
       color: Theme.of(context).colorScheme.background,
-      child: AspectRatio(
-        aspectRatio: 1.8,
-        child: Stack(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  widget.barTitle.isNotEmpty
-                      ? Text(
-                          widget.barTitle,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      : const SizedBox(
-                          height: 0,
+      child: Stack(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(mPaddingSmall),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                widget.barTitle.isNotEmpty
+                    ? Text(
+                        widget.barTitle,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
                         ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: BarChart(
-                        mainBarData(),
-                        swapAnimationDuration: animDuration,
+                      )
+                    : const SizedBox(
+                        height: 0,
                       ),
+                const SizedBox(
+                  height: mVSpacingMedium,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: BarChart(
+                      mainBarData(),
+                      swapAnimationDuration: animDuration,
                     ),
                   ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

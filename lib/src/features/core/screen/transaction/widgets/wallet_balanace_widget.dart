@@ -8,6 +8,7 @@ class WalletBalanceWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.blueGrey,
       padding: const EdgeInsets.all(mDefaultSize),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
