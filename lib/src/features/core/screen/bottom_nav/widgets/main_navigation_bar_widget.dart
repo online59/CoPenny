@@ -2,6 +2,7 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/constants/text_strings.dart';
+import 'package:piggy/src/features/core/screen/add_transaction/add_transaction_screen.dart';
 import 'package:piggy/src/features/core/screen/balance/wallet_balance_screen.dart';
 import 'package:piggy/src/features/core/screen/account/account_screen.dart';
 import 'package:piggy/src/features/core/screen/news/dashboard_screen.dart';
@@ -20,14 +21,13 @@ class MainNavigationBarWidget extends StatefulWidget {
 class _MainNavigationBarWidgetState extends State<MainNavigationBarWidget> {
   int _currentTab = 0;
   String _currentTitle = mDashboardScreenTitle;
-  late PageController _screenController;
+  late PageController _pageController;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<WalletProvider>(
-      create: (BuildContext context) => WalletProvider(),
-      child: Consumer<WalletProvider>(builder: (context, provider, child) {
-        return SafeArea(
+        create: (BuildContext context) => WalletProvider(),
+        child: SafeArea(
           child: Scaffold(
             appBar: AppBar(
               leading: const Icon(
@@ -50,19 +50,19 @@ class _MainNavigationBarWidgetState extends State<MainNavigationBarWidget> {
               ],
             ),
             body: PageView(
-              controller: _screenController,
+              controller: _pageController,
               onPageChanged: _onTapSelected,
-              children: [
-                const DashboardScreen(),
-                TransactionOrWalletScreen(
-                  walletProvider: provider,
-                ),
-                const WalletBalanceScreen(),
-                const AccountScreen(),
+              children: const [
+                DashboardScreen(),
+                TransactionOrWalletScreen(),
+                WalletBalanceScreen(),
+                AccountScreen(),
               ],
             ),
             floatingActionButton: FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+
+              },
               child: const Icon(Icons.add_rounded),
             ),
             floatingActionButtonLocation:
@@ -83,15 +83,32 @@ class _MainNavigationBarWidgetState extends State<MainNavigationBarWidget> {
               activeColor: Theme.of(context).colorScheme.primary,
             ),
           ),
+        ));
+  }
+
+  Route _createRoute() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => TransactionBottomSheetWidget(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0.0, 1.0);
+        const end = Offset.zero;
+        const curve = Curves.easeInOut;
+        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var offsetAnimation = animation.drive(tween);
+
+        return SlideTransition(
+          position: offsetAnimation,
+          child: child,
         );
-      }),
+      },
     );
   }
+
 
   void _onTapSelected(int index) {
     setState(() {
       _currentTab = index;
-      _screenController.jumpToPage(index);
+      _pageController.jumpToPage(index);
 
       switch (index) {
         case 0:
@@ -121,12 +138,12 @@ class _MainNavigationBarWidgetState extends State<MainNavigationBarWidget> {
   @override
   void initState() {
     super.initState();
-    _screenController = PageController();
+    _pageController = PageController();
   }
 
   @override
   void dispose() {
-    _screenController.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 }

@@ -2,6 +2,7 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/constants/text_strings.dart';
+import 'package:piggy/src/features/core/screen/add_transaction/add_transaction_screen.dart';
 import 'package:piggy/src/features/core/screen/balance/wallet_balance_screen.dart';
 import 'package:piggy/src/features/core/screen/news/dashboard_screen.dart';
 import 'package:piggy/src/features/core/screen/transaction/transaction_screen.dart';
@@ -58,7 +59,15 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            // Add logic for adding transactions
+            showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return const TransactionBottomSheetWidget();
+              },
+            );
+          },
           child: const Icon(Icons.add_rounded),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

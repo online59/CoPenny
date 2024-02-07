@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:piggy/src/constants/image_strings.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/features/core/screen/news/model/news.dart';
-import 'package:piggy/src/features/core/screen/news/widgets/network_image_fallback_widget.dart';
+import 'package:piggy/src/common_widget/images/network_image_fallback_widget.dart';
 
 class NewsDetailsScreen extends StatelessWidget {
   const NewsDetailsScreen({super.key, required this.news});
