@@ -70,27 +70,77 @@ class ExpenseForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: const Text('Add Transfer'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              // Handle close button press
+            },
+            icon: const Icon(Icons.close),
+          ),
+          const SizedBox(width: 8),
+          const Text('0 THB'),
+        ],
+      ),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            IconButton(
-              onPressed: () {
-                // Add logic for selecting expense categories
-              },
-              icon: const Icon(Icons.category),
+            Text('From Wallet', style: TextStyle(fontWeight: FontWeight.bold)),
+            Row(
+              children: [
+                Icon(Icons.account_balance_wallet),
+                SizedBox(width: 8),
+                Text('Out of Spendee'),
+              ],
             ),
-            TextFormField(
-              decoration: const InputDecoration(labelText: 'Expense Amount'),
+            SizedBox(height: 16),
+            Text('To Wallet', style: TextStyle(fontWeight: FontWeight.bold)),
+            Row(
+              children: [
+                Icon(Icons.account_balance_wallet),
+                SizedBox(width: 8),
+                Text('Daily'),
+              ],
             ),
-            // Add widgets for selecting wallet, date picker, note, and set recurrence
+            SizedBox(height: 16),
+            Row(
+              children: [
+                Icon(Icons.calendar_today),
+                SizedBox(width: 8),
+                Text('Yesterday Today?'),
+              ],
+            ),
+            SizedBox(height: 16),
+            Row(
+              children: [
+                Icon(Icons.edit),
+                SizedBox(width: 8),
+                Text('Write a note'),
+              ],
+            ),
+            SizedBox(height: 16),
+            Row(
+              children: [
+                Icon(Icons.refresh),
+                SizedBox(width: 8),
+                Text('Recurrence Never'),
+              ],
+            ),
+            SizedBox(height: 16),
+            Text('Add an Amount'),
+            // Numeric keypad here (customize as needed)
           ],
         ),
       ),
     );
   }
 }
+
 
 class IncomeForm extends StatelessWidget {
   const IncomeForm({super.key});
