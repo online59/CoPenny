@@ -40,12 +40,12 @@ class _TransactionScreenState extends State<TransactionScreen>
           isScrollable: true,
           controller: _tabController,
           tabAlignment: TabAlignment.start,
-          labelPadding: const EdgeInsets.symmetric(horizontal: 20.0),
+          labelPadding: const EdgeInsets.symmetric(horizontal: mPaddingMedium),
           labelColor: Theme.of(context).colorScheme.onPrimary,
           indicatorSize: TabBarIndicatorSize.tab,
           indicator: BoxDecoration(
             color: Theme.of(context).colorScheme.primary,
-            borderRadius: BorderRadius.circular(30.0),
+            borderRadius: BorderRadius.circular(mContainerLargeRadius),
           ),
           tabs: [
             for (int i = 0; i < 12; i++)
