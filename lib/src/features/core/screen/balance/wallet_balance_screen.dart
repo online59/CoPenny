@@ -125,13 +125,15 @@ class _WalletBalanceScreenState extends State<WalletBalanceScreen> {
               child: Scaffold(
                 appBar: AppBar(
                   elevation: 0,
-                  title: const TabBar(
-                    // labelColor: Theme.of(context).colorScheme.onPrimary,
-                    // indicator: BoxDecoration(
-                    //   color: Theme.of(context).colorScheme.primary,
-                    //   borderRadius: BorderRadius.circular(mContainerMediumRadius),
-                    // ),
-                    tabs: [
+                  title: TabBar(
+                    labelPadding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    labelColor: Theme.of(context).colorScheme.onPrimary,
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    indicator: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primary,
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    tabs: const [
                       Tab(text: 'Expenses'),
                       Tab(text: 'Incomes'),
                     ],
