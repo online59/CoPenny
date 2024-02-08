@@ -30,46 +30,54 @@ class WalletBalanceChartState extends State<WalletBalanceChart> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Theme.of(context).colorScheme.background,
-      child: Stack(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(mPaddingSmall),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                widget.barTitle.isNotEmpty
-                    ? Text(
-                        widget.barTitle,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
+    return Padding(
+      padding: const EdgeInsets.all(mPaddingMedium),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primaryContainer,
+          borderRadius: BorderRadius.circular(mContainerMediumRadius),
+        ),
+        child: Stack(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(mPaddingSmall),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  widget.barTitle.isNotEmpty
+                      ? Center(
+                        child: Text(
+                            widget.barTitle,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                       )
-                    : const SizedBox(
-                        height: 0,
+                      : const SizedBox(
+                          height: 0,
+                        ),
+                  const SizedBox(
+                    height: mVSpacingMedium,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: BarChart(
+                        mainBarData(),
+                        swapAnimationDuration: animDuration,
                       ),
-                const SizedBox(
-                  height: mVSpacingMedium,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: BarChart(
-                      mainBarData(),
-                      swapAnimationDuration: animDuration,
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-              ],
+                  const SizedBox(
+                    height: 12,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

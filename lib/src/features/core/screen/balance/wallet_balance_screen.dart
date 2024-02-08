@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:piggy/src/constants/sizes.dart';
+import 'package:piggy/src/features/core/screen/balance/widgets/line_chart_widget.dart';
 import 'package:piggy/src/features/core/screen/balance/widgets/transaction_builder_widget.dart';
 import 'package:piggy/src/features/core/screen/balance/widgets/wallet_balance_chart.dart';
 
@@ -50,9 +51,15 @@ class _WalletBalanceScreenState extends State<WalletBalanceScreen> {
         children: [
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.3,
-            child: const WalletBalanceChart(),
+            child: const WalletBalanceChart(
+              barTitle: '37,800฿',
+            ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.3,
+            child: const LineChartWidget()
+          ),
+          const SizedBox(height: mVSpacingMedium),
           // Padding(
           //   padding: const EdgeInsets.symmetric(horizontal: 16),
           //   child: Row(
