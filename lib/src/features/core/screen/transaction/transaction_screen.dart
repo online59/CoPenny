@@ -32,10 +32,21 @@ class _TransactionScreenState extends State<TransactionScreen>
 
     return Scaffold(
       appBar: AppBar(
+        shape: Border.all(
+          color: Colors.transparent,
+          width: 0.0,
+        ),
         title: TabBar(
           isScrollable: true,
           controller: _tabController,
           tabAlignment: TabAlignment.start,
+          labelPadding: const EdgeInsets.symmetric(horizontal: 20.0),
+          labelColor: Theme.of(context).colorScheme.onPrimary,
+          indicatorSize: TabBarIndicatorSize.tab,
+          indicator: BoxDecoration(
+            color: Theme.of(context).colorScheme.primary,
+            borderRadius: BorderRadius.circular(30.0),
+          ),
           tabs: [
             for (int i = 0; i < 12; i++)
               Tab(
