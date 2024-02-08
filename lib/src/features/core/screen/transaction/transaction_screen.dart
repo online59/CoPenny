@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:piggy/src/common_widget/appbars/sliver_pinned_app_bar.dart';
@@ -34,6 +35,7 @@ class _TransactionScreenState extends State<TransactionScreen>
         title: TabBar(
           isScrollable: true,
           controller: _tabController,
+          tabAlignment: TabAlignment.start,
           tabs: [
             for (int i = 0; i < 12; i++)
               Tab(
@@ -43,7 +45,9 @@ class _TransactionScreenState extends State<TransactionScreen>
         ),
       ),
       body: TabBarView(
+        clipBehavior: Clip.antiAlias,
         controller: _tabController,
+        dragStartBehavior: DragStartBehavior.start,
         children: [
           for (int i = 0; i < 12; i++) buildTransactions(context),
         ],
