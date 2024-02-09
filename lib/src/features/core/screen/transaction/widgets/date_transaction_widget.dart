@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/features/core/screen/transaction/widgets/pinned_header_widget.dart';
-import 'package:piggy/src/features/core/screen/transaction/widgets/transaction_item_widget.dart';
+import 'package:piggy/src/features/core/screen/transaction/widgets/each_transaction_widget.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../model/transaction_item_model.dart';
 
 
-class TransactionGroup extends StatelessWidget {
-  const TransactionGroup({
+class DateTransactionWidget extends StatelessWidget {
+  const DateTransactionWidget({
     super.key,
     required this.transHeader,
     required this.transItems,
@@ -36,14 +36,14 @@ class TransactionGroup extends StatelessWidget {
                 padding: EdgeInsets.zero,
               ),
             ),
-            buildGroupItem(context),
+            buildDateTransaction(context),
           ],
         )
       ],
     );
   }
 
-  Widget buildGroupItem(BuildContext context) {
+  Widget buildDateTransaction(BuildContext context) {
     return MultiSliver(
       children: [
         //header of this transaction day
@@ -60,7 +60,7 @@ class TransactionGroup extends StatelessWidget {
           child: MultiSliver(
             //build transaction item of this day
             children: [
-              buildTransactionItem(context),
+              buildEachTransactionItem(context),
             ],
           ),
         ),
@@ -68,7 +68,7 @@ class TransactionGroup extends StatelessWidget {
     );
   }
 
-  Widget buildTransactionItem(BuildContext context) {
+  Widget buildEachTransactionItem(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (_, index) {
@@ -82,7 +82,7 @@ class TransactionGroup extends StatelessWidget {
                 ),
               );
             },
-            child: TransactionItemWidget(
+            child: EachTransactionWidget(
                 circleAvatar: CircleAvatar(
                   child: Text(transItems[index].content[0]),
                 ),

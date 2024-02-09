@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:piggy/src/constants/sizes.dart';
 
-class TransactionItemWidget extends StatelessWidget {
-  const TransactionItemWidget({
+class EachTransactionWidget extends StatelessWidget {
+  const EachTransactionWidget({
     super.key,
     required this.circleAvatar,
     required this.content,

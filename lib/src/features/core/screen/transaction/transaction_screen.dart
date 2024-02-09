@@ -1,12 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:piggy/src/common_widget/appbars/sliver_pinned_app_bar.dart';
-import 'package:piggy/src/constants/sizes.dart';
-import 'package:piggy/src/features/core/screen/balance/widgets/wallet_balance_chart.dart';
 import 'package:piggy/src/features/core/screen/transaction/transaction_data.dart';
-import 'package:piggy/src/features/core/screen/transaction/widgets/wallet_balanace_widget.dart';
-import 'package:piggy/src/features/core/screen/transaction/widgets/transaction_group.dart';
+import 'package:piggy/src/common_widget/tabs/custom_tab_bar_widget.dart';
+import 'package:piggy/src/features/core/screen/transaction/widgets/month_transaction_widget.dart';
 
 class TransactionScreen extends StatefulWidget {
   const TransactionScreen({super.key});
@@ -36,17 +33,10 @@ class _TransactionScreenState extends State<TransactionScreen>
           color: Colors.transparent,
           width: 0.0,
         ),
-        title: TabBar(
+        title: CustomTabBarWidget(
           isScrollable: true,
-          controller: _tabController,
+          tabController: _tabController,
           tabAlignment: TabAlignment.start,
-          labelPadding: const EdgeInsets.symmetric(horizontal: mPaddingMedium),
-          labelColor: Theme.of(context).colorScheme.onPrimary,
-          indicatorSize: TabBarIndicatorSize.tab,
-          indicator: BoxDecoration(
-            color: Theme.of(context).colorScheme.primary,
-            borderRadius: BorderRadius.circular(mContainerLargeRadius),
-          ),
           tabs: [
             for (int i = 0; i < 12; i++)
               Tab(
@@ -60,36 +50,14 @@ class _TransactionScreenState extends State<TransactionScreen>
         controller: _tabController,
         dragStartBehavior: DragStartBehavior.start,
         children: [
-          for (int i = 0; i < 12; i++) buildTransactions(context),
+          for (int i = 0; i < 12; i++)
+            MonthTransactionWidget(
+              transactionList: transactionList,
+            ),
         ],
       ),
     );
   }
-
-  SizedBox buildTransactions(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      child: CustomScrollView(
-        slivers: buildSliverBody(context),
-      ),
-    );
-  }
-
-  List<Widget> buildSliverBody(BuildContext context) {
-    List<Widget> widgets = [];
-    widgets.addAll(buildTransactionGroup());
-    return widgets;
-  }
-
-  List<Widget> buildTransactionGroup() => transactionList
-      .map(
-        (item) => TransactionGroup(
-          transHeader: item.getFormattedHeader(),
-          transItems: item.items,
-          totalAmount: item.getFormattedTotalAmount(),
-        ),
-      )
-      .toList();
 
   String getMonthName(int monthNumber, {int year = 2024}) {
     // Create an instance of DateFormat with desired format
