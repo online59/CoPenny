@@ -6,7 +6,6 @@ import 'package:sliver_tools/sliver_tools.dart';
 
 import '../model/transaction_item_model.dart';
 
-
 class DateTransactionWidget extends StatelessWidget {
   const DateTransactionWidget({
     super.key,
@@ -72,22 +71,11 @@ class DateTransactionWidget extends StatelessWidget {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (_, index) {
-          //container of the transaction items
-          return GestureDetector(
-            onTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(transItems[index].content),
-                  duration: const Duration(seconds: 1),
-                ),
-              );
-            },
-            child: EachTransactionWidget(
-                circleAvatar: CircleAvatar(
-                  child: Text(transItems[index].content[0]),
-                ),
-                content: transItems[index].content,
-                amount: transItems[index].getFormattedAmount()),
+          return EachTransactionWidget(
+            circleAvatar: CircleAvatar(
+              child: Text(transItems[index].content[0]),
+            ),
+            transactionItem: transItems[index],
           );
         },
         childCount: transItems.length,
