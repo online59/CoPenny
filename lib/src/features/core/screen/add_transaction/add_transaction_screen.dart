@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:piggy/src/common_widget/tabs/custom_tab_bar_widget.dart';
+import 'package:piggy/src/constants/sizes.dart';
 
 class TransactionBottomSheetWidget extends StatefulWidget {
   const TransactionBottomSheetWidget({super.key});
@@ -26,25 +28,21 @@ class _TransactionBottomSheetWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      padding: const EdgeInsets.all(mPaddingMedium),
       height: MediaQuery.of(context).size.height * 0.6,
       child: Column(
         children: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: TabBar(
-              controller: _tabController,
-              indicator: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary, // Primary color
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              labelColor: Theme.of(context).colorScheme.onPrimary, // On primary color
+            child: CustomTabBarWidget(
+              tabController: _tabController,
               tabs: const [
                 Tab(text: 'Expense'),
                 Tab(text: 'Income'),
                 Tab(text: 'Transfer'),
               ],
-            ),
+            )
           ),
           Expanded(
             child: TabBarView(

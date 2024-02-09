@@ -25,44 +25,41 @@ class HotNewsCard extends StatelessWidget {
           ),
         );
       },
-      child: SizedBox(
-        width: sizedBoxSize,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Card(
-              margin: const EdgeInsets.all(mMarginSmall),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(mContainerSmallRadius),
-                child: Image.network(
-                  news.urlToImage!,
-                  height: sizedBoxSize * 0.6,
-                  fit: BoxFit.cover,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Card(
+            margin: const EdgeInsets.all(mMarginSmall),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(mContainerSmallRadius),
+              child: Image.network(
+                news.urlToImage!,
+                height: sizedBoxSize * 0.5,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: mPaddingSmall),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  news.title!,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(mPaddingSmall),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    news.title!,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+                Text(
+                  DateFormat('MMM dd, yyyy').format(news.publishedAt!),
+                  style: const TextStyle(
+                    color: Colors.grey,
                   ),
-                  Text(
-                    DateFormat('MMM dd, yyyy').format(news.publishedAt!),
-                    style: const TextStyle(
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

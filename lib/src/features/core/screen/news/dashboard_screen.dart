@@ -24,7 +24,8 @@ class _DashboardScreenState extends State<DashboardScreen>
       slivers: [
         TopNewsWidget(pageController: _pageController),
         SliverPadding(
-          padding: const EdgeInsets.only(left: mPaddingSmall, right: mPaddingSmall, top: mPaddingLarge),
+          padding: const EdgeInsets.only(
+              left: mPaddingMedium, right: mPaddingMedium, top: mPaddingMedium),
           sliver: SliverToBoxAdapter(
             child: Text(
               mHotNews.toUpperCase(),
@@ -34,7 +35,7 @@ class _DashboardScreenState extends State<DashboardScreen>
         ),
         const HotNewsWidget(),
         SliverPadding(
-          padding: const EdgeInsets.all(mPaddingSmall),
+          padding: const EdgeInsets.all(mPaddingMedium),
           sliver: SliverToBoxAdapter(
             child: Text(
               mLatestNews.toUpperCase(),
@@ -50,4 +51,3 @@ class _DashboardScreenState extends State<DashboardScreen>
   @override
   bool get wantKeepAlive => true;
 }
-
