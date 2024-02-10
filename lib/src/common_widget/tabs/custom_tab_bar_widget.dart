@@ -34,6 +34,7 @@ class CustomTabBarWidget extends StatelessWidget {
         ? DefaultTabController(
             length: tabs.length,
             child: TabBar(
+              splashFactory: NoSplash.splashFactory,
               isScrollable: isScrollable,
               tabAlignment: tabAlignment,
               labelPadding: labelPadding,
@@ -51,6 +52,7 @@ class CustomTabBarWidget extends StatelessWidget {
             ),
           )
         : TabBar(
+            splashFactory: NoSplash.splashFactory,
             isScrollable: isScrollable,
             controller: tabController,
             tabAlignment: tabAlignment,
