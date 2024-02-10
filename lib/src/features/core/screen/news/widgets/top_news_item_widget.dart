@@ -15,7 +15,7 @@ class TopNewsCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         // Handle news item tap
         Navigator.of(context).push(

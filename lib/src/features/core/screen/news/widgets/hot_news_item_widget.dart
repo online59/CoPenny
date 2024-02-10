@@ -17,7 +17,7 @@ class HotNewsCard extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     var sizedBoxSize = size.width * 0.7;
 
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(

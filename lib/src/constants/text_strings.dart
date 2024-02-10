@@ -94,3 +94,16 @@ const String mBorrowing = "Borrowing";
 const String mTopNews = "Top News";
 const String mHotNews = "Hot News";
 const String mLatestNews = "Latest News";
+
+//Add transaction bottom sheet
+const String mAddNewExpense = "New Expense";
+const String mAddNewIncome = "New Income";
+const String mAddNewTransfer = "New Transfer";
+const String mAddExpenseSubtitle = "Add your expenses today and keep track of your spending.";
+const String mAddIncomeSubtitle = "Add your income today and keep track of your earning.";
+const String mAddTransferSubtitle = "Transfer your money today and keep track of your spending.";
+const String mHintAddExpense = "Expense Amount";
+const String mHintAddIncome = "Income Amount";
+const String mHintAddTransfer = "Transfer Amount";
+const String mSelectCategory = "Select Category";
+

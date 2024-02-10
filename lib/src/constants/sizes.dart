@@ -32,6 +32,7 @@ const mButtonLogoSize = 20.0;
 const mButtonRadiusSmall = 10.0;
 const mButtonRadiusMedium = 20.0;
 const mButtonRadiusLarge = 30.0;
+const mButtonFontSize = 24.0;
 
 //Container radius
 const mContainerSmallRadius = 10.0;
@@ -44,3 +45,10 @@ const mFormHeight = 20.0;
 //App bar sizing
 const mAppBarVMargin = 6.0;
 const mAppBarHMargin = 20.0;
+
+//Add transaction form
+const mAddTransactionCalendarHeight = 100.0;
+const mAddTransactionAmountInputFieldHeight = 100.0;
+const mAddTransactionTitleFontSize = 24.0;
+const mAddTransactionAmountFontSize = 40.0;
+const mAddTransactionAmountHintFontSize = 20.0;

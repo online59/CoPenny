@@ -62,9 +62,13 @@ class _HomeScreenState extends State<HomeScreen> {
           onPressed: () {
             // Add logic for adding transactions
             showModalBottomSheet(
+              isScrollControlled: true,
               context: context,
               builder: (context) {
-                return const TransactionBottomSheetWidget();
+                return const FractionallySizedBox(
+                  heightFactor: 0.65,
+                  child: TransactionBottomSheetWidget(),
+                );
               },
             );
           },
