@@ -17,7 +17,7 @@ const String mSettingScreenTitle = "Setting";
 //Button text
 const String mSignIn = "Sign In";
 const String mSignInWithGoogle = "Sign In With Google";
-const String mSingOut = "Sign Out";
+const String mSignOut = "Sign Out";
 const String mSignUp = "Sign Up";
 const String mRegister = "Register";
 const String mForgetPassword = "Forget Password";
