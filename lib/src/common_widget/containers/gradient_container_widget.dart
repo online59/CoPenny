@@ -15,6 +15,7 @@ class GradientContainer extends StatelessWidget {
     this.beginColorAlignment = Alignment.topCenter,
     this.endColorAlignment = Alignment.bottomCenter,
     this.child,
+    this.onTap,
   });
 
   final EdgeInsetsGeometry? padding;
@@ -27,68 +28,67 @@ class GradientContainer extends StatelessWidget {
   final Alignment endColorAlignment;
   final Widget? child;
   final List<BoxShadow>? boxShadow;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return boxShadow == null
-        ? Container(
-            padding: padding,
-            width: width,
-            height: height,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 1,
-                  blurRadius: 1,
-                  offset: const Offset(0, 1),
+        ? ClipRRect(
+            borderRadius: borderRadius ?? BorderRadius.circular(0),
+            child: Material(
+              child: Ink(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 1,
+                      offset: const Offset(0, 1),
+                    ),
+                  ],
+                  // borderRadius: borderRadius,
+                  gradient: LinearGradient(
+                    begin: beginColorAlignment,
+                    end: endColorAlignment,
+                    colors: [beginColor, endColor],
+                  ),
                 ),
-              ],
-              borderRadius: borderRadius,
-              gradient: LinearGradient(
-                begin: beginColorAlignment,
-                end: endColorAlignment,
-                colors: [beginColor, endColor],
+                child: InkWell(
+                  onTap: onTap,
+                  child: Container(
+                    padding: padding,
+                    width: width,
+                    height: height,
+                    child: child,
+                  ),
+                ),
               ),
             ),
-            child: child,
           )
-        : Container(
-            padding: padding,
-            width: width,
-            height: height,
-            decoration: BoxDecoration(
-              boxShadow: boxShadow!,
-              borderRadius: borderRadius,
-              gradient: LinearGradient(
-                begin: beginColorAlignment,
-                end: endColorAlignment,
-                colors: [beginColor, endColor],
+        : ClipRRect(
+            borderRadius: borderRadius ?? BorderRadius.circular(0),
+            child: Material(
+              child: Ink(
+                decoration: BoxDecoration(
+                  boxShadow: boxShadow!,
+                  // borderRadius: borderRadius,
+                  gradient: LinearGradient(
+                    begin: beginColorAlignment,
+                    end: endColorAlignment,
+                    colors: [beginColor, endColor],
+                  ),
+                ),
+                child: InkWell(
+                  onTap: onTap,
+                  child: Container(
+                    padding: padding,
+                    width: width,
+                    height: height,
+                    child: child,
+                  ),
+                ),
               ),
             ),
-            child: child,
           );
-  }
-}
-
-class ThousandsFormatter extends TextInputFormatter {
-
-  final NumberFormat _formatter = NumberFormat('#,###');
-
-  @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue,
-      TextEditingValue newValue,
-      ) {
-    if (newValue.selection.baseOffset == 0) {
-      return newValue;
-    }
-
-    final int selectionOffset = newValue.selection.baseOffset;
-    final String newString = _formatter.format(double.parse(newValue.text));
-    return TextEditingValue(
-      text: newString,
-      selection: TextSelection.collapsed(offset: selectionOffset + 1),
-    );
   }
 }

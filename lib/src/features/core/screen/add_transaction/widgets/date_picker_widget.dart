@@ -30,25 +30,23 @@ class _CustomDatePickerWidgetState extends State<CustomDatePickerWidget> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: InkWell(
+      child: GradientContainer(
         onTap: () => _selectDate(context),
-        child: GradientContainer(
-          width: 120,
-          height: 100,
-          borderRadius: BorderRadius.circular(mContainerMediumRadius),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                DateFormat.MMMM().format(_selectedDate),
-                style: const TextStyle(color: Colors.white, fontSize: 20),
-              ),
-              Text(
-                DateFormat.d().format(_selectedDate),
-                style: const TextStyle(color: Colors.white, fontSize: 30),
-              ),
-            ],
-          ),
+        width: 120,
+        height: 100,
+        borderRadius: BorderRadius.circular(mContainerMediumRadius),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              DateFormat.MMMM().format(_selectedDate),
+              style: const TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            Text(
+              DateFormat.d().format(_selectedDate),
+              style: const TextStyle(color: Colors.white, fontSize: 30),
+            ),
+          ],
         ),
       ),
     );

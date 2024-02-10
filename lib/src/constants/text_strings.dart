@@ -106,4 +106,8 @@ const String mHintAddExpense = "Expense Amount";
 const String mHintAddIncome = "Income Amount";
 const String mHintAddTransfer = "Transfer Amount";
 const String mSelectCategory = "Select Category";
+const String mTransferFromAccount = "Transfer From Account";
+const String mTransferToAccount = "Transfer To Account";
+const String mAdd = "Add";
+const String mAccount = "Account";
 

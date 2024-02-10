@@ -53,18 +53,16 @@ class _IncomeFormState extends State<IncomeForm> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Expanded(
-                    child: InkWell(
+                    child: GradientContainer(
                       onTap: () {},
-                      child: GradientContainer(
-                        height: 56.0,
-                        borderRadius: BorderRadius.circular(mContainerSmallRadius),
-                        child: Center(
-                          child: Text(
-                            mAddNewTransfer,
-                            style: TextStyle(
-                                fontSize: mButtonFontSize,
-                                color: Theme.of(context).colorScheme.onPrimary),
-                          ),
+                      height: 56.0,
+                      borderRadius: BorderRadius.circular(mContainerSmallRadius),
+                      child: Center(
+                        child: Text(
+                          mAdd,
+                          style: TextStyle(
+                              fontSize: mButtonFontSize,
+                              color: Theme.of(context).colorScheme.onPrimary),
                         ),
                       ),
                     ),
