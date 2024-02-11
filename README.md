@@ -12,12 +12,19 @@ As of now, CoPenny is still a work in progress. While the basic functionality of
 
 ## Demo
 
-![Demo GIF](https://github.com/online59/copenny/blob/daaeedb002b8e8ebe1b32651d75bee8e75fbfdbc/assets/images/welcome_images/page1.gif)
+![Demo GIF](https://github.com/online59/CoPenny/blob/d710e8ad82ef1449193fb3b8b32b581b9f176824/assets/images/welcome_images/page1.gif)
 
-![Demo GIF](https://github.com/online59/copenny/blob/3f99835d084d103f97d0474b47b41de9b476c821/assets/images/welcome_images/page2.gif)
+![Demo GIF](https://github.com/online59/CoPenny/blob/d710e8ad82ef1449193fb3b8b32b581b9f176824/assets/images/welcome_images/page2.gif)
 
-![Demo GIF](https://github.com/online59/copenny/blob/daaeedb002b8e8ebe1b32651d75bee8e75fbfdbc/assets/images/welcome_images/page3.gif)
+![Demo GIF](https://github.com/online59/CoPenny/blob/d710e8ad82ef1449193fb3b8b32b581b9f176824/assets/images/welcome_images/page3.gif)
 
+![Demo GIF](https://github.com/online59/CoPenny/blob/d710e8ad82ef1449193fb3b8b32b581b9f176824/assets/images/welcome_images/page4.gif)
+
+![Demo GIF](https://github.com/online59/CoPenny/blob/d710e8ad82ef1449193fb3b8b32b581b9f176824/assets/images/welcome_images/page5.gif)
+
+![Demo GIF](https://github.com/online59/CoPenny/blob/d710e8ad82ef1449193fb3b8b32b581b9f176824/assets/images/welcome_images/page6.png)
+
+![Demo GIF](https://github.com/online59/CoPenny/blob/d710e8ad82ef1449193fb3b8b32b581b9f176824/assets/images/welcome_images/page7.png)
 ## Planned Features
 
 In the future, the following features are planned to be implemented:
