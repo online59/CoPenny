@@ -1,38 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 
-class GradientContainer extends StatelessWidget {
-  const GradientContainer({
+class BorderContainer extends StatelessWidget {
+  const BorderContainer({
     super.key,
     this.padding,
     this.width,
     this.height,
     this.boxShadow,
-    this.beginColor = Colors.blue,
-    this.endColor = Colors.blueAccent,
+    this.color = Colors.white,
     this.borderRadius,
-    this.beginColorAlignment = Alignment.topCenter,
-    this.endColorAlignment = Alignment.bottomCenter,
     this.child,
     this.onTap,
+    this.borderColor = Colors.grey,
+    this.borderWidth = 1,
+    this.borderOpacity = 0.5,
   });
 
   final EdgeInsetsGeometry? padding;
   final double? width;
   final double? height;
-  final Color beginColor;
-  final Color endColor;
+  final Color color;
+  final Color borderColor;
+  final double borderWidth;
+  final double borderOpacity;
   final BorderRadiusGeometry? borderRadius;
-  final Alignment beginColorAlignment;
-  final Alignment endColorAlignment;
   final Widget? child;
   final List<BoxShadow>? boxShadow;
   final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-
     return boxShadow == null
         ? ClipRRect(
             borderRadius: borderRadius ?? BorderRadius.circular(0),
@@ -47,11 +44,10 @@ class GradientContainer extends StatelessWidget {
                       offset: const Offset(0, 1),
                     ),
                   ],
-                  // borderRadius: borderRadius,
-                  gradient: LinearGradient(
-                    begin: beginColorAlignment,
-                    end: endColorAlignment,
-                    colors: [beginColor, endColor],
+                  color: color,
+                  border: Border.all(
+                    color: borderColor.withOpacity(borderOpacity),
+                    width: borderWidth,
                   ),
                 ),
                 child: InkWell(
@@ -71,12 +67,11 @@ class GradientContainer extends StatelessWidget {
             child: Material(
               child: Ink(
                 decoration: BoxDecoration(
-                  boxShadow: boxShadow!,
-                  // borderRadius: borderRadius,
-                  gradient: LinearGradient(
-                    begin: beginColorAlignment,
-                    end: endColorAlignment,
-                    colors: [beginColor, endColor],
+                  boxShadow: boxShadow,
+                  color: color,
+                  border: Border.all(
+                    color: borderColor.withOpacity(borderOpacity),
+                    width: borderWidth,
                   ),
                 ),
                 child: InkWell(

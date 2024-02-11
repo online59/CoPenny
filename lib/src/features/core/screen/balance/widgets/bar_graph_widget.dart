@@ -5,23 +5,27 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:piggy/src/constants/sizes.dart';
 
-class WalletBalanceChart extends StatefulWidget {
-  const WalletBalanceChart({
+class BarGraphWidget extends StatefulWidget {
+  const BarGraphWidget({
     super.key,
     this.barTitle = "",
     this.barSubTitle = "",
     this.maxValue = 20,
+    this.barColor,
+    this.barDataList,
   });
 
   final String barTitle;
   final String barSubTitle;
   final double maxValue;
+  final Color? barColor;
+  final List<double>? barDataList;
 
   @override
-  State<StatefulWidget> createState() => WalletBalanceChartState();
+  State<StatefulWidget> createState() => BarGraphWidgetState();
 }
 
-class WalletBalanceChartState extends State<WalletBalanceChart> {
+class BarGraphWidgetState extends State<BarGraphWidget> {
   final Duration animDuration = const Duration(milliseconds: 250);
 
   int touchedIndex = -1;
@@ -32,52 +36,46 @@ class WalletBalanceChartState extends State<WalletBalanceChart> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(mPaddingMedium),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primaryContainer,
-          borderRadius: BorderRadius.circular(mContainerMediumRadius),
-        ),
-        child: Stack(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(mPaddingSmall),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  widget.barTitle.isNotEmpty
-                      ? Center(
+      child: Stack(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(mPaddingSmall),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                widget.barTitle.isNotEmpty
+                    ? Center(
                         child: Text(
-                            widget.barTitle,
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          widget.barTitle,
+                          style: const TextStyle(
+                            color: Colors.blue,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
                           ),
-                      )
-                      : const SizedBox(
-                          height: 0,
                         ),
-                  const SizedBox(
-                    height: mVSpacingMedium,
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: BarChart(
-                        mainBarData(),
-                        swapAnimationDuration: animDuration,
+                      )
+                    : const SizedBox(
+                        height: 0,
                       ),
+                const SizedBox(
+                  height: mVSpacingMedium,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: BarChart(
+                      mainBarData(),
+                      swapAnimationDuration: animDuration,
                     ),
                   ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -87,14 +85,22 @@ class WalletBalanceChartState extends State<WalletBalanceChart> {
     double y, {
     bool isTouched = false,
     Color? barColor,
-    double width = 44,
+    double width = 20,
     List<int> showTooltips = const [],
   }) {
-    barColor ??= Theme.of(context).colorScheme.primary;
+    barColor ??= Theme.of(context).colorScheme.secondary;
     return BarChartGroupData(
       x: x,
       barRods: [
         BarChartRodData(
+          gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.blue,
+              Colors.blueAccent,
+            ],
+          ),
           toY: isTouched ? y + 1 : y,
           color: isTouched ? Theme.of(context).colorScheme.secondary : barColor,
           width: width,
@@ -116,19 +122,26 @@ class WalletBalanceChartState extends State<WalletBalanceChart> {
   List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
         switch (i) {
           case 0:
-            return makeGroupData(0, 5, isTouched: i == touchedIndex);
+            return makeGroupData(0, 5,
+                isTouched: i == touchedIndex, barColor: widget.barColor);
           case 1:
-            return makeGroupData(1, 6.5, isTouched: i == touchedIndex);
+            return makeGroupData(1, 6.5,
+                isTouched: i == touchedIndex, barColor: widget.barColor);
           case 2:
-            return makeGroupData(2, 5, isTouched: i == touchedIndex);
+            return makeGroupData(2, 5,
+                isTouched: i == touchedIndex, barColor: widget.barColor);
           case 3:
-            return makeGroupData(3, 7.5, isTouched: i == touchedIndex);
+            return makeGroupData(3, 7.5,
+                isTouched: i == touchedIndex, barColor: widget.barColor);
           case 4:
-            return makeGroupData(4, 9, isTouched: i == touchedIndex);
+            return makeGroupData(4, 9,
+                isTouched: i == touchedIndex, barColor: widget.barColor);
           case 5:
-            return makeGroupData(5, 11.5, isTouched: i == touchedIndex);
+            return makeGroupData(5, 11.5,
+                isTouched: i == touchedIndex, barColor: widget.barColor);
           case 6:
-            return makeGroupData(6, 6.5, isTouched: i == touchedIndex);
+            return makeGroupData(6, 6.5,
+                isTouched: i == touchedIndex, barColor: widget.barColor);
           default:
             return throw Error();
         }
@@ -224,8 +237,12 @@ class WalletBalanceChartState extends State<WalletBalanceChart> {
       borderData: FlBorderData(
         show: false,
       ),
+      minY: -10,
+      maxY: 5,
       barGroups: showingGroups(),
-      gridData: const FlGridData(show: false),
+      gridData: const FlGridData(
+        show: false,
+      ),
     );
   }
 
@@ -238,25 +255,25 @@ class WalletBalanceChartState extends State<WalletBalanceChart> {
     Widget text;
     switch (value.toInt()) {
       case 0:
-        text = const Text('M', style: style);
+        text = const Text('Mo', style: style);
         break;
       case 1:
-        text = const Text('T', style: style);
+        text = const Text('Tu', style: style);
         break;
       case 2:
-        text = const Text('W', style: style);
+        text = const Text('We', style: style);
         break;
       case 3:
-        text = const Text('T', style: style);
+        text = const Text('Th', style: style);
         break;
       case 4:
-        text = const Text('F', style: style);
+        text = const Text('Fr', style: style);
         break;
       case 5:
-        text = const Text('S', style: style);
+        text = const Text('Sa', style: style);
         break;
       case 6:
-        text = const Text('S', style: style);
+        text = const Text('Su', style: style);
         break;
       default:
         text = const Text('', style: style);
