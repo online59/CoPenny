@@ -5,8 +5,6 @@ import 'package:piggy/src/constants/image_strings.dart';
 import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/constants/text_strings.dart';
 import 'package:piggy/src/features/authentication/screens/forget_password/forget_password_otp/otp_screen.dart';
-import 'package:piggy/src/features/authentication/screens/login/widgets/login_footer_widget.dart';
-import 'package:piggy/src/features/authentication/screens/login/widgets/login_form_widget.dart';
 
 class ForgetPasswordMailScreen extends StatelessWidget {
   const ForgetPasswordMailScreen({super.key});

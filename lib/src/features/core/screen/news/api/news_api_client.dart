@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:piggy/src/constants/endpoint.dart';
 
 class NewsApiClient {
   NewsApiClient({required String apiKey}) : _apiKey = apiKey;

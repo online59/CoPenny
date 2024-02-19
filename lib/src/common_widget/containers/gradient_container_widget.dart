@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 
 class GradientContainer extends StatelessWidget {
   const GradientContainer({
@@ -10,6 +8,7 @@ class GradientContainer extends StatelessWidget {
     this.height,
     this.boxShadow,
     this.beginColor = Colors.blue,
+    this.middleColor,
     this.endColor = Colors.blueAccent,
     this.borderRadius,
     this.beginColorAlignment = Alignment.topCenter,
@@ -22,6 +21,7 @@ class GradientContainer extends StatelessWidget {
   final double? width;
   final double? height;
   final Color beginColor;
+  final Color? middleColor;
   final Color endColor;
   final BorderRadiusGeometry? borderRadius;
   final Alignment beginColorAlignment;
@@ -32,7 +32,6 @@ class GradientContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return boxShadow == null
         ? ClipRRect(
             borderRadius: borderRadius ?? BorderRadius.circular(0),
@@ -51,7 +50,9 @@ class GradientContainer extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: beginColorAlignment,
                     end: endColorAlignment,
-                    colors: [beginColor, endColor],
+                    colors: middleColor == null
+                        ? [beginColor, endColor]
+                        : [beginColor, middleColor!, endColor],
                   ),
                 ),
                 child: InkWell(

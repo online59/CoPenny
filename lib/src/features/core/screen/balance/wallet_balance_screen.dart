@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:piggy/src/common_widget/containers/border_container_widget.dart';
 import 'package:piggy/src/common_widget/containers/gradient_container_widget.dart';
-import 'package:piggy/src/common_widget/tabs/custom_tab_bar_widget.dart';
 import 'package:piggy/src/constants/sizes.dart';
-import 'package:piggy/src/features/core/screen/balance/widgets/line_chart_widget.dart';
-import 'package:piggy/src/features/core/screen/balance/widgets/transaction_builder_widget.dart';
-import 'package:piggy/src/features/core/screen/balance/widgets/bar_graph_widget.dart';
 
 class WalletBalanceScreen extends StatefulWidget {
   const WalletBalanceScreen({super.key});
@@ -59,52 +54,77 @@ class _WalletBalanceScreenState extends State<WalletBalanceScreen>
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: mVSpacingMedium),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: mPaddingSmall),
-            child: GradientContainer(
+      child: Padding(
+        padding: const EdgeInsets.all(mPaddingSmall),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: mVSpacingMedium),
+            GradientContainer(
+              beginColor: Colors.purple[400]!,
+              middleColor: Colors.purple[600]!,
+              endColor: Colors.blue[400]!,
+              beginColorAlignment: Alignment.bottomLeft,
+              endColorAlignment: Alignment.topRight,
               width: double.infinity,
               borderRadius: BorderRadius.circular(mContainerMediumRadius),
               padding: const EdgeInsets.all(mPaddingMedium),
-              child: const Column(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Total Balance',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                    ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Total Balance',
+                        style: TextStyle(
+                          fontSize: mFontSizeXXLarge,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Last updated 2 hours ago',
+                        style: TextStyle(
+                          fontSize: mFontSizeSmall,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    '฿ 50,000.00',
+                  const SizedBox(height: mVSpacingMedium),
+                  const Text(
+                    'THB 50,000.00',
                     style: TextStyle(
                       fontSize: 40,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  const SizedBox(height: mVSpacingMedium),
                   Text(
-                    'Last updated 2 hours ago',
-                    style: TextStyle(
-                      fontSize: 12,
+                    'Wallet Name'.toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: mFontSizeLarge,
                       color: Colors.white,
                     ),
                   ),
+                  const SizedBox(height: 8.0),
+                  Row(
+                    children: [
+                      for (final i in Iterable.generate(8))
+                        _buildMemberCircleAvatar(i.toString()),
+                    ],
+                  )
                 ],
               ),
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(mPaddingSmall),
-            child: Row(
+            const SizedBox(height: mVSpacingSmall),
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 InfoCard(
                   title: 'Total Income',
-                  amount: '\$7,000.00',
+                  amount: 'THB 7,000.00',
                   account: 'Bank Account ****1796',
                 ),
                 SizedBox(
@@ -112,16 +132,13 @@ class _WalletBalanceScreenState extends State<WalletBalanceScreen>
                 ),
                 InfoCard(
                   title: 'Total Expense',
-                  amount: '\$4,544.99',
+                  amount: 'THB 4,544.99',
                   account: 'Bank Account ****1965',
                 ),
               ],
             ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.7,
-            child: Padding(
-              padding: const EdgeInsets.all(mPaddingSmall),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.7,
               child: Column(
                 children: [
                   _buildSection('Top Outflow', [
@@ -143,8 +160,20 @@ class _WalletBalanceScreenState extends State<WalletBalanceScreen>
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMemberCircleAvatar(String name) {
+    return Padding(
+      padding: const EdgeInsets.all(2),
+      child: CircleAvatar(
+        backgroundColor: Colors.white,
+        child: Text(
+          name,
+        ),
       ),
     );
   }
@@ -153,7 +182,7 @@ class _WalletBalanceScreenState extends State<WalletBalanceScreen>
     return Column(
       children: [
         ListTile(
-          title: Text(title, style: const TextStyle(fontSize: 18)),
+          title: Text(title, style: const TextStyle(fontSize: mFontSizeXLarge)),
           trailing: const Text('See All'),
           tileColor: Colors.transparent,
         ),
@@ -207,13 +236,16 @@ class InfoCard extends StatelessWidget {
               Text(
                 title,
                 style: const TextStyle(
-                    fontWeight: FontWeight.bold, color: Colors.white),
+                  fontSize: mFontSizeMedium,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.white,
+                ),
               ),
               const SizedBox(height: mVSpacingSmall),
               Text(
                 amount,
                 style: const TextStyle(
-                  fontSize: 24,
+                  fontSize: mFontSizeXXLarge,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),

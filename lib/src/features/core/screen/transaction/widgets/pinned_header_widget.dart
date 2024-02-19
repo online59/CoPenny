@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:piggy/src/constants/sizes.dart';
 
 class PinnedHeaderWidget extends StatelessWidget {
   const PinnedHeaderWidget(

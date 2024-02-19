@@ -4,7 +4,6 @@ import 'package:piggy/src/constants/sizes.dart';
 import 'package:piggy/src/constants/text_strings.dart';
 import 'package:piggy/src/features/core/screen/add_transaction/data/category_data.dart';
 import 'package:piggy/src/features/core/screen/add_transaction/models/category_model.dart';
-import 'package:piggy/src/features/core/screen/add_transaction/utils/thousands_formattetr.dart';
 import 'package:piggy/src/features/core/screen/add_transaction/widgets/date_picker_widget.dart';
 import 'package:piggy/src/features/core/screen/add_transaction/widgets/selectable_widget.dart';
 import 'package:piggy/src/features/core/screen/add_transaction/widgets/transaction_input_field_widget.dart';

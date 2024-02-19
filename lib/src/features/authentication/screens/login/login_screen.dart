@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:piggy/src/common_widget/forms/form_header_widget.dart';
 import 'package:piggy/src/constants/image_strings.dart';
